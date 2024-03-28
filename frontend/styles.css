@@ -1,0 +1,15 @@
+
+  .feature-icon-small {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+}
+
+#login-button{
+  color: white;
+  text-decoration: none;
+}
