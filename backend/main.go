@@ -16,6 +16,7 @@ func main() {
 
 	stack := middleware.CreateStack(
 		middleware.Logging,
+		middleware.Cors,
 	)
 
 	router.HandleFunc("POST /register", controllers.Register)
