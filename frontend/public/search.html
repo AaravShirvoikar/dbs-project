@@ -14,7 +14,8 @@
             list-style: none;
         }
     </style>
-    <script src="search.js"></script>
+    <script defer src="./search.js"></script>
+    <link rel="stylesheet" href="./search.css"/>
 </head>
 <body>
 
@@ -104,7 +105,8 @@
                 <input type="text" placeholder="Search by name , tag or professor" class="w-100 border rounded-3" style="padding-left: 10px; margin-left: 45%; min-width: 75%;">
                 <button class="btn btn-primary mx-2">Search</button>
             </div>
-            <div class="search-results">
+            <div id="search-results">
+                <h2>Search Results</h2>
             </div>
         </div>
     </div>

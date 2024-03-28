@@ -6,32 +6,47 @@ async function fetchData() {
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJvbWthciIsImV4cCI6MTcxMTczMzIxMCwiaWF0IjoxNzExNjQ2ODEwfQ.PKKHQhtTNbcHCDcSIrFfRB44Qnytp0PBbK0riRnJ_N8"
     }
     
-    let response = await fetch("http://localhost:8080/projects", { 
-        method: "GET",
-        headers: headersList
-    });
+    let response;
+    try {
+        response = await fetch("http://localhost:8080/projects", { 
+            method: "GET",
+            headers: headersList
+        });
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return;
+    }
     
-    let data = await response.text();
-    console.log(data);
+    let data = JSON.parse(await response.text());
+   
     return data;
 }
 
-let response = fetchData();
-// Path: dbs-project/frontend/public/search.js
+async function getData() {
+    let response = await fetchData();
 
-response = [{"project_id":1,"title":"Project A","description":"Description for Project A","professor_id":1,"status":"in_progress","tags":[]},{"project_id":2,"title":"Project B","description":"Description for Project B","professor_id":1,"status":"closed","tags":["technology","innovation"]}];
-
-for (let i in response) {
+    console.log(response);
+    
+    for (let i in response) {
     let project = response[i];
+    // console.log(project);
     let projectCard = document.createElement("div");
     projectCard.className = "project-card";
     let projectName = document.createElement("h3");
-    projectName.innerHTML = project.name;
+    // console.log(project.title);
+    projectName.innerHTML = project.title;
+    let line = document.createElement("hr");
+
     let projectDescription = document.createElement("p");
     projectDescription.innerHTML = project.description;
+    let projectTags = document.createElement("p");
+    projectTags.innerHTML = project.tags;
     projectCard.appendChild(projectName);
+    projectCard.appendChild(line);
     projectCard.appendChild(projectDescription);
+    projectCard.appendChild(projectTags);
     document.getElementById("search-results").appendChild(projectCard);
 }
-   
-   
+    console.log("Display Complete");
+};
+getData();
