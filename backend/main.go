@@ -19,6 +19,7 @@ func main() {
 	)
 
 	router.HandleFunc("POST /register", controllers.Register)
+	router.HandleFunc("POST /login", controllers.Login)
 
 	server := http.Server{
 		Addr:    ":8080",
