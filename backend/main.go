@@ -21,6 +21,11 @@ func main() {
 	router.HandleFunc("POST /register", controllers.Register)
 	router.HandleFunc("POST /login", controllers.Login)
 
+	subrouter := http.NewServeMux()
+	subrouter.HandleFunc("GET /projects", controllers.GetAllProjects)
+
+	router.Handle("/", middleware.AuthenticateToken(subrouter))
+
 	server := http.Server{
 		Addr:    ":8080",
 		Handler: stack(router),

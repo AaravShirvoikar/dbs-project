@@ -38,9 +38,8 @@ CREATE TABLE applications (
 
 -- Create skills table
 CREATE TABLE skills (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  user_id INT REFERENCES users(id)
+  user_id INT PRIMARY KEY REFERENCES users(id),
+  skills VARCHAR[]
 );
 
 -- Create experience table
