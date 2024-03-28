@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"regexp"
 
+	"github.com/AaravShirvoikar/dbs-project/backend/middleware"
 	"github.com/AaravShirvoikar/dbs-project/backend/models"
 )
 
@@ -43,4 +44,28 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"message": "registration successful",
 	})
+}
+
+func Login(w http.ResponseWriter, r *http.Request) {
+    var user models.User
+
+    if err := json.NewDecoder(r.Body).Decode(&user); err != nil {
+        http.Error(w, err.Error(), http.StatusBadRequest)
+        return
+    }
+
+    authenticated, err := user.Authenticate()
+    if err != nil || !authenticated {
+        http.Error(w, "invalid username or password", http.StatusUnauthorized)
+        return
+    }
+
+    token, err := middleware.GenerateJWT(user)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+
+    w.Header().Set("Content-Type", "application/json")
+    json.NewEncoder(w).Encode(map[string]string{"token": token})
 }
