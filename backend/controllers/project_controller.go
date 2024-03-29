@@ -25,8 +25,21 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateProject(w http.ResponseWriter, r *http.Request) {
+	id := r.Context().Value("id").(int)
+	userType, err := models.CheckType(id)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	if userType != "professor" {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
 	var project models.Project
-	err := json.NewDecoder(r.Body).Decode(&project)
+	err = json.NewDecoder(r.Body).Decode(&project)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Bad request", http.StatusBadRequest)
@@ -41,4 +54,7 @@ func CreateProject(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"message": "project created successfully",
+	})
 }

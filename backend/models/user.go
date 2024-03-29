@@ -55,3 +55,15 @@ func (u *User) Authenticate() (bool, error) {
 
 	return true, nil
 }
+
+func CheckType(userID int) (string, error) {
+	var userType string
+
+	query := "SELECT type FROM users WHERE id = $1;"
+	err := database.Db.QueryRowContext(context.Background(), query, userID).Scan(&userType)
+	if err != nil {
+		return "", fmt.Errorf("error getting user type: %s", err.Error())
+	}
+
+	return userType, nil
+}
