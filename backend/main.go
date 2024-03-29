@@ -25,6 +25,7 @@ func main() {
 	subrouter := http.NewServeMux()
 	subrouter.HandleFunc("GET /projects/all", controllers.GetAllProjects)
 	subrouter.HandleFunc("POST /projects/create", controllers.CreateProject)
+	subrouter.HandleFunc("GET /projects/", controllers.GetMyProjects)
 
 	router.Handle("/", middleware.AuthenticateToken(subrouter))
 

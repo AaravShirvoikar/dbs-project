@@ -24,6 +24,23 @@ func GetAllProjects(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func GetMyProjects(w http.ResponseWriter, r *http.Request) {
+	id := r.Context().Value("id").(int)
+	projects, err := models.GetMyProjects(id)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(projects)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+}
+
 func CreateProject(w http.ResponseWriter, r *http.Request) {
 	id := r.Context().Value("id").(int)
 	userType, err := models.CheckType(id)
