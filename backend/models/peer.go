@@ -15,7 +15,7 @@ func GetPeers(id int) ([]Peer, error) {
 		return nil, err
 	}
 
-	rows, err := database.Db.Query("SELECT username, email, first_name, last_name FROM users where type = $1", userType)
+	rows, err := database.Db.Query("SELECT username, email, first_name, last_name FROM users where type = $1 and id != $2", userType, id)
 	if err != nil {
 		return nil, err
 	}
