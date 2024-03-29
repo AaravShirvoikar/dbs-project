@@ -45,6 +45,7 @@ function getData(username, password){
         let json = JSON.parse(token);
         console.log(json.token);
         localStorage.setItem("token",json.token);
+        localStorage.setItem("username",username);
         location.replace("./dashboard.html");
     })();
 }

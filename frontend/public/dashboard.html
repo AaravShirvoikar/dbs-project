@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,10 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Mentor Match | Dashboard</title>
     <script src="verify.js"></script>
-
+    <link rel="stylesheet" href="./dashboard.css">
+    <script defer src="./dashboard.js"></script>
 </head>
+
 <body>
     <section id="header">
         <div class="container header">
@@ -16,11 +19,9 @@
                 class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
                 <div class="col-md-3 mb-md-0">
                     <a href="../index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <img src="../assets/MentorMatch.png" width="50"
-                            height="auto" alt="Mentor Match Logo"> 
+                        <img src="../assets/MentorMatch.png" width="50" height="auto" alt="Mentor Match Logo">
                     </a>
                 </div>
-
 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="./dashboard.html" class="nav-link px-2">Dashboard</a></li>
@@ -35,7 +36,24 @@
             </header>
         </div>
     </section>
-    <h1>DASHBOARD</h1>
+
+
+
+    <h2 id="welcome-text">DASHBOARD</h2>
+    <div id="content">
+
+        <div id="profile">
+            <h3 style="padding-top: 10px;"><u>My Profile</u></h3>
+            <img src="../assets/placeholder.png" id="profile-image" />
+        </div>
+        <div id="my-projects">
+            <h3 style="padding-top: 10px;"><u>My Projects</u></h3>
+            <div id="project-list"></div>
+        </div>
+    </div>
+
+
+
 
     <section id="footer">
         <div class="container footer">
@@ -59,7 +77,8 @@
         </div>
     </section>
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

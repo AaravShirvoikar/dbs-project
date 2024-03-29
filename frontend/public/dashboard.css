@@ -1,0 +1,66 @@
+#welcome-text{
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+
+#content{
+    width: 80%;
+    height: 70vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile{
+    border: 5px solid black;
+    height: 90%;
+    width: 30%;
+    border-radius: 50px 25px 25px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile-image{
+    padding-top: 10px;
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+}
+
+.profile-details{
+    align-self: self-start;
+    padding-left: 20px;
+    margin-top: 40px; 
+}
+
+#my-projects{
+    border: 5px solid black;
+    height: 90%;
+    width: 60%;
+    border-radius: 25px 50px 50px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project-list{
+    display: flex;
+    flex-direction: row;
+}
+
+.project-entry{
+    /* border: 1px solid black; */
+    align-self: flex-start;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+
+
