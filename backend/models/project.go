@@ -38,15 +38,8 @@ func GetProjects() ([]Project, error) {
 	return projects, nil
 }
 
-func ParsePostgresArray(tagsArray sql.NullString) []string {
-	if !tagsArray.Valid {
-		return []string{}
-	}
-	tagsStr := tagsArray.String
-	tagsStr = strings.Trim(tagsStr, "{}")
-	tags := strings.Split(tagsStr, ",")
-	for i, tag := range tags {
-		tags[i] = strings.TrimSpace(tag)
-	}
-	return tags
+func (p *Project) Create() error {
+	tagsArray := "{" + strings.Join(p.Tags, ",") + "}"
+	_, err := database.Db.Exec("INSERT INTO projects (title, description, professor_id, status, tags) VALUES ($1, $2, $3, $4, $5)", p.Title, p.Description, p.ProfessorID, p.Status, tagsArray)
+	return err
 }

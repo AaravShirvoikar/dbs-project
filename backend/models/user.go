@@ -9,13 +9,13 @@ import (
 )
 
 type User struct {
-	UserID   int    `json:"user_id"`
-	UserName string `json:"username"`
-	Password string `json:"password"`
-	Email    string `json:"email"`
+	UserID    int    `json:"user_id"`
+	UserName  string `json:"username"`
+	Password  string `json:"password"`
+	Email     string `json:"email"`
 	FirstName string `json:"first_name"`
-	LastName string `json:"last_name"`
-	Type     string `json:"type"`
+	LastName  string `json:"last_name"`
+	Type      string `json:"type"`
 }
 
 func (u *User) Insert() error {
@@ -37,21 +37,21 @@ func (u *User) Insert() error {
 }
 
 func (u *User) Authenticate() (bool, error) {
-    var passwordHash string
+	var passwordHash string
 	var id int
 
-    query := "SELECT id, password FROM users WHERE username = $1;"
-    err := database.Db.QueryRowContext(context.Background(), query, u.UserName).Scan(&id, &passwordHash)
-    if err != nil {
-        return false, fmt.Errorf("invalid username or password")
-    }
+	query := "SELECT id, password FROM users WHERE username = $1;"
+	err := database.Db.QueryRowContext(context.Background(), query, u.UserName).Scan(&id, &passwordHash)
+	if err != nil {
+		return false, fmt.Errorf("invalid username or password")
+	}
 
 	u.UserID = id
 
-    err = bcrypt.CompareHashAndPassword([]byte(passwordHash), []byte(u.Password))
-    if err != nil {
-        return false, fmt.Errorf("invalid username or password")
-    }
+	err = bcrypt.CompareHashAndPassword([]byte(passwordHash), []byte(u.Password))
+	if err != nil {
+		return false, fmt.Errorf("invalid username or password")
+	}
 
-    return true, nil
+	return true, nil
 }
