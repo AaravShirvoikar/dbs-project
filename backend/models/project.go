@@ -38,9 +38,31 @@ func GetProjects() ([]Project, error) {
 	return projects, nil
 }
 
-func GetMyProjects(id int) ([]Project, error) {
+func GetStudentProjects(id int) ([]Project, error) {
 	query := "SELECT id, title, description, professor_id, status, tags FROM projects JOIN project_members ON projects.id = project_members.project_id WHERE project_members.user_id = $1;"
 	rows, err := database.Db.Query(query, id)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	projects := []Project{}
+	for rows.Next() {
+		var project Project
+		var tagsArray sql.NullString
+		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorID, &project.Status, &tagsArray)
+		if err != nil {
+			return nil, err
+		}
+		project.Tags = ParsePostgresArray(tagsArray)
+		projects = append(projects, project)
+	}
+
+	return projects, nil
+}
+
+func GetProfessorProjects(id int) ([]Project, error) {
+	rows, err := database.Db.Query("SELECT * FROM projects WHERE professor_id = $1", id)
 	if err != nil {
 		return nil, err
 	}
