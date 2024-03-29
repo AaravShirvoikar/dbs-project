@@ -1,0 +1,10 @@
+INSERT INTO users (username, password, email, first_name, last_name, type, skills)
+VALUES (
+  'username_value',        -- Replace with actual username value
+  'password_value',        -- Replace with actual password value
+  'email@example.com',     -- Replace with actual email value
+  'John',                  -- Replace with actual first name value
+  'Doe',                   -- Replace with actual last name value
+  'student',               -- Replace with actual user type value ('student' or 'professor')
+  ARRAY['skill1', 'skill2'] -- Replace with actual skills array value, e.g., ARRAY['Java', 'Python']
+);

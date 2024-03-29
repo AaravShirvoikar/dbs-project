@@ -49,3 +49,9 @@ CREATE TABLE experience (
   title VARCHAR NOT NULL,
   description TEXT NOT NULL
 );
+
+CREATE TABLE project_members (
+  project_id INT REFERENCES projects(id),
+  user_id INT REFERENCES users(id),
+  PRIMARY KEY (project_id, user_id)
+);
