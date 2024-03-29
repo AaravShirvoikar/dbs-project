@@ -28,6 +28,11 @@ func GetMyProjects(w http.ResponseWriter, r *http.Request) {
 	id := r.Context().Value("id").(int)
 	var projects []models.Project
 	userType, err := models.CheckType(id)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
 
 	if userType == "student" {
 		projects, err = models.GetStudentProjects(id)
