@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/AaravShirvoikar/dbs-project/backend/database"
+	"github.com/AaravShirvoikar/dbs-project/backend/utils"
 )
 
 type Project struct {
@@ -31,7 +32,7 @@ func GetProjects() ([]Project, error) {
 		if err != nil {
 			return nil, err
 		}
-		project.Tags = ParsePostgresArray(tagsArray)
+		project.Tags = utils.ParsePostgresArray(tagsArray)
 		projects = append(projects, project)
 	}
 
@@ -54,7 +55,7 @@ func GetStudentProjects(id int) ([]Project, error) {
 		if err != nil {
 			return nil, err
 		}
-		project.Tags = ParsePostgresArray(tagsArray)
+		project.Tags = utils.ParsePostgresArray(tagsArray)
 		projects = append(projects, project)
 	}
 
@@ -76,7 +77,7 @@ func GetProfessorProjects(id int) ([]Project, error) {
 		if err != nil {
 			return nil, err
 		}
-		project.Tags = ParsePostgresArray(tagsArray)
+		project.Tags = utils.ParsePostgresArray(tagsArray)
 		projects = append(projects, project)
 	}
 
