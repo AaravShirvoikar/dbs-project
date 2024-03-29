@@ -1,14 +1,12 @@
 async function fetchData() {
     let headersList = {
         "Accept": "*/*",
-        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
         "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJvbWthciIsImV4cCI6MTcxMTczMzIxMCwiaWF0IjoxNzExNjQ2ODEwfQ.PKKHQhtTNbcHCDcSIrFfRB44Qnytp0PBbK0riRnJ_N8"
+        "Authorization": "Bearer " + localStorage.getItem("token"),
     }
-    
     let response;
     try {
-        response = await fetch("http://localhost:8080/projects", { 
+        response = await fetch("http://localhost:8080/projects/all", { 
             method: "GET",
             headers: headersList
         });

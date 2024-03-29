@@ -8,3 +8,20 @@ VALUES (
   'student',               -- Replace with actual user type value ('student' or 'professor')
   ARRAY['skill1', 'skill2'] -- Replace with actual skills array value, e.g., ARRAY['Java', 'Python']
 );
+
+
+
+
+
+INSERT INTO projects (title, description, professor_id, status, tags)
+VALUES (
+  'Modeling EEG Signals for Mental Confusion Using DNN and LSTM With Custom Attention Layer',
+  'This study explored the impact of confusion on concentration and cognition, emphasizing the importance of detecting and preventing confusion from enhancing learning outcomes. By leveraging electroencephalogram (EEG) data, we proposed a novel deep learning model that uses long short-term memory (LSTM) networks to predict confusion levels in online massive open courses (MOOCs). LSTMs ability to model sequential data such as EEG signals has been harnessed to capture long-term dependencies and temporal dynamics effectively. To enhance pattern detection, we incorporated probabilistic features from machine learning (ML) models. By training them on the same dataset, we utilized their predictions as additional features for the deep learning model. Thereby, the neural network could make more informed decisions and improve its ability to detect and analyze EEG data patterns. Using LSTM and probabilistic features, our model effectively captured temporal dependencies, enabling an accurate online assessment of student perplexity to identify moments of confusion. The integration of attention mechanisms further enhanced the focus on critical EEG features, providing valuable insights into students cognitive states during online learning. We evaluated our approach by comparing the deep-learning model trained on the original dataset with that trained on feature-engineered data using K-fold cross-validation. Preliminary testing showed that the proposed DNN + LSTM model, which incorporates probabilistic features and a custom attention layer, achieves high accuracy in identifying moments of confusion among MOOC students. This study advances the EEG data analysis, leading to a better understanding of confusion patterns and supports personalized interventions for online education platforms.',
+  1,  -- Assuming professor_id 1 exists
+  'open',  -- Assuming the project is open
+  ARRAY['General Computer Science','General Materials Science','General Engineering']  -- Tags
+);
+
+
+
+
