@@ -14,7 +14,10 @@ async function fetchData() {
         console.error("Error fetching data:", error);
         return;
     }
-
+    if(response.status == "401"){
+        alert("Session Expired. Please login again.");
+        window.location.href = "./login.html";
+    }
     let data = JSON.parse(await response.text());
 
     return data;
