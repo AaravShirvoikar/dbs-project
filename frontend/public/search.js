@@ -1,3 +1,4 @@
+
 async function fetchData() {
     let headersList = {
         "Accept": "*/*",
@@ -14,10 +15,10 @@ async function fetchData() {
         console.error("Error fetching data:", error);
         return;
     }
-    
+
     let data = JSON.parse(await response.text());
-    console.log(data);   
-    if(data.error == "invalid token format" || data.error == "invalid token"){
+    console.log(data);
+    if (data.error == "invalid token format" || data.error == "invalid token") {
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
@@ -25,29 +26,28 @@ async function fetchData() {
 }
 
 async function getData(response) {
-    if(response == undefined){
+    if (response == undefined) {
         response = await fetchData();
-        console.log("from fetchData",response);
+        console.log("from fetchData", response);
     }
 
-    console.log("from search",response);
+    console.log("from search", response);
 
     for (let i in response) {
         let project = response[i];
-        // console.log(project);
         let projectButton = document.createElement("button");
         projectButton.classList.add("project-button");
-        projectButton.setAttribute("data-toggle", "modal");
-        projectButton.setAttribute("data-target", "#projectModal");
+        projectButton.setAttribute("data-bs-toggle", "modal");
+        projectButton.setAttribute("data-bs-target", "#myModal");
+        projectButton.setAttribute("type", "button")
+        projectButton.setAttribute("onclick", "buttonClicked()")
         let projectCard = document.createElement("div");
         projectCard.className = "project-card";
         // projectCard,classList.add("modal-dialog modal-dialog-centered modal-dialog-scrollable");
         let projectName = document.createElement("h3");
-        // console.log(project.title);
         projectName.innerHTML = project.title;
         projectName.classList = "project-title";
         let line = document.createElement("hr");
-        
         let projectDescription = document.createElement("p");
         projectDescription.innerHTML = project.description;
         projectDescription.classList = "project-description";
@@ -72,7 +72,7 @@ function search() {
     if (input != "") {
         input = input.toLowerCase();
         let x = Array.from(document.querySelectorAll(".project-button"));
-        console.log("x",typeof x, x);
+        console.log("x", typeof x, x);
         for (let i = 0; i < x.length; i++) {
             let title = x[i].querySelectorAll(".project-title");
             title = title[0].innerHTML.toLowerCase();
@@ -84,17 +84,21 @@ function search() {
                 x[i].classList.remove("hide");
             }
             else {
-                x[i].classList.add("hide");}
+                x[i].classList.add("hide");
+            }
         }
-        if(search_results.length == 0){
+        if (search_results.length == 0) {
             document.getElementById("search-results").innerHTML = "No Results Found";
         }
         console.log(search_results);
     } else {
         let x = Array.from(document.querySelectorAll(".project-button"));
-        for(let i = 0; i < x.length; i++){
+        for (let i = 0; i < x.length; i++) {
             x[i].classList.remove("hide");
         }
     }
 }
 
+function buttonClicked() {
+    myModal.show();
+}
