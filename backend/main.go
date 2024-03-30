@@ -23,6 +23,8 @@ func main() {
 	router.HandleFunc("POST /login", controllers.Login)
 
 	subrouter := http.NewServeMux()
+	subrouter.HandleFunc("GET /user/", controllers.GetUser)
+
 	subrouter.HandleFunc("GET /projects/", controllers.GetMyProjects)
 	subrouter.HandleFunc("GET /projects/all", controllers.GetAllProjects)
 	subrouter.HandleFunc("POST /projects/create", controllers.CreateProject)

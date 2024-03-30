@@ -69,3 +69,14 @@ func Login(w http.ResponseWriter, r *http.Request) {
     w.Header().Set("Content-Type", "application/json")
     json.NewEncoder(w).Encode(map[string]string{"token": token})
 }
+
+func GetUser(w http.ResponseWriter, r *http.Request) {
+	id := r.Context().Value("id").(int)
+	user, err := models.GetUserDetails(id)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(user)
+}
