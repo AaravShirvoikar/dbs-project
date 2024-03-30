@@ -1,3 +1,4 @@
 backend
 .env
 backend.exe
+sql/query.txt
