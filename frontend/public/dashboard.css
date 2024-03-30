@@ -29,6 +29,18 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
+#profile:hover{
+    /* border: 5px solid black; */
+    height: 90%;
+    width: 40%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(128, 128, 128, 0.2);
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.5);
+}
+
 #profile-image{
     padding-top: 10px;
     width: 50%;
