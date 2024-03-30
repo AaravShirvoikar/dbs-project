@@ -34,6 +34,10 @@ async function getData(response) {
     for (let i in response) {
         let project = response[i];
         // console.log(project);
+        let projectButton = document.createElement("button");
+        projectButton.classList.add("project-button");
+        projectButton.setAttribute("data-toggle", "modal");
+        projectButton.setAttribute("data-target", "#projectModal");
         let projectCard = document.createElement("div");
         projectCard.className = "project-card";
         // projectCard,classList.add("modal-dialog modal-dialog-centered modal-dialog-scrollable");
@@ -42,18 +46,19 @@ async function getData(response) {
         projectName.innerHTML = project.title;
         projectName.classList = "project-title";
         let line = document.createElement("hr");
-
+        
         let projectDescription = document.createElement("p");
         projectDescription.innerHTML = project.description;
         projectDescription.classList = "project-description";
         let projectTags = document.createElement("p");
         projectTags.classList = "project-tags";
         projectTags.innerHTML = project.tags;
+        projectButton.appendChild(projectCard);
         projectCard.appendChild(projectName);
         projectCard.appendChild(line);
         projectCard.appendChild(projectDescription);
         projectCard.appendChild(projectTags);
-        document.getElementById("search-results").appendChild(projectCard);
+        document.getElementById("search-results").appendChild(projectButton);
     }
     console.log("Display Complete");
 };

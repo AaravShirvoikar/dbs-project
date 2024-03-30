@@ -23,8 +23,13 @@ body{
 #peer-results::-webkit-scrollbar, #search-results::-webkit-scrollbar{
     display: none;
 }
+.project-button{
+    background: none;
+    border: none;
+    min-width: 700px;
+}
 
-.peer-card, .project-card{
+.peer-card, .project-button{
     margin: 20px 0;
     margin-left: 20px;
     /* border: 2px solid black; */
@@ -34,10 +39,14 @@ body{
     max-width: 700px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
-.project-card{
+.project-button{
     margin-left: 100px;
 }
-.project-card:hover{
+.project-card{
+    margin-left: 0px;
+
+}
+.project-button:hover{
     margin: 20px 0;
     margin-left: 105px;
     /* border: 2px solid black; */

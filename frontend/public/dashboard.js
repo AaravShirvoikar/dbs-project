@@ -24,7 +24,8 @@ async function fetchData() {
         console.error("Error fetching data:", error);
         return;
     }
-    if(response.status == "401"){
+    console.log(response);
+    if(response.error == "invalid token"){
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
