@@ -24,12 +24,13 @@ async function fetchData() {
         console.error("Error fetching data:", error);
         return;
     }
-    console.log(response);
-    if(response.error == "invalid token"){
+
+    let data = JSON.parse(await response.text());
+    console.log(data);   
+    if(data.error == "invalid token format" || data.error == "invalid token"){
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
-    let data = JSON.parse(await response.text());
     return data;
 }
 
