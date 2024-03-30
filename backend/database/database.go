@@ -11,7 +11,7 @@ import (
 
 var Db *sql.DB
 
-func InitDB() {
+func Connect() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal(err)

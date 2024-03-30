@@ -12,7 +12,7 @@ import (
 func main() {
 	router := http.NewServeMux()
 
-	database.InitDB()
+	database.Connect()
 
 	stack := middleware.CreateStack(
 		middleware.Logging,
