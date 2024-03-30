@@ -14,7 +14,7 @@ async function fetchData() {
         console.error("Error fetching data:", error);
         return;
     }
-    if(response.status == "401"){
+    if(response.error == "invalid token"){
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
@@ -70,7 +70,7 @@ function search() {
     console.log(input);
     if (input != "") {
         input = input.toLowerCase();
-        let x = Array.from(document.querySelectorAll(".project-card"));
+        let x = Array.from(document.querySelectorAll(".project-button"));
         console.log("x",typeof x, x);
         for (let i = 0; i < x.length; i++) {
             let title = x[i].querySelectorAll(".project-title");
@@ -85,9 +85,12 @@ function search() {
             else {
                 x[i].classList.add("hide");}
         }
+        if(search_results.length == 0){
+            document.getElementById("search-results").innerHTML = "No Results Found";
+        }
         console.log(search_results);
     } else {
-        let x = Array.from(document.querySelectorAll(".project-card"));
+        let x = Array.from(document.querySelectorAll(".project-button"));
         for(let i = 0; i < x.length; i++){
             x[i].classList.remove("hide");
         }
