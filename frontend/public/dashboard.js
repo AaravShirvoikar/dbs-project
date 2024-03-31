@@ -1,5 +1,21 @@
-
-
+document.addEventListener("DOMContentLoaded", async function() {
+    let response = await fetchData2();   
+    if(response.type=="professor"){
+        let createProject = document.createElement("button");
+        createProject.innerHTML = "Create Project";
+        createProject.id = "create-project";
+        createProject.classList.add("btn");
+        createProject.classList.add("btn-primary");
+        createProject.classList.add("create-button");
+        createProject.setAttribute("data-bs-toggle", "modal");
+        createProject.setAttribute("data-bs-target", "#myModal");
+        createProject.setAttribute("type", "button")
+        document.getElementById("my-projects").appendChild(createProject);
+    }
+    else{
+        console.log("Student");
+    }
+})
 
 
 async function fetchData1() {
@@ -36,7 +52,7 @@ async function fetchData2() {
     }
     let response;
     try {
-        response = await fetch("http://localhost:8080/user/", { 
+        response = await fetch("http://localhost:8080/user/details", { 
             method: "GET",
             headers: headersList
         });
@@ -60,15 +76,18 @@ async function getData() {
     let response2 = await fetchData2();
     console.log(response2);
     
-    document.getElementById("welcome-text").innerHTML = "Welcome "+localStorage.getItem("username");
+    document.getElementById("welcome").innerHTML = "Welcome "+localStorage.getItem("username");
     let profileDetails = document.createElement("div");
     profileDetails.classList.add("profile-details");
     let userName = document.createElement("h4");
     userName.innerHTML = "Username: "+response2.username;
     let emailId = document.createElement("h4");
     emailId.innerHTML = "Email: "+response2.email;
+    let skills = document.createElement("h4");
+    skills.innerHTML = "Skills: "+ (response2.skills!=null?response2.skills:"");
     profileDetails.appendChild(userName);
     profileDetails.appendChild(emailId);
+    profileDetails.appendChild(skills);
     document.getElementById("profile").appendChild(profileDetails);
 
     for (let i in response) {
