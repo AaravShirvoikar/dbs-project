@@ -37,16 +37,15 @@ async function getData(response) {
     console.log("from search", response);
 
     for (let i in response) {
+        i = response.length - i - 1;
         let project = response[i];
         let projectButton = document.createElement("button");
         projectButton.classList.add("project-button");
         projectButton.setAttribute("data-bs-toggle", "modal");
         projectButton.setAttribute("data-bs-target", "#myModal");
         projectButton.setAttribute("type", "button")
-        // projectButton.setAttribute("onclick", "buttonClicked()")
         let projectCard = document.createElement("div");
         projectCard.className = "project-card";
-        // projectCard,classList.add("modal-dialog modal-dialog-centered modal-dialog-scrollable");
         let projectName = document.createElement("h3");
         projectName.innerHTML = project.title;
         projectName.classList = "project-title";
@@ -68,6 +67,12 @@ async function getData(response) {
         projectCard.appendChild(projectDescription);
         projectCard.appendChild(projectTags);
         document.getElementById("search-results").appendChild(projectButton);
+        
+        let noResults = document.createElement("h3");
+        noResults.innerHTML = "No results found";
+        noResults.classList.add("hide");
+        noResults.setAttribute("id", "no-results");
+        document.getElementById("search-results").appendChild(noResults);
     }
     console.log("Display Complete");
 };
@@ -81,7 +86,7 @@ function search() {
         input = input.toLowerCase();
         let x = Array.from(document.querySelectorAll(".project-button"));
         console.log("x", typeof x, x);
-        for (let i = 0; i < x.length; i++) {
+        for (let i = x.length - 1; i >=0; i--) {
             let title = x[i].querySelectorAll(".project-title");
             title = title[0].innerHTML.toLowerCase();
             let description = x[i].querySelectorAll(".project-description");
@@ -89,18 +94,24 @@ function search() {
             if (title.includes(input) || description.includes(input)) {
                 search_results.push(x[i]);
                 console.log(x[i]);
-                x[i].classList.remove("hide");
             }
             else {
                 x[i].classList.add("hide");
             }
         }
         if (search_results.length == 0) {
-            let noResults = document.createElement("p");
-            document.getElementById("search-results").appendChild(noResults);
+            document.getElementById("no-results").classList.remove("hide");
+        }
+        else{
+            for(let i in search_results){
+                search_results[i].classList.remove("hide");
+            }
+            document.getElementById("no-results").classList.add("hide");
+
         }
         console.log(search_results);
     } else {
+        document.getElementById("no-results").classList.add("hide");
         let x = Array.from(document.querySelectorAll(".project-button"));
         for (let i = 0; i < x.length; i++) {
             x[i].classList.remove("hide");
@@ -144,3 +155,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.getElementById('searchbar').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        search(); // Call your search function
+    }
+});
