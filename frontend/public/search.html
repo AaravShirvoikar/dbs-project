@@ -16,7 +16,9 @@
             list-style: none;
         }
     </style>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script defer src="./search.js"></script>
     <link rel="stylesheet" href="./card.css" />
     <script src="verify.js"></script>
@@ -50,7 +52,8 @@
     </section>
 
     <section id="modal-section">
-        <div class="modal fade " aria-hidden="true" tabindex="-1" id="myModal" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" >
+        <div class="modal fade " aria-hidden="true" tabindex="-1" id="myModal" role="dialog" data-bs-backdrop="static"
+            data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -60,27 +63,38 @@
                     </div>
                     <div class="modal-body">
                         <h5>Project Owner :</h5>
-                        <h5>Duration : <span>X Months  </span></h5>
+                        <h5>Duration : <span>X Months </span></h5>
                         <h5>Start Date: <span>DD-MM-YYYY</span></h5>
                         <h5>End Date: <span>DD-MM-YYYY</span></h5>
                         <h5>Minimum Requirements : </h5>
                         <h5>Project Description :</h5>
-                        <p  id="modal-description">Description</p>
-                        <label>Why do you think you are suitable for this project?<br/><label>
-                        <textarea class="form-control" rows="5" cols="110" id="comment" style="margin: 10px auto;"></textarea>
+                        <p id="modal-description">Description</p>
+                        <label>Why do you think you are suitable for this project?<br /><label>
+                                <textarea class="form-control" rows="5" cols="110" id="comment"
+                                    style="margin: 10px auto;"></textarea>
                     </div>
-                    <div class="" style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
+                    <div class=""
+                        style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
                         <h5 id="project-Status">Project Status : </h5>
                         <div>
-                        <button type="button" class="btn btn-primary" style="height:  37.6px">Apply</button>
-                        <button type="button" class="btn btn-default" style="height:  37.6px" data-bs-dismiss="modal">Close</button>
+                            
+                            <button type="button" style="height: 38px; background: none; border: none;">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#0d6efd" class="w-6 h-6" viewBox="0 0 24 24" style="width: 30px; height: 30px;">
+                                   <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
+                                </svg>
+                             </button>
+                             
+
+                            <button type="button" class="btn btn-primary" style="height:  37.6px">Apply</button>
+                            <button type="button" class="btn btn-default" style="height:  37.6px"
+                                data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-       </section>
-  
+    </section>
+
     <section id="search-filter">
         <div class="d-flex">
             <div class="sidebar px-3 pt-3 mx-4 my-5 border rounded-3 bg-body-tertiary"
