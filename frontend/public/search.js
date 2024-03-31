@@ -1,4 +1,3 @@
-
 async function fetchData() {
     let headersList = {
         "Accept": "*/*",
@@ -88,7 +87,8 @@ function search() {
             }
         }
         if (search_results.length == 0) {
-            document.getElementById("search-results").innerHTML = "No Results Found";
+            let noResults = document.createElement("p");
+            document.getElementById("search-results").appendChild(noResults);
         }
         console.log(search_results);
     } else {

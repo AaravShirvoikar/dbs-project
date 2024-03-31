@@ -20,6 +20,10 @@ body{
     width: 900px;
 }
 
+#peer-results{
+    width: 900px;
+}
+
 #peer-results::-webkit-scrollbar, #search-results::-webkit-scrollbar{
     display: none;
 }
@@ -30,8 +34,8 @@ body{
 }
 
 .peer-card, .project-button{
-    margin: 20px 0;
-    margin-left: 20px;
+    margin: 20px auto;
+    margin-left: 50px;
     /* border: 2px solid black; */
     border-radius: 20px;
     padding: 10px 25px;
@@ -42,8 +46,22 @@ body{
 .project-button{
     margin-left: 100px;
 }
+.peer-card{
+    width: 700px;
+    margin: 20px auto;
+}
 .project-card{
     margin-left: 0px;
+}
+.peer-card:hover{
+    margin: 20px 0;
+    margin-left: 105px;
+    /* border: 2px solid black; */
+    border-radius: 20px;
+    padding: 10px 25px;
+    min-height: 150px;
+    max-width: 700px;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.6);
 
 }
 .project-button:hover{
