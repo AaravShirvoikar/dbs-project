@@ -70,9 +70,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
     json.NewEncoder(w).Encode(map[string]string{"token": token})
 }
 
-func GetUser(w http.ResponseWriter, r *http.Request) {
+func GetUserDetails(w http.ResponseWriter, r *http.Request) {
 	id := r.Context().Value("id").(int)
-	user, err := models.GetUserDetails(id)
+	user, err := models.GetUser(id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

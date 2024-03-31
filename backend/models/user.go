@@ -56,7 +56,7 @@ func (u *User) Authenticate() (bool, error) {
 	return true, nil
 }
 
-func GetUserDetails(userID int) (*User, error) {
+func GetUser(userID int) (*User, error) {
 	var user User
 
 	query := "SELECT username, email, first_name, last_name, type FROM users WHERE id = $1;"
