@@ -37,7 +37,7 @@ CREATE TABLE applications (
 );
 
 -- Create skills table
-CREATE TABLE skills (
+CREATE TABLE user_skills (
   user_id INT PRIMARY KEY REFERENCES users(id),
   skills VARCHAR[]
 );
