@@ -55,21 +55,26 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Project Title</h4>
+                        <h4 id="modal-title" class="modal-title">Project Title</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <h5>Project Owner :</h5>
-                        <h5>Duration : <span>X Months  </span>Start-End Date: <span>DD-MM-YYYY to DD-MM-YYYY</span></h5>
+                        <h5>Duration : <span>X Months  </span></h5>
+                        <h5>Start Date: <span>DD-MM-YYYY</span></h5>
+                        <h5>End Date: <span>DD-MM-YYYY</span></h5>
                         <h5>Minimum Requirements : </h5>
                         <h5>Project Description :</h5>
-                        <p>Description</p>
+                        <p  id="modal-description">Description</p>
                         <label>Why do you think you are suitable for this project?<br/><label>
                         <textarea class="form-control" rows="2" cols="110" id="comment" style="margin: 10px auto;"></textarea>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Apply</button>
-                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                    <div class="" style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
+                        <h5 id="project-Status">Project Status : </h5>
+                        <div>
+                        <button type="button" class="btn btn-primary" style="height:  37.6px">Apply</button>
+                        <button type="button" class="btn btn-default" style="height:  37.6px" data-bs-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,11 @@ async function fetchData() {
     }
     return data;
 }
-
+var globalResponse;
+async function globalData(){
+    globalResponse = await fetchData();
+}
+globalData();
 async function getData(response) {
     if (response == undefined) {
         response = await fetchData();
@@ -39,13 +43,17 @@ async function getData(response) {
         projectButton.setAttribute("data-bs-toggle", "modal");
         projectButton.setAttribute("data-bs-target", "#myModal");
         projectButton.setAttribute("type", "button")
-        projectButton.setAttribute("onclick", "buttonClicked()")
+        // projectButton.setAttribute("onclick", "buttonClicked()")
         let projectCard = document.createElement("div");
         projectCard.className = "project-card";
         // projectCard,classList.add("modal-dialog modal-dialog-centered modal-dialog-scrollable");
         let projectName = document.createElement("h3");
         projectName.innerHTML = project.title;
         projectName.classList = "project-title";
+        let projectId = document.createElement("p");
+        projectId.innerHTML = project.project_id;
+        projectId.classList = "project-id";
+        projectId.style.display = "none";
         let line = document.createElement("hr");
         let projectDescription = document.createElement("p");
         projectDescription.innerHTML = project.description;
@@ -55,6 +63,7 @@ async function getData(response) {
         projectTags.innerHTML = project.tags;
         projectButton.appendChild(projectCard);
         projectCard.appendChild(projectName);
+        projectCard.appendChild(projectId);
         projectCard.appendChild(line);
         projectCard.appendChild(projectDescription);
         projectCard.appendChild(projectTags);
@@ -99,6 +108,39 @@ function search() {
     }
 }
 
-function buttonClicked() {
-    myModal.show();
+// Assuming buttonClicked function is modified to accept details as a parameter
+function buttonClicked(details) {
+    // Function logic here
+    console.log(globalResponse);
+    var matchingProject;
+    for(let i in globalResponse){
+        if(globalResponse[i].project_id == details){
+            matchingProject = globalResponse[i];
+            break;
+        }
+    }
+    console.log(matchingProject)
+    document.getElementById("modal-title").innerHTML = matchingProject.title;
+    document.getElementById("modal-description").innerHTML = matchingProject.description;
+    document.getElementById("project-Status").innerHTML = "Status : "+ matchingProject.status;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.addEventListener('click', function(event) {
+        // Check if the clicked element or any of its parents have the class 'project-button'
+        let targetElement = event.target;
+        do {
+            if (targetElement.classList.contains('project-button')) {
+                console.log("Button clicked");
+                // Extract details from the clicked button
+                var details = targetElement.querySelector('.project-id').innerHTML;
+                // Call the buttonClicked function with details
+                buttonClicked(details);
+                return; // Stop the loop once the correct element is found and handled
+            }
+            // Move up the DOM tree
+            targetElement = targetElement.parentNode;
+        } while (targetElement !== document.body); // Stop if the body element is reached
+    });
+});
+

@@ -33,6 +33,7 @@ CREATE TABLE applications (
   id SERIAL PRIMARY KEY,
   student_id INT REFERENCES users(id),
   project_id INT REFERENCES projects(id),
+  message TEXT NOT NULL,
   status application_status
 );
 
