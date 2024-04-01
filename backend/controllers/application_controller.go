@@ -78,3 +78,38 @@ func CreateApplication(w http.ResponseWriter, r *http.Request) {
 		"message": "application created successfully",
 	})
 }
+
+func ActOnApplication(w http.ResponseWriter, r *http.Request) {
+	id := r.Context().Value("id").(int)
+	userType, err := models.CheckType(id)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	if userType != "professor" {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
+	var application models.Application
+	err = json.NewDecoder(r.Body).Decode(&application)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
+	err = models.UpdateStatus(id, application.ApplicationID, application.Status)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"message": "application updated successfully",
+	})
+}

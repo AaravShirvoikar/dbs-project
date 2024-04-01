@@ -57,3 +57,13 @@ func GetProfessorApplications(id int) ([]Application, error) {
 
 	return applications, nil
 }
+
+func UpdateStatus(id int, appid int, status string) error {
+	_, err := database.Db.Exec("UPDATE applications SET status = $1 WHERE id = $2", status, appid)
+
+	if status == "accepted" {
+		_, err = database.Db.Exec("INSERT INTO project_members (project_id, user_id) SELECT project_id, student_id FROM applications WHERE id = $1", appid)
+	}
+
+	return err
+}

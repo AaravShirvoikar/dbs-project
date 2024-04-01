@@ -31,6 +31,7 @@ func main() {
 
 	subrouter.HandleFunc("GET /application/", controllers.GetMyApplications)
 	subrouter.HandleFunc("POST /application/apply", controllers.CreateApplication)
+	subrouter.HandleFunc("POST /application/act", controllers.ActOnApplication)
 
 	subrouter.HandleFunc("GET /peers/", controllers.GetPeers)
 
