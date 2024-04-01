@@ -74,6 +74,7 @@ func CreateProject(w http.ResponseWriter, r *http.Request) {
 
 	var project models.Project
 	err = json.NewDecoder(r.Body).Decode(&project)
+	project.ProfessorID = id
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Bad request", http.StatusBadRequest)

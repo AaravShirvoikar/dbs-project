@@ -29,6 +29,8 @@ func main() {
 	subrouter.HandleFunc("GET /projects/all", controllers.GetAllProjects)
 	subrouter.HandleFunc("POST /projects/create", controllers.CreateProject)
 
+	subrouter.HandleFunc("POST /application/apply", controllers.CreateApplication)
+
 	subrouter.HandleFunc("GET /peers/", controllers.GetPeers)
 
 	router.Handle("/", middleware.AuthenticateToken(subrouter))
