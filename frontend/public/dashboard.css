@@ -67,11 +67,20 @@
     position: relative;
 }
 
-.project-list{
+#project-list{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 100%;
 }
 
+#project-list::-webkit-scrollbar{
+    display: none;
+}
+
+/* #project-list:hover{
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.375);
+} */
 .project-entry{
     /* border: 1px solid black; */
     align-self: flex-start;
@@ -87,8 +96,10 @@
 
 #create-project{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 20px;
+    right: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .project-parameters{

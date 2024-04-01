@@ -59,12 +59,12 @@
                         
                         <div class="project-parameters">
                             <h5>Minimum Requirements : </h5>
-                            <input type="text" class="form-control" id="project-title"
+                            <input type="text" class="form-control" id="project-requirments"
                                 style="margin: 10px 10px; width: 400px;">
                         </div>
                         <div class="project-parameters">
                             <h5>Project Tags : </h5>
-                            <input type="text" class="form-control" id="project-title"
+                            <input type="text" class="form-control" id="project-tags"
                                 style="margin: 10px 10px; width: 400px;">
                         </div>
                         <div>
@@ -83,13 +83,13 @@
                         </div>
                         <div>
                             <h5>Project Description :</h5>
-                            <textarea class="form-control" rows="5" cols="110" id="comment" style="margin: 10px auto;"></textarea>
+                            <textarea id="project-description" class="form-control" rows="5" cols="110" id="comment" style="margin: 10px auto;"></textarea>
                         </div>
                     </div>
                     <div class=""
                         style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: flex-end; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
                         <div>
-                            <button type="button" class="btn btn-primary" style="height:  37.6px">Create</button>
+                            <button type="button" class="btn btn-primary" style="height:  37.6px" onclick="createProj()">Create</button>
                             <button type="button" class="btn btn-default" style="height:  37.6px"
                                 data-bs-dismiss="modal">Close</button>
                         </div>

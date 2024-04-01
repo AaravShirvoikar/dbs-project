@@ -10,13 +10,12 @@ document.addEventListener("DOMContentLoaded", async function() {
         createProject.setAttribute("data-bs-toggle", "modal");
         createProject.setAttribute("data-bs-target", "#myModal");
         createProject.setAttribute("type", "button")
-        document.getElementById("my-projects").appendChild(createProject);
+        document.getElementById("content").appendChild(createProject);
     }
     else{
         console.log("Student");
     }
 })
-
 
 async function fetchData1() {
     let headersList = {
@@ -105,5 +104,42 @@ async function getData() {
 };
 getData();
 
-
+async function createProject() {
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+       }
+       
+       let bodyContent = JSON.stringify({
+         "title": document.getElementById("project-title").value,
+         "description": document.getElementById("project-description").value,
+         "status": "open",
+        //  "tags": ["PLSQL","MySQL"]
+       }
+       );
+       console.log(bodyContent);
+       
+       let response = await fetch("http://localhost:8080/projects/create", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);  
+}
+async function createProj(){
+    let response = await createProject();
+    console.log(response);
+    if(response.message == "project created successfully"){
+        alert("Project created successfully");
+        window.location.href = "./dashboard.html";
+    }
+    else if(response.error == "invalid token format" || response.error == "invalid token"){
+        alert("Session Expired. Please login again.");
+        window.location.href = "./login.html";
+    }
+    
+}
 
