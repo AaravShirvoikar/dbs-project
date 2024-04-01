@@ -62,6 +62,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
+                        <h4 id="modal-id">Project ID</h4>
                         <h5>Project Owner :</h5>
                         <h5>Duration : <span>X Months </span></h5>
                         <h5>Start Date: <span>DD-MM-YYYY</span></h5>
@@ -70,8 +71,7 @@
                         <h5>Project Description :</h5>
                         <p id="modal-description">Description</p>
                         <label>Why do you think you are suitable for this project?<br /><label>
-                                <textarea class="form-control" rows="5" cols="110" id="comment"
-                                    style="margin: 10px auto;"></textarea>
+                                <textarea class="form-control" rows="5" cols="110" id="message" style="margin: 10px auto;" required></textarea>
                     </div>
                     <div class=""
                         style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
@@ -84,9 +84,8 @@
                                 </svg>
                              </button>
                              
-
-                            <button type="button" class="btn btn-primary" style="height:  37.6px">Apply</button>
-                            <button type="button" class="btn btn-default" style="height:  37.6px"
+                            <button type="button" id="apply-button" class="btn btn-primary" style="height:  37.6px" onclick="apply()">Apply</button>
+                            <button type="button" id="close-btn" class="btn btn-default" style="height:  37.6px"
                                 data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>

@@ -6,7 +6,7 @@ body{
     display: none;
 }
 
-#peer-results, #search-results{
+#peer-results, #search-results, #application-results{
     max-height: 100%;
     overflow-y: scroll;
     width: 750px;
@@ -20,20 +20,21 @@ body{
     width: 900px;
 }
 
-#peer-results{
+#peer-results, #application-results{
     width: 900px;
 }
 
-#peer-results::-webkit-scrollbar, #search-results::-webkit-scrollbar{
+#peer-results::-webkit-scrollbar, #search-results::-webkit-scrollbar, #application-results::-webkit-scrollbar{
     display: none;
 }
+
 .project-button{
     background: none;
     border: none;
     min-width: 700px;
 }
 
-.peer-card, .project-button{
+.peer-card, .project-button, .application-card{
     margin: 20px auto;
     margin-left: 50px;
     /* border: 2px solid black; */
@@ -46,14 +47,14 @@ body{
 .project-button{
     margin-left: 100px;
 }
-.peer-card{
+.peer-card, .application-card{
     width: 700px;
     margin: 20px auto;
 }
 .project-card{
     margin-left: 0px;
 }
-.peer-card:hover{
+.peer-card:hover, .application-card:hover{
     margin: 20px 0;
     margin-left: 105px;
     /* border: 2px solid black; */

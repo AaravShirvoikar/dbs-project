@@ -1,4 +1,4 @@
-async function fetchData() {
+async function fetchProjects() {
     let headersList = {
         "Accept": "*/*",
         "Content-Type": "application/json",
@@ -10,7 +10,7 @@ async function fetchData() {
             method: "GET",
             headers: headersList
         });
-    } catch (error) {
+    } catch(error) {
         console.error("Error fetching data:", error);
         return;
     }
@@ -24,42 +24,49 @@ async function fetchData() {
     return data;
 }
 var globalResponse;
-async function globalData(){
-    globalResponse = await fetchData();
+async function fetchData() {
+    globalResponse = await fetchProjects();
 }
-globalData();
-async function getData(response) {
-    if (response == undefined) {
-        response = await fetchData();
-        console.log("from fetchData", response);
-    }
 
-    console.log("from search", response);
+fetchData();
+
+async function displayData(response) {
+    if (response == undefined) {
+        response = await fetchProjects();
+    }
 
     for (let i in response) {
         i = response.length - i - 1;
         let project = response[i];
+
         let projectButton = document.createElement("button");
         projectButton.classList.add("project-button");
         projectButton.setAttribute("data-bs-toggle", "modal");
         projectButton.setAttribute("data-bs-target", "#myModal");
         projectButton.setAttribute("type", "button")
+
         let projectCard = document.createElement("div");
         projectCard.className = "project-card";
+
         let projectName = document.createElement("h3");
         projectName.innerHTML = project.title;
         projectName.classList = "project-title";
+
         let projectId = document.createElement("p");
         projectId.innerHTML = project.project_id;
         projectId.classList = "project-id";
         projectId.style.display = "none";
+
         let line = document.createElement("hr");
+
         let projectDescription = document.createElement("p");
         projectDescription.innerHTML = project.description;
         projectDescription.classList = "project-description";
+
         let projectTags = document.createElement("p");
         projectTags.classList = "project-tags";
         projectTags.innerHTML = project.tags;
+
         projectButton.appendChild(projectCard);
         projectCard.appendChild(projectName);
         projectCard.appendChild(projectId);
@@ -67,16 +74,15 @@ async function getData(response) {
         projectCard.appendChild(projectDescription);
         projectCard.appendChild(projectTags);
         document.getElementById("search-results").appendChild(projectButton);
-        
+
         let noResults = document.createElement("h3");
         noResults.innerHTML = "No results found";
         noResults.classList.add("hide");
         noResults.setAttribute("id", "no-results");
         document.getElementById("search-results").appendChild(noResults);
     }
-    console.log("Display Complete");
 };
-getData();
+displayData();
 
 function search() {
     const search_results = [];
@@ -85,31 +91,26 @@ function search() {
     if (input != "") {
         input = input.toLowerCase();
         let x = Array.from(document.querySelectorAll(".project-button"));
-        console.log("x", typeof x, x);
-        for (let i = x.length - 1; i >=0; i--) {
+        for (let i = x.length - 1; i >= 0; i--) {
             let title = x[i].querySelectorAll(".project-title");
             title = title[0].innerHTML.toLowerCase();
             let description = x[i].querySelectorAll(".project-description");
             description = description[0].innerHTML.toLowerCase();
             if (title.includes(input) || description.includes(input)) {
                 search_results.push(x[i]);
-                console.log(x[i]);
-            }
-            else {
+            } else {
                 x[i].classList.add("hide");
             }
         }
         if (search_results.length == 0) {
             document.getElementById("no-results").classList.remove("hide");
-        }
-        else{
-            for(let i in search_results){
+        } else {
+            for (let i in search_results) {
                 search_results[i].classList.remove("hide");
             }
             document.getElementById("no-results").classList.add("hide");
 
         }
-        console.log(search_results);
     } else {
         document.getElementById("no-results").classList.add("hide");
         let x = Array.from(document.querySelectorAll(".project-button"));
@@ -119,44 +120,94 @@ function search() {
     }
 }
 
-// Assuming buttonClicked function is modified to accept details as a parameter
+var modalInformation;
 function buttonClicked(details) {
-    // Function logic here
-    console.log(globalResponse);
     var matchingProject;
-    for(let i in globalResponse){
-        if(globalResponse[i].project_id == details){
+    for (let i in globalResponse) {
+        if (globalResponse[i].project_id == details) {
             matchingProject = globalResponse[i];
             break;
         }
     }
-    console.log(matchingProject)
+    modalInformation = JSON.stringify(matchingProject);
     document.getElementById("modal-title").innerHTML = matchingProject.title;
+    document.getElementById("modal-id").innerHTML = matchingProject.project_id;
     document.getElementById("modal-description").innerHTML = matchingProject.description;
-    document.getElementById("project-Status").innerHTML = "Status : "+ matchingProject.status;
+    document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.addEventListener('click', function(event) {
-        // Check if the clicked element or any of its parents have the class 'project-button'
+document.addEventListener('DOMContentLoaded',function() {
+    document.body.addEventListener('click',
+    function(event) {
         let targetElement = event.target;
         do {
             if (targetElement.classList.contains('project-button')) {
-                console.log("Button clicked");
-                // Extract details from the clicked button
                 var details = targetElement.querySelector('.project-id').innerHTML;
-                // Call the buttonClicked function with details
                 buttonClicked(details);
-                return; // Stop the loop once the correct element is found and handled
+                return;
             }
-            // Move up the DOM tree
             targetElement = targetElement.parentNode;
-        } while (targetElement !== document.body); // Stop if the body element is reached
+        } while ( targetElement !== document . body );
     });
 });
 
 document.getElementById('searchbar').addEventListener('keydown', function(event) {
     if (event.key === 'Enter' || event.keyCode === 13) {
-        search(); // Call your search function
+        search();
     }
 });
+
+async function applyProject() {
+    console.log(modalInformation);
+    let projectId = JSON.parse(modalInformation).project_id;
+    let message = document.getElementById("message").value;
+    if (message == "" || message == null) {
+        alert("Message cannot be empty");
+        return;
+    }
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+    }
+
+    // Prepare the body content
+    let bodyContent = JSON.stringify({
+        "project_id": projectId,
+        // "student_id": 2, // Assuming this is still statically set or retrieved from another source
+        "message": message,
+    });
+
+    try {
+
+        let response = await fetch("http://localhost:8080/application/apply", {
+            method: "POST",
+            body: bodyContent,
+            headers: headersList
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        let data = await response.json();
+        return data;
+
+    } catch(error) {
+        console.error("Error during fetch:", error);
+    }
+}
+
+async function apply() {
+    targetElement = document.getElementById("apply-button");
+    closebutton = document.getElementById("close-btn");
+    let response = await applyProject();
+    if (response.message == 'application created successfully') {
+        targetElement.innerHTML = "Applied";
+        targetElement.disabled = true;
+        closebutton.click();
+        alert("Project created successfully");
+    } else if (response.error == "invalid token format" || response.error == "invalid token") {
+        alert("Session Expired. Please login again.");
+        window.location.href = "./login.html";
+    }
+}

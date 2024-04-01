@@ -6,7 +6,7 @@ async function fetchData() {
     }
     var response;
     try {
-        response = await fetch("http://localhost:8080/peers", {
+        response = await fetch("http://localhost:8080/application/", {
             method: "GET",
             headers: headersList
         });
@@ -28,24 +28,23 @@ async function getData() {
     console.log(response);
 
     for (let i in response) {
-        let peer = response[i];
-        // console.log(peer);
-        let peerCard = document.createElement("div");
-        peerCard.className = "peer-card";
-        let peerUserName = document.createElement("h3");
-        // console.log(peer.title);
-        peerUserName.innerHTML = peer.username;
+        let application = response[i];
+        let applicationCard = document.createElement("div");
+        applicationCard.className = "application-card";
+        // let applicationUserName = document.createElement("h3");
+        // applicationUserName.innerHTML = application.student_id;
+        let applicationProjectID = document.createElement("h3");
+        applicationProjectID.innerHTML = application.project_id;
         let line = document.createElement("hr");
+        let applicationMessage = document.createElement("p");
+        applicationMessage.innerHTML = application.message;
 
-        let peerName = document.createElement("p");
-        peerName.innerHTML = peer.first_name + " " + peer.last_name;
-        let peerMail = document.createElement("p");
-        peerMail.innerHTML = peer.email;
-        peerCard.appendChild(peerUserName);
-        peerCard.appendChild(line);
-        peerCard.appendChild(peerName);
-        peerCard.appendChild(peerMail);
-        document.getElementById("peer-results").appendChild(peerCard);
+        
+        
+        applicationCard.appendChild(applicationProjectID);
+        applicationCard.appendChild(line);
+        applicationCard.appendChild(applicationMessage);
+        document.getElementById("application-results").appendChild(applicationCard);
     }
     console.log("Display Complete");
 };
