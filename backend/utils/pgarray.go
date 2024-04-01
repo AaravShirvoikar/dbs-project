@@ -12,8 +12,8 @@ func ParsePostgresArray(array sql.NullString) []string {
 	str := array.String
 	str = strings.Trim(str, "{}")
 	elements := strings.Split(str, ",")
-	for i, tag := range elements {
-		elements[i] = strings.TrimSpace(tag)
+	for i, ele := range elements {
+		elements[i] = strings.TrimSpace(ele)
 	}
 	return elements
 }
