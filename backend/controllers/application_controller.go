@@ -101,9 +101,16 @@ func ActOnApplication(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	check, _ := models.CheckOwnerOfProject(application.ApplicationID, id)
+	check1, _ := models.CheckApplicationStatus(application.ApplicationID)
 
-	if !check {
+	if check1 != "pending" {
+		http.Error(w, "Application already acted upon", http.StatusBadRequest)
+		return
+	}
+
+	check2, _ := models.CheckOwnerOfProject(application.ApplicationID, id)
+
+	if !check2 {
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
