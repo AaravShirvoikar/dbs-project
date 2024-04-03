@@ -88,3 +88,9 @@ func (p *Project) Create() error {
 	_, err := database.Db.Exec("INSERT INTO projects (title, description, professor_id, status, tags) VALUES ($1, $2, $3, $4, $5)", p.Title, p.Description, p.ProfessorID, p.Status, tagsArray)
 	return err
 }
+
+func (p *Project) Update() error {
+	tagsArray := utils.CreatePostgresArray(p.Tags)
+	_, err := database.Db.Exec("UPDATE projects SET title = $1, description = $2, status = $3, tags = $4 WHERE id = $5", p.Title, p.Description, p.Status, tagsArray, p.ProjectId)
+	return err
+}

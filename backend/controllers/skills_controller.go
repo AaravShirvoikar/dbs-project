@@ -40,4 +40,7 @@ func AddSkills(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"message": "skills added successfully",
+	})
 }

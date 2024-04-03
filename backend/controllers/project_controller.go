@@ -93,3 +93,38 @@ func CreateProject(w http.ResponseWriter, r *http.Request) {
 		"message": "project created successfully",
 	})
 }
+
+func UpdateProject(w http.ResponseWriter, r *http.Request) {
+	id := r.Context().Value("id").(int)
+	userType, err := models.CheckType(id)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	if userType != "professor" {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
+	var project models.Project
+	err = json.NewDecoder(r.Body).Decode(&project)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
+	err = project.Update()
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"message": "project updated successfully",
+	})
+}
