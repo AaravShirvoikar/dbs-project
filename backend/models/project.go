@@ -2,7 +2,6 @@ package models
 
 import (
 	"database/sql"
-	"strings"
 
 	"github.com/AaravShirvoikar/dbs-project/backend/database"
 	"github.com/AaravShirvoikar/dbs-project/backend/utils"
@@ -85,7 +84,7 @@ func GetProfessorProjects(id int) ([]Project, error) {
 }
 
 func (p *Project) Create() error {
-	tagsArray := "{" + strings.Join(p.Tags, ",") + "}"
+	tagsArray := utils.CreatePostgresArray(p.Tags)
 	_, err := database.Db.Exec("INSERT INTO projects (title, description, professor_id, status, tags) VALUES ($1, $2, $3, $4, $5)", p.Title, p.Description, p.ProfessorID, p.Status, tagsArray)
 	return err
 }

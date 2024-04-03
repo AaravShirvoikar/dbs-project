@@ -24,6 +24,8 @@ func main() {
 
 	subrouter := http.NewServeMux()
 	subrouter.HandleFunc("GET /user/details", controllers.GetUserDetails)
+	subrouter.HandleFunc("GET /user/skills/", controllers.GetUserSkills)
+	subrouter.HandleFunc("POST /user/skills/add", controllers.AddSkills)
 
 	subrouter.HandleFunc("GET /projects/", controllers.GetMyProjects)
 	subrouter.HandleFunc("GET /projects/all", controllers.GetAllProjects)
@@ -33,7 +35,7 @@ func main() {
 	subrouter.HandleFunc("POST /application/apply", controllers.CreateApplication)
 	subrouter.HandleFunc("POST /application/act", controllers.ActOnApplication)
 
-	subrouter.HandleFunc("GET /peers/", controllers.GetPeers)
+	subrouter.HandleFunc("GET /peers", controllers.GetPeers)
 
 	router.Handle("/", middleware.AuthenticateToken(subrouter))
 

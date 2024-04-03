@@ -17,3 +17,7 @@ func ParsePostgresArray(array sql.NullString) []string {
 	}
 	return elements
 }
+
+func CreatePostgresArray(array []string) string {
+	return "{" + strings.Join(array, ",") + "}"
+}
