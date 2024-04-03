@@ -18,7 +18,7 @@ func (a *Application) Create() error {
 }
 
 func GetStudentApplications(id int) ([]Application, error) {
-	query := "SELECT id, message, status FROM applications WHERE student_id = $1"
+	query := "SELECT project_id, id, message, status FROM applications WHERE student_id = $1"
 	rows, err := database.Db.Query(query, id)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func GetStudentApplications(id int) ([]Application, error) {
 	applications := []Application{}
 	for rows.Next() {
 		var application Application
-		err := rows.Scan(&application.ApplicationID, &application.Message, &application.Status)
+		err := rows.Scan(&application.ProjectID, &application.ApplicationID, &application.Message, &application.Status)
 		if err != nil {
 			return nil, err
 		}
@@ -39,7 +39,7 @@ func GetStudentApplications(id int) ([]Application, error) {
 }
 
 func GetProfessorApplications(id int) ([]Application, error) {
-	rows, err := database.Db.Query("SELECT applications.id, message, applications.status FROM applications JOIN projects ON applications.project_id = projects.id WHERE projects.professor_id = $1", id)
+	rows, err := database.Db.Query("SELECT applications.project_id, applications.id, message, applications.status FROM applications JOIN projects ON applications.project_id = projects.id WHERE projects.professor_id = $1", id)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func GetProfessorApplications(id int) ([]Application, error) {
 	applications := []Application{}
 	for rows.Next() {
 		var application Application
-		err := rows.Scan(&application.ApplicationID, &application.Message, &application.Status)
+		err := rows.Scan(&application.ProjectID, &application.ApplicationID, &application.Message, &application.Status)
 		if err != nil {
 			return nil, err
 		}
