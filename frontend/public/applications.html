@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,66 +8,77 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Mentor Match | Applications</title>
     <link rel="stylesheet" href="./card.css" />
+    <link rel="stylesheet" href="../styles.css">
     <script src="verify.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </head>
 
 <body id="body">
     <section id="header">
-        <div class="container header">
-            <header
-                class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                <div class="col-md-3 mb-md-0">
-                    <a href="../index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <img src="../assets/MentorMatch.png" width="50"
-                            height="auto" alt="Mentor Match Logo"> 
-                    </a>
-                </div>
+        <div class="header">
+            <div class="header-linkbar">
+                <img src="../assets/MAHE.png" alt="MAHE Logo" class="logo org-logo">
+                <a class="header-link" href="./dashboard.html">Dashboard</a>
+                <a class="header-link" href="./applications.html">Applications</a>
+                <a class="header-link" href="./peers.html">Peers</a>
+                <a class="header-link" href="./search.html">Search</a>
+            </div>
+            <button type="button" class="header-link login" onclick="logout()">Logout</button>
+        </div>
+    </section>
 
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./dashboard.html" class="nav-link px-2">Dashboard</a></li>
-                    <li><a href="./applications.html" class="nav-link px-2">Applications</a></li>
-                    <li><a href="./peers.html" class="nav-link px-2">Peers</a></li>
-                    <li><a href="./search.html" class="nav-link px-2">Search</a></li>
-                </ul>
-
-                <div class="col-md-3 text-end">
-                    <button type="button" onclick="logout()" class="btn btn-primary me-2">Logout</button>
+    <section id="modal-section">
+        <div class="modal fade " aria-hidden="true" tabindex="-1" id="myModal" role="dialog" data-bs-backdrop="static"
+            data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 id="modal-title" class="modal-title">Project Title</h4>
+                        <h4 id="modal-appId" class="modal-ID">Application ID</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 id="modal-id">Student ID</h4>
+                        <h5>Student Name :</h5>
+                        <h5>Student Skills : </h5>
+                        <h5>Student Message :</h5>
+                        <p id="modal-message">Message</p>
+                        <div style="display: flex; justify-content: end; gap: 5px;">
+                            <button type="button" class="btn btn-primary" onclick="accept()">Accept</button>
+                            <button type="button" class="btn btn-secondary" onclick="reject()">Reject</button>
+                        </div>
+                    </div>
                 </div>
-            </header>
+            </div>
         </div>
     </section>
 
     <div class="d-flex justify-content-center align-items-center">
         <h1>Applications</h1>
     </div>
-    <div id="application-results">
-
-    </div>
+    <div id="application-results"></div>
 
     <section id="footer">
         <div class="container footer">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-body-secondary">© 2024 Mentor Match, Inc</p>
-
                 <a href="/"
                     class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <img src="../assets/MentorMatch.png" alt="Mentor Match Logo" width="60" height="auto">
                 </a>
-
                 <ul class="nav col-md-4 justify-content-end">
                     <li class="nav-item"><a href="#header" class="nav-link px-2 text-body-secondary">Home</a></li>
                     <li class="nav-item"><a href="#features" class="nav-link px-2 text-body-secondary">Features</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="./public/about.html"
-                            class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li class="nav-item"><a href="./public/about.html" class="nav-link px-2 text-body-secondary">About</a></li>
                 </ul>
             </footer>
         </div>
     </section>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-    <script src="applications.js"></script>
+    <script defer src="applications.js"></script>
 </body>
+
 </html>

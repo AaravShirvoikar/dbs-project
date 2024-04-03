@@ -8,31 +8,21 @@
     <title>Mentor Match | Applications</title>
     <script src="verify.js"></script>
     <script defer src="./search.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+
 </head>
 <body>
     <section id="header">
-        <div class="container header">
-            <header
-                class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                <div class="col-md-3 mb-md-0">
-                    <a href="../index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <img src="../assets/MentorMatch.png" width="50"
-                            height="auto" alt="Mentor Match Logo"> 
-                        <!-- <p>Mentor Match</p> -->
-                    </a>
-                </div>
-
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./dashboard.html" class="nav-link px-2">Dashboard</a></li>
-                    <li><a href="./applications.html" class="nav-link px-2">Applications</a></li>
-                    <li><a href="./peers.html" class="nav-link px-2">Peers</a></li>
-                    <li><a href="./search.html" class="nav-link px-2">Search</a></li>
-                </ul>
-
-                <div class="col-md-3 text-end">
-                    <button type="button" onclick="logout()" class="btn btn-primary me-2">Logout</button>
-                </div>
-            </header>
+        <div class="header">
+            <div class="header-linkbar">
+                <img src="../assets/MAHE.png" alt="MAHE Logo" class="logo org-logo">
+                <a class="header-link" href="./dashboard.html">Dashboard</a>
+                <a class="header-link" href="./applications.html">Applications</a>
+                <a class="header-link" href="./peers.html">Peers</a>
+                <a class="header-link" href="./search.html">Search</a>
+            </div>
+            <!-- <img src="./assets/MentorMatch.png" alt="Mentor Match Logo" class="logo website-logo"> -->
+            <button type="button" class="header-link login" onclick="logout()">Logout</button>
         </div>
     </section>
     <h1>Project Details</h1>

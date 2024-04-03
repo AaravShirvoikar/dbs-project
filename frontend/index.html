@@ -13,32 +13,21 @@
         rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/assets/MentorMatch.png">
     <link rel="stylesheet" href="./styles.css">
-    <script src="./script.js"></script>
+    <script defer src="./script.js"></script>
     <title>Mentor Match</title>
 </head>
 
 <body>
-    <section id="header">
-        <div class="container header">
-            <header
-                class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-                <div class="col-md-3 mb-md-0">
-                    <a href="./index.html" class="d-inline-flex link-body-emphasis text-decoration-none">
-                        <img src="./assets/MentorMatch.png" width="50"
-                            height="auto" alt="Mentor Match Logo"> 
-                        <!-- <p>Mentor Match</p> -->
-                    </a>
-                </div>
 
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="./index.html" class="nav-link px-2 link-secondary">Home</a></li>
-                    <li><a href="./public/about.html" class="nav-link px-2">About</a></li>
-                </ul>
-
-                <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-primary me-2"><a href="./public/login.html" id="login-button">Login</a></button>
-                </div>
-            </header>
+    <section class="header-section">
+        <div class="header" id="header">
+            <div class="header-linkbar">
+                <img src="./assets/MAHE.png" alt="MAHE Logo" class="logo org-logo">
+                <a class="header-link" href="./index.html">Home</a>
+                <a class="header-link" href="./public/about.html">About</a>
+            </div>
+            <!-- <img src="./assets/MentorMatch.png" alt="Mentor Match Logo" class="logo website-logo"> -->
+            <button type="button" class="header-link login"><a href="./public/login.html" id="login-button">Login</a></button>
         </div>
     </section>
 
