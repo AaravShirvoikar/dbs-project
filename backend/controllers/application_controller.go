@@ -101,6 +101,13 @@ func ActOnApplication(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	check, _ := models.CheckOwnerOfProject(application.ProjectID, id)
+
+	if !check {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+
 	err = models.UpdateStatus(id, application.ApplicationID, application.Status)
 	if err != nil {
 		log.Println(err)

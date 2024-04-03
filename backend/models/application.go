@@ -58,6 +58,16 @@ func GetProfessorApplications(id int) ([]Application, error) {
 	return applications, nil
 }
 
+func CheckOwnerOfProject(projectid int, userid int) (bool, error) {
+	var ownerid int
+	err := database.Db.QueryRow("SELECT professor_id FROM projects WHERE id = $1", projectid).Scan(&ownerid)
+	if err != nil {
+		return false, err
+	}
+
+	return ownerid == userid, nil
+}
+
 func UpdateStatus(id int, appid int, status string) error {
 	_, err := database.Db.Exec("UPDATE applications SET status = $1 WHERE id = $2", status, appid)
 
