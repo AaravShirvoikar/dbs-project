@@ -58,14 +58,20 @@ func GetProfessorApplications(id int) ([]Application, error) {
 	return applications, nil
 }
 
-func CheckOwnerOfProject(projectid int, userid int) (bool, error) {
-	var ownerid int
-	err := database.Db.QueryRow("SELECT professor_id FROM projects WHERE id = $1", projectid).Scan(&ownerid)
+func CheckOwnerOfProject(applicationid int, userid int) (bool, error) {
+	var projectid int
+	err := database.Db.QueryRow("SELECT project_id FROM applications WHERE id = $1", applicationid).Scan(&projectid)
 	if err != nil {
 		return false, err
 	}
 
-	return ownerid == userid, nil
+	var professorid int
+	err = database.Db.QueryRow("SELECT professor_id FROM projects WHERE id = $1", projectid).Scan(&professorid)
+	if err != nil {
+		return false, err
+	}
+
+	return professorid == userid, nil
 }
 
 func UpdateStatus(id int, appid int, status string) error {
