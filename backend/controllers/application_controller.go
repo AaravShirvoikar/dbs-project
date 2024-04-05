@@ -84,7 +84,7 @@ func ActOnApplication(w http.ResponseWriter, r *http.Request) {
 	userType, err := models.CheckType(id)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		http.Error(w, "Internal server error 1", http.StatusInternalServerError)
 		return
 	}
 
@@ -118,7 +118,7 @@ func ActOnApplication(w http.ResponseWriter, r *http.Request) {
 	err = models.UpdateStatus(id, application.ApplicationID, application.Status)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		http.Error(w, "Internal server error 2", http.StatusInternalServerError)
 		return
 	}
 

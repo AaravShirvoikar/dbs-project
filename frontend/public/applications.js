@@ -26,19 +26,20 @@ var globalResponse;
 async function getProjects(){
     globalResponse = await fetchProjects();
 }
-
+getProjects();
 // Function to display applications on the page
 async function displayData() {
     globalResponse = await fetchProjects(); // Fetch and store projects in globalResponse
     console.log(globalResponse);
 
     globalResponse.forEach(application => {
+        console.log(application);
         // Create elements for displaying each application
         let applicationButton = document.createElement("button");
         applicationButton.classList.add("application-button", "btn");
         applicationButton.setAttribute("data-bs-toggle", "modal");
         applicationButton.setAttribute("data-bs-target", "#myModal");
-        applicationButton.setAttribute("data-project-id", application.project_id); // Store project_id in the button
+        applicationButton.setAttribute("data-project-id", application.application_id); // Store project_id in the button
 
         let applicationCard = document.createElement("div");
         applicationCard.className = "application-card";
@@ -66,19 +67,22 @@ async function displayData() {
 var matchingApplication;
 // Function to handle button click and populate modal with application details
 function buttonClicked(details) {
-    matchingApplication = globalResponse.find(app => app.project_id == details);
+    // Find the matching application based on the project_id passed as 'details'
+    matchingApplication = globalResponse.find(app => app.application_id.toString() === details);
+
     if (!matchingApplication) {
         console.error("No matching application found.");
         return;
     }
     console.log(matchingApplication);
+
     // Populate modal with application details
+    // Ensure that the element IDs used here match those in your HTML
     document.getElementById("modal-title").innerHTML = matchingApplication.title || 'No Title Provided';
-    document.getElementById("modal-appId").innerHTML = "Application ID : "+ matchingApplication.application_id;
-    document.getElementById("modal-id").innerHTML = "Student ID : " + matchingApplication.student_id || 'No ID Provided';
+    document.getElementById("modal-appId").innerHTML = "Application ID : "+ (matchingApplication.application_id || 'No ID Provided');
+    document.getElementById("modal-id").innerHTML = "Student ID : " + (matchingApplication.student_id || 'No ID Provided');
     document.getElementById("modal-message").innerHTML = matchingApplication.message || 'No Message Provided';
 }
-
 // Event listener for document ready to display applications and handle button clicks
 document.addEventListener('DOMContentLoaded', function() {
     displayData(); // Display applications when the document is ready
@@ -97,26 +101,26 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function putApplications(status){
+    console.log(matchingApplication);
     let headersList = {
         "Accept": "*/*",
         "Content-Type": "application/json",
-        "Authorization": "Bearer "+ localStorage.getItem("token")
+        "Authorization": "Bearer "+localStorage.getItem("token")
        }
+       console.log(matchingApplication.application_id)
        let bodyContent = JSON.stringify({
          "application_id": matchingApplication.application_id,
          "status": status
        });
-       let response = await fetch("http://localhost:8080/application/act", { 
-           method: "POST",
-           body: bodyContent,
-           headers: headersList
-        });
-        
-        console.log(headersList,bodyContent);
-        let data = await response.text();
-        console.log(data);
        
-       return data;
+       let response = await fetch("http://localhost:8080/application/act", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
 }
 
 async function accept(){
