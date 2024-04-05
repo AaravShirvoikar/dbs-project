@@ -20,25 +20,29 @@
 #profile{
     /* border: 5px solid black; */
     height: 90%;
-    width: 40%;
-    border-radius: 30px;
+    width: 35%;
+    border-radius: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgb(128, 128, 128, 0.2);
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    background: #e0e0e0;
+    box-shadow: 20px 20px 60px rgb(190, 190, 190, 0.5);
 }
 
 #profile:hover{
     /* border: 5px solid black; */
     height: 90%;
-    width: 40%;
-    border-radius: 30px;
+    width: 35%;
+    border-radius: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgb(128, 128, 128, 0.2);
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.375);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    background: #e0e0e0;
+    box-shadow: 20px 20px 60px rgb(190, 190, 190);
 }
 
 #profile-image{
@@ -68,10 +72,12 @@
 }
 
 #project-list{
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
     max-height: 100%;
+    margin-left : 80px;
 }
 
 #project-list::-webkit-scrollbar{
@@ -98,8 +104,9 @@
     position: absolute;
     bottom: 20px;
     right: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding: 10px;
 }
 
 .project-parameters{

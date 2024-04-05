@@ -6,12 +6,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
         body {
-            font-family: "Helvetica Neue", Arial, sans-serif;
             font-size: 14px;
             line-height: 1.6;
         }
-
         body * {
             list-style: none;
         }
@@ -62,20 +61,24 @@
                         <h5>Project Description :</h5>
                         <p id="modal-description">Description</p>
                         <label>Why do you think you are suitable for this project?<br /><label>
-                                <textarea class="form-control" rows="5" cols="110" id="message" style="margin: 10px auto;" required></textarea>
+                                <textarea class="form-control" rows="5" cols="110" id="message"
+                                    style="margin: 10px auto;" required></textarea>
                     </div>
                     <div class=""
                         style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
                         <h5 id="project-Status">Project Status : </h5>
                         <div>
-                            
+
                             <button type="button" style="height: 38px; background: none; border: none;">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#0d6efd" class="w-6 h-6" viewBox="0 0 24 24" style="width: 30px; height: 30px;">
-                                   <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#0d6efd" class="w-6 h-6"
+                                    viewBox="0 0 24 24" style="width: 30px; height: 30px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                                 </svg>
-                             </button>
-                             
-                            <button type="button" id="apply-button" class="btn btn-primary" style="height:  37.6px" onclick="apply()">Apply</button>
+                            </button>
+
+                            <button type="button" id="apply-button" class="btn btn-primary" style="height:  37.6px"
+                                onclick="apply()">Apply</button>
                             <button type="button" id="close-btn" class="btn btn-default" style="height:  37.6px"
                                 data-bs-dismiss="modal">Close</button>
                         </div>
@@ -85,7 +88,7 @@
         </div>
     </section>
 
-    <section id="search-filter">
+    <section id="search-filter" style=" margin-top: 30px;">
         <div class="d-flex">
             <div class="sidebar px-3 pt-3 mx-4 my-5 border rounded-3 bg-body-tertiary"
                 style="margin-top: 20px; min-width: 15%; height: min-content;">
