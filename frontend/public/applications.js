@@ -124,11 +124,11 @@ async function putApplications(status){
 }
 
 async function accept(){
-    var response = await putApplications("accept");
+    var response = await putApplications("accepted");
     console.log(response);
 }
 
 async function reject(){
-    var response = await putApplications("reject");
+    var response = await putApplications("rejected");
     console.log(response);
 }
