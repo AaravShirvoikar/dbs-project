@@ -73,7 +73,6 @@ func AuthenticateToken(next http.Handler) http.Handler {
 		}
 
 		ctx := context.WithValue(r.Context(), "id", claims.UserID)
-		ctx = context.WithValue(ctx, "username", claims.UserName)
 		r = r.WithContext(ctx)
 
 		next.ServeHTTP(w, r)
