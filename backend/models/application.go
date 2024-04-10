@@ -80,6 +80,12 @@ func CheckApplicationStatus(applicationid int) (string, error) {
 	return status, err
 }
 
+func CheckIfApplied(projectid int, studentid int) (bool, error) {
+	var count int
+	err := database.Db.QueryRow("SELECT COUNT(*) FROM applications WHERE project_id = $1 AND student_id = $2", projectid, studentid).Scan(&count)
+	return count > 0, err
+}
+
 func UpdateStatus(id int, appid int, status string) error {
 	_, err := database.Db.Exec("UPDATE applications SET status = $1 WHERE id = $2", status, appid)
 

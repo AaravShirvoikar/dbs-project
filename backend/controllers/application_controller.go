@@ -66,6 +66,18 @@ func CreateApplication(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	check, err := models.CheckIfApplied(id, application.ProjectID)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	if check {
+		http.Error(w, "Already applied", http.StatusBadRequest)
+		return
+	}
+
 	err = application.Create()
 	if err != nil {
 		log.Println(err)
