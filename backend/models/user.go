@@ -80,3 +80,13 @@ func CheckType(userID int) (string, error) {
 
 	return userType, nil
 }
+
+func (u *User) Update(id int) error {
+	query := "UPDATE users SET email = $1, first_name = $2, last_name = $3 WHERE id = $4;"
+	_, err := database.Db.ExecContext(context.Background(), query, u.Email, u.FirstName, u.LastName, id)
+	if err != nil {
+		return fmt.Errorf("error updating user: %s", err.Error())
+	}
+
+	return nil
+}

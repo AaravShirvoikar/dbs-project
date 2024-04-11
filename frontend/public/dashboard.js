@@ -51,7 +51,7 @@ async function fetchData2() {
     }
     let response;
     try {
-        response = await fetch("http://localhost:8080/user/details", { 
+        response = await fetch("http://localhost:8080/user/", { 
             method: "GET",
             headers: headersList
         });
