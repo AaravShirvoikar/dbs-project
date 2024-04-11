@@ -23,3 +23,21 @@ func GetUserExperience(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func AddExperience(w http.ResponseWriter, r *http.Request) {
+	userID := r.Context().Value("id").(int)
+	var experience models.Experience
+	err := json.NewDecoder(r.Body).Decode(&experience)
+	if err != nil {
+		http.Error(w, "Invalid request", http.StatusBadRequest)
+		return
+	}
+
+	err = models.AddExperience(userID, experience)
+	if err != nil {
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+}

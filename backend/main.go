@@ -25,10 +25,13 @@ func main() {
 	subrouter := http.NewServeMux()
 	subrouter.HandleFunc("GET /user/", controllers.GetUserDetails)
 	subrouter.HandleFunc("POST /user/update", controllers.UpdateUserDetails)
+
 	subrouter.HandleFunc("GET /user/skills/", controllers.GetUserSkills)
 	subrouter.HandleFunc("POST /user/skills/add", controllers.AddSkills)
 	subrouter.HandleFunc("POST /user/skills/remove", controllers.RemoveSkills)
+	
 	subrouter.HandleFunc("GET /user/experience/", controllers.GetUserExperience)
+	subrouter.HandleFunc("POST /user/experience/add", controllers.AddExperience)
 
 	subrouter.HandleFunc("GET /projects/", controllers.GetMyProjects)
 	subrouter.HandleFunc("GET /projects/all", controllers.GetAllProjects)

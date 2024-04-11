@@ -32,3 +32,12 @@ func GetExperience(userID int) ([]Experience, error) {
 
 	return experience, nil
 }
+
+func AddExperience(userID int, experience Experience) error {
+	_, err := database.Db.Exec("INSERT INTO experience (user_id, title, description) VALUES ($1, $2, $3)", userID, experience.Title, experience.Description)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
