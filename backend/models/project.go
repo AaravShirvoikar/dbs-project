@@ -8,16 +8,17 @@ import (
 )
 
 type Project struct {
-	ProjectId   int      `json:"project_id"`
-	Title       string   `json:"title"`
-	Description string   `json:"description"`
-	ProfessorID int      `json:"professor_id"`
-	Status      string   `json:"status"`
-	Tags        []string `json:"tags"`
+	ProjectId     int      `json:"project_id"`
+	Title         string   `json:"title"`
+	Description   string   `json:"description"`
+	ProfessorID   int      `json:"professor_id"`
+	ProfessorName string   `json:"professor_name"`
+	Status        string   `json:"status"`
+	Tags          []string `json:"tags"`
 }
 
 func GetProjects() ([]Project, error) {
-	rows, err := database.Db.Query("SELECT * FROM projects")
+	rows, err := database.Db.Query("SELECT projects.id, title, description, professor_id, username, status, tags FROM projects join users on projects.professor_id = users.id;")
 	if err != nil {
 		return nil, err
 	}
@@ -27,7 +28,7 @@ func GetProjects() ([]Project, error) {
 	for rows.Next() {
 		var project Project
 		var tagsArray sql.NullString
-		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorID, &project.Status, &tagsArray)
+		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorID, &project.ProfessorName, &project.Status, &tagsArray)
 		if err != nil {
 			return nil, err
 		}
@@ -39,7 +40,7 @@ func GetProjects() ([]Project, error) {
 }
 
 func GetStudentProjects(id int) ([]Project, error) {
-	query := "SELECT id, title, description, professor_id, status, tags FROM projects JOIN project_members ON projects.id = project_members.project_id WHERE project_members.user_id = $1;"
+	query := "SELECT projects.id, title, description, professor_id, username, status, tags FROM projects JOIN project_members ON projects.id = project_members.project_id JOIN users ON project_members.user_id = users.id WHERE project_members.user_id = $1;"
 	rows, err := database.Db.Query(query, id)
 	if err != nil {
 		return nil, err
@@ -50,7 +51,7 @@ func GetStudentProjects(id int) ([]Project, error) {
 	for rows.Next() {
 		var project Project
 		var tagsArray sql.NullString
-		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorID, &project.Status, &tagsArray)
+		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorID, &project.ProfessorName, &project.Status, &tagsArray)
 		if err != nil {
 			return nil, err
 		}
