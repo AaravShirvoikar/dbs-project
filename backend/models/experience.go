@@ -11,10 +11,8 @@ type Experience struct {
 	Description string `json:"description"`
 }
 
-//TODO: update databae schema to include company, start_date, end_date
-
 func GetExperience(userID int) ([]Experience, error) {
-	rows, err := database.Db.Query("SELECT id, title, description FROM experience WHERE user_id = $1", userID)
+	rows, err := database.Db.Query("SELECT id, title, company, description, start_date, end_date FROM experience WHERE user_id = $1", userID)
 	if err != nil {
 		return nil, err
 	}
@@ -23,7 +21,7 @@ func GetExperience(userID int) ([]Experience, error) {
 	experience := make([]Experience, 0)
 	for rows.Next() {
 		var exp Experience
-		err := rows.Scan(&exp.ID, &exp.Title, &exp.Description)
+		err := rows.Scan(&exp.ID, &exp.Title, &exp.Company, &exp.Description, &exp.StartDate, &exp.EndDate)
 		if err != nil {
 			return nil, err
 		}
@@ -34,7 +32,7 @@ func GetExperience(userID int) ([]Experience, error) {
 }
 
 func AddExperience(userID int, experience Experience) error {
-	_, err := database.Db.Exec("INSERT INTO experience (user_id, title, description) VALUES ($1, $2, $3)", userID, experience.Title, experience.Description)
+	_, err := database.Db.Exec("INSERT INTO experience (user_id, title, company, description, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6)", userID, experience.Title, experience.Company, experience.Description, experience.StartDate, experience.EndDate)
 	if err != nil {
 		return err
 	}

@@ -48,7 +48,10 @@ CREATE TABLE experience (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id),
   title VARCHAR NOT NULL,
-  description TEXT NOT NULL
+  description TEXT NOT NULL,
+  company VARCHAR NOT NULL
+  start_date DATE NOT NULL,
+  end_date DATE NOT NULL
 );
 
 CREATE TABLE project_members (
