@@ -66,7 +66,7 @@ func CreateApplication(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	check, err := models.CheckIfApplied(id, application.ProjectID)
+	check, err := models.CheckIfApplied(application.ProjectID, id)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
