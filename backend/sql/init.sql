@@ -49,7 +49,7 @@ CREATE TABLE experience (
   user_id INT REFERENCES users(id),
   title VARCHAR NOT NULL,
   description TEXT NOT NULL,
-  company VARCHAR NOT NULL
+  company VARCHAR NOT NULL,
   start_date DATE NOT NULL,
   end_date DATE NOT NULL
 );

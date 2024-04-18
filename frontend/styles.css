@@ -7,6 +7,8 @@
 
 body {
   font-family: "Poppins", sans-serif !important;
+  /* font-color: white; */
+  /* FB5A4B , 202231 */
   background-color: rgb(251, 171, 126, 0.5);
   background: linear-gradient(
     to bottom,
@@ -17,9 +19,7 @@ body {
     rgba(243, 217, 193, 0.5) 70%,
     rgba(249, 232, 210, 0.5) 100%
   );
-  background-color: #f5f5f5;
-  background-attachment: fixed;
-  
+ 
   margin: 0;
   padding: 0;
 }
@@ -29,13 +29,14 @@ body {
   margin: 0 auto;
   margin-top: 10px;
   display: flex;
+  flex-wrap: wrap;
   position: relative;
   justify-content: space-between;
   align-items: center;
   height: 4rem;
   backdrop-filter: blur(10px);
   padding: 0 20px;
-  width: 1400px;
+  width: 95%;
   border-radius: 20px;
   transition: top 10s ease;
   border: 2px solid rgba(0, 0, 0, 0.168);
@@ -43,6 +44,7 @@ body {
   background-color: rgb(251, 171, 126, 0.2);
   z-index: 1000;
   margin-bottom: 10px;
+
 }
 
 .header:hover {

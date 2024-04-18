@@ -36,7 +36,6 @@ function getData(username, password){
         }
     };
 
-
     (async () => {
         let data = await fetchData();
         let token = data.toString();
@@ -52,5 +51,4 @@ function getData(username, password){
 
 function print(){
     console.log("Hello");
-
 }

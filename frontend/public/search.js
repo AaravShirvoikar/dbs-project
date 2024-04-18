@@ -129,11 +129,14 @@ function buttonClicked(details) {
             break;
         }
     }
+
     modalInformation = JSON.stringify(matchingProject);
+    console.log(modalInformation);
     document.getElementById("modal-title").innerHTML = matchingProject.title;
     document.getElementById("modal-id").innerHTML = matchingProject.project_id;
     document.getElementById("modal-description").innerHTML = matchingProject.description;
     document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
+
 }
 
 document.addEventListener('DOMContentLoaded',function() {
@@ -174,13 +177,11 @@ async function applyProject() {
     // Prepare the body content
     let bodyContent = JSON.stringify({
         "project_id": projectId,
-        // "student_id": 2, // Assuming this is still statically set or retrieved from another source
         "message": message,
     });
 
     try {
-
-        let response = await fetch("http://localhost:8080/application/apply", {
+            let response = await fetch("http://localhost:8080/application/apply", {
             method: "POST",
             body: bodyContent,
             headers: headersList
@@ -201,11 +202,13 @@ async function apply() {
     targetElement = document.getElementById("apply-button");
     closebutton = document.getElementById("close-btn");
     let response = await applyProject();
+    console.log("testing");
+    console.log(response)
     if (response.message == 'application created successfully') {
         targetElement.innerHTML = "Applied";
         targetElement.disabled = true;
         closebutton.click();
-        alert("Project created successfully");
+        alert("Application successful");
     } else if (response.error == "invalid token format" || response.error == "invalid token") {
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";

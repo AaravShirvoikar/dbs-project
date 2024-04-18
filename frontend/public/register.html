@@ -8,6 +8,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Mentor Match | Login</title>
     <script src="./login.js" crossorigin="anonymous"></script>
+    <script defer src="./register.js" crossorigin="anonymous"></script>
     <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script> -->
     <style>
@@ -19,38 +20,29 @@
     
 <div class="d-flex align-items-center pt-2 px-4 bg-body-tertiary vsc-initialized" style="min-height: 100vh;">
     <main class="form-signin m-auto" style="width: 30%; margin-top: 30rem;">
-        <form id="login-form">
-            <!-- <ul class="steps">
-                <li class="step step-primary">Register</li>
-                <li class="step step-primary">Choose plan</li>
-                <li class="step">Purchase</li>
-                <li class="step">Receive Product</li>
-              </ul> -->
+        <form>
+        <div id="register">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
-
             <div class="form-floating">
-                <input type="string" class="form-control" id="floatingInput" placeholder="Username">
+                <input type="string" class="form-control" id="username" placeholder="Username" required>
                 <label for="floatingInput">Username</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input type="string" class="form-control" id="fname" placeholder="First Name" required >
+                <label for="floatingInput">First Name</label>
             </div>
-
-            <div class="form-check text-start my-3">
-                <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    Remember me
-                </label>
+            <div class="form-floating">
+                <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                <label for="floatingInput">Last Name</label>
             </div>
-            <input id="submit-button" type="submit" value="Submit" style= "width:100%; background-color: rgb(13, 110, 253); color: white; padding: 8px 0px; border-radius: 6px;" ></input>
+            <button id="next1" type="submit" class="next btn btn-primary mt-3" onclick="register2()">Next</button>
             <p class="mt-5 mb-3 text-body-secondary">© 2017-2024</p>
+        </div>
         </form>
     </main>
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
 </div>
 
 <section id="footer">
@@ -73,5 +65,12 @@
         </footer>
     </div>
 </section>
+
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // This will prevent the default form submit
+      // You can add your own logic here for what should happen on button click
+    });
+</script>
 </body>
 </html>
