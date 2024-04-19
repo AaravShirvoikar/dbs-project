@@ -9,6 +9,8 @@
     <title>Mentor Match | Login</title>
     <script src="./login.js" crossorigin="anonymous"></script>
     <script defer src="./register.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="../styles.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@4.9.0/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script> -->
     <style>
@@ -20,25 +22,65 @@
     
 <div class="d-flex align-items-center pt-2 px-4 bg-body-tertiary vsc-initialized" style="min-height: 100vh;">
     <main class="form-signin m-auto" style="width: 30%; margin-top: 30rem;">
-        <form>
         <div id="register">
             <h1 class="h3 mb-3 fw-normal">Register</h1>
-            <div class="form-floating">
-                <input type="string" class="form-control" id="username" placeholder="Username" required>
-                <label for="floatingInput">Username</label>
+            <div id="stage1" class="">
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="username" placeholder="Username" required>
+                    <label for="floatingInput">Username</label>
+                </div>
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="fname" placeholder="First Name" required >
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                    <label for="floatingInput">Last Name</label>
+                </div>
             </div>
-            <div class="form-floating">
-                <input type="string" class="form-control" id="fname" placeholder="First Name" required >
-                <label for="floatingInput">First Name</label>
+
+            <div id="stage2" class="hidden">
+                <div id="type">
+                    <label for="floatingInput">Select Account Type</label><br>
+                    <fieldset>
+                            <div style="display: flex; justify-content: space-around;">
+                        <div>
+                            <input type="radio" id="studentradio" name="acctype" >
+                            <label for="studentradio" >Student</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="profradio" name="acctype">
+                            <label for="profradio" >Professor</label>
+                        </div>
+                    </div>
+                </fieldset>
+                </div>
+                <div id="skills-bar" class="skills-bar form-floating">
+                    <input id="skills" type="string" class="form-control floatingInput" placeholder="Enter skills ">
+                    <label for="floatingInput">Enter Skills</label>
+                </div>
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                    <label for="floatingInput">hello3</label>
+                </div>
             </div>
-            <div class="form-floating">
-                <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
-                <label for="floatingInput">Last Name</label>
+            <div id="stage3" class="hidden">
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="username" placeholder="Username" required>
+                    <label for="floatingInput">bye1</label>
+                </div>
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="fname" placeholder="First Name" required >
+                    <label for="floatingInput">bye2</label>
+                </div>
+                <div class="form-floating">
+                    <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                    <label for="floatingInput">bye3</label>
+                </div>
             </div>
-            <button id="next1" type="submit" class="next btn btn-primary mt-3" onclick="register2()">Next</button>
-            <p class="mt-5 mb-3 text-body-secondary">© 2017-2024</p>
+            <button id="back" class="back btn btn-primary mt-3 hidden" onclick="back()">Back</button>
+            <button id="next" class="next btn btn-primary mt-3" onclick="next()">Next</button>
         </div>
-        </form>
     </main>
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -65,12 +107,5 @@
         </footer>
     </div>
 </section>
-
-<script>
-    document.getElementById('myForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // This will prevent the default form submit
-      // You can add your own logic here for what should happen on button click
-    });
-</script>
 </body>
 </html>

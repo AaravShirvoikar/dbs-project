@@ -9,8 +9,8 @@ body {
   font-family: "Poppins", sans-serif !important;
   /* font-color: white; */
   /* FB5A4B , 202231 */
-  background-color: rgb(251, 171, 126, 0.5);
-  background: linear-gradient(
+  background-color: rgb(251, 171, 126, 0.1);
+  /* background: linear-gradient(
     to bottom,
     rgba(250, 244, 236, 0.5) 0%,
     rgba(249, 232, 210, 0.5) 15%,
@@ -18,7 +18,7 @@ body {
     rgba(247, 226, 210, 0.5) 50%,
     rgba(243, 217, 193, 0.5) 70%,
     rgba(249, 232, 210, 0.5) 100%
-  );
+  ); */
  
   margin: 0;
   padding: 0;
