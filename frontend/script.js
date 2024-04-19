@@ -1,6 +1,4 @@
-function register(){
-    window.location.href = "./public/register.html";
-}
+
 
 // When the user scrolls the page, execute myFunction
 window.onscroll = function() {myFunction()};

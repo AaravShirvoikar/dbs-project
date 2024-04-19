@@ -29,7 +29,7 @@
 <body>
     <section id="header">
         <div class="header">
-            <div class="header-linkbar">
+            <div class="header-linkbar" style="font-size: 16px;">
                 <img src="../assets/MAHE.png" alt="MAHE Logo" class="logo org-logo">
                 <a class="header-link" href="./dashboard.html">Dashboard</a>
                 <a class="header-link" href="./applications.html">Applications</a>
@@ -69,17 +69,17 @@
                         <h5 id="project-Status">Project Status : </h5>
                         <div>
 
-                            <button type="button" style="height: 38px; background: none; border: none;">
+                            <!-- <button type="button" style="height: 38px; background: none; border: none;">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="#0d6efd" class="w-6 h-6"
                                     viewBox="0 0 24 24" style="width: 30px; height: 30px;">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                                 </svg>
-                            </button>
+                            </button> -->
 
-                            <button type="button" id="apply-button" class="btn btn-primary" style="height:  37.6px"
+                            <button type="button" id="apply-button" class="btn btn-primary" style="border:none;background-color: rgb(251, 171, 126); height:  37.6px"
                                 onclick="apply()">Apply</button>
-                            <button type="button" id="close-btn" class="btn btn-default" style="height:  37.6px"
+                            <button type="button" id="close-btn" class="btn btn-default" style="background-color: rgb(251, 171, 126); height: 37.6px"
                                 data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                     <div class="d-flex justify-content-md-between">
                         <h5>Filters</h5>
                         <button class="btn btn-primary mx-2"
-                            style="max-height: 27px; text-align: center; display: flex; align-items: center; justify-content: center; ">Clear</button>
+                            style="max-height: 27px; text-align: center; display: flex; align-items: center; justify-content: center; background-color: rgb(251, 171, 126); border: none;">Clear</button>
                     </div>
                     <h6>Type</h6>
                     <ul>
@@ -136,7 +136,7 @@
                 <div class="searchbox w-50 mb-3 d-flex">
                     <input type="text" id="searchbar" placeholder="Search by name , tag or professor"
                         class="w-100 border rounded-3" style="padding-left: 10px; margin-left: 45%; min-width: 95%; font-size: 16px;">
-                    <button class="btn btn-primary btn-lg mx-2" style="font-size: 16px;" onclick="search()">Search</button>
+                    <button class="btn btn-primary btn-lg mx-2" style="background-color: rgb(251, 171, 126); font-size: 16px; border:none;" onclick="search()">Search</button>
                 </div>
                 <!-- <h2>Search Results</h2> -->
                 <div class="flex-col justify-content-center align-items-center">
@@ -176,3 +176,36 @@
 </body>
 
 </html>
+
+
+
+<!-- <div class="container">
+    <div class="header">
+        <h2>Project Title</h2>
+    </div>
+    <hr>
+    <div class="body">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam autem quo error itaque repellat ex earum! Modi corporis laborum tempora inventore quisquam nesciunt eaque magnam natus, incidunt obcaecati hic molestiae veritatis nobis repellendus dolore omnis eius suscipit ducimus numquam eveniet nemo iste atque. Praesentium aspernatur rem recusandae dicta amet, fugiat quam iste, dolore placeat accusamus, quis itaque quas autem fuga impedit doloremque nemo id aliquid officiis ipsum illo? Quo ipsam repudiandae facere voluptate neque mollitia maiores quibusdam nulla magnam sit?</p>
+    </div>
+</div> 
+
+.container{
+    max-width: 600px;
+    background-color: #f2f2f2;
+    border-radius: 40px 40px 40px 40px;
+    /* padding: 20px; */
+
+}
+
+.header{
+    padding: 20px;
+    border-radius: 40px 40px 0 0;
+    background-color: aqua;
+}
+
+.body{
+    padding: 20px;
+    border-radius: 0 0 40px 40px;
+}
+
+-->

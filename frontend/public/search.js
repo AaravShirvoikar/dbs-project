@@ -48,9 +48,12 @@ async function displayData(response) {
         let projectCard = document.createElement("div");
         projectCard.className = "project-card";
 
+        let headerDiv = document.createElement("div");
+        headerDiv.className = "header-div";
         let projectName = document.createElement("h3");
         projectName.innerHTML = project.title;
         projectName.classList = "project-title";
+        headerDiv.appendChild(projectName);
 
         let projectId = document.createElement("p");
         projectId.innerHTML = project.project_id;
@@ -59,6 +62,7 @@ async function displayData(response) {
 
         let line = document.createElement("hr");
 
+        let dataDiv = document.createElement("div");
         let projectDescription = document.createElement("p");
         projectDescription.innerHTML = project.description;
         projectDescription.classList = "project-description";
@@ -68,11 +72,12 @@ async function displayData(response) {
         projectTags.innerHTML = project.tags;
 
         projectButton.appendChild(projectCard);
-        projectCard.appendChild(projectName);
-        projectCard.appendChild(projectId);
-        projectCard.appendChild(line);
-        projectCard.appendChild(projectDescription);
-        projectCard.appendChild(projectTags);
+        projectCard.appendChild(headerDiv);
+        headerDiv.appendChild(projectId);
+        dataDiv.appendChild(line);
+        dataDiv.appendChild(projectDescription);
+        dataDiv.appendChild(projectTags);
+        projectCard.appendChild(dataDiv);
         document.getElementById("search-results").appendChild(projectButton);
 
         let noResults = document.createElement("h3");

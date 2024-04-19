@@ -12,11 +12,13 @@
 
 </head>
 <body>
-<div class="d-flex align-items-center pt-2 px-4 bg-body-tertiary vsc-initialized" style="min-height: 100vh;">
+<div class="d-flex align-items-center pt-2 px-4 vsc-initialized" style="min-height: 100vh;">
     <main class="form-signin m-auto" style="width: 30%; margin-top: 30rem;">
         <form id="login-form" onsubmit="submitForm(event)">
-            <a href="../index.html"><img class="mb-4" src="../assets/MentorMatch.png" alt="" width="72" height="auto"></a>
-            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="d-flex align-items-center">
+                <a href="../index.html"><img class="mb-4" src="../assets/MentorMatch.png" alt="" width="72" height="auto"></a>
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            </div>
 
             <div class="form-floating">
                 <input type="string" class="form-control" id="floatingInput" placeholder="Username">
@@ -33,7 +35,7 @@
                     Remember me
                 </label>
             </div>
-            <input id="submit-button" type="submit" value="Login" style= "width:100%; background-color: rgb(13, 110, 253); color: white; padding: 8px 0px; border-radius: 6px;" ></input>
+            <input id="submit-button" type="submit" value="Login" style= "width:100%; color: white; padding: 8px 0px;background-color: rgb(251, 171, 126); border-radius: 5px; border: none"></input>
             <p class="mt-5 mb-3 text-body-secondary">© 2017-2024</p>
         </form>
     </main>

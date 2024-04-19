@@ -20,10 +20,13 @@
 <body>
 
     
-<div class="d-flex align-items-center pt-2 px-4 bg-body-tertiary vsc-initialized" style="min-height: 100vh;">
+<div class="d-flex align-items-center pt-2 px-4 vsc-initialized" style="min-height: 100vh;">
     <main class="form-signin m-auto" style="width: 30%; margin-top: 30rem;">
         <div id="register">
-            <h1 class="h3 mb-3 fw-normal">Register</h1>
+            <div class="d-flex align-items-center">
+                <a href="../index.html"><img class="mb-4" src="../assets/MentorMatch.png" alt="" width="72" height="auto"></a>
+                <h1 class="h3 mb-3 fw-normal">Register</h1>
+            </div>
             <div id="stage1" class="">
                 <div class="form-floating">
                     <input type="string" class="form-control" id="username" placeholder="Username" required>
@@ -45,11 +48,11 @@
                     <fieldset>
                             <div style="display: flex; justify-content: space-around;">
                         <div>
-                            <input type="radio" id="studentradio" name="acctype" >
+                            <input type="radio" id="studentradio" name="acctype" required checked>
                             <label for="studentradio" >Student</label>
                         </div>
                         <div>
-                            <input type="radio" id="profradio" name="acctype">
+                            <input type="radio" id="profradio" name="acctype" required>
                             <label for="profradio" >Professor</label>
                         </div>
                     </div>
@@ -78,8 +81,9 @@
                     <label for="floatingInput">bye3</label>
                 </div>
             </div>
-            <button id="back" class="back btn btn-primary mt-3 hidden" onclick="back()">Back</button>
-            <button id="next" class="next btn btn-primary mt-3" onclick="next()">Next</button>
+            <button id="back" class="back btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);" onclick="back()">Back</button>
+            <button id="next" class="next btn  mt-3" style="background-color: rgb(251, 171, 126);" onclick="next()">Next</button>
+            <button id="submiting" class="submit btn  mt-3 hidden"  style="background-color: rgb(251, 171, 126);" onclick="submit()">Submit</button>
         </div>
     </main>
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
