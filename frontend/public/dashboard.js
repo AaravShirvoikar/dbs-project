@@ -105,6 +105,16 @@ async function getData() {
 getData();
 
 async function createProject() {
+    var duration;
+    if (document.getElementById("lt3m").checked) {
+        duration = "3 months";  
+    } else if (document.getElementById("bw36m").checked) {
+        duration = "3-6 months";
+    }
+    else if (document.getElementById("gt6m").checked) {
+        duration = ">6 months";
+    }
+
     let headersList = {
         "Accept": "*/*",
         "Content-Type": "application/json",
@@ -115,8 +125,11 @@ async function createProject() {
          "title": document.getElementById("project-title").value,
          "description": document.getElementById("project-description").value,
          "status": "open",
-        //  "tags": ["PLSQL","MySQL"]
-       }
+         "duration": duration,
+         "start_date": document.getElementById("project-start").value,
+        //  "tags": document.getElementById("project-tags").value,
+        //  "min-reqs": document.getElementById("project-requirements").value,
+        }
        );
        console.log(bodyContent);
        
@@ -131,8 +144,9 @@ async function createProject() {
 }
 async function createProj(){
     let response = await createProject();
+    let message = JSON.parse(response).message;
     console.log(response);
-    if(response.message == "project created successfully"){
+    if(message == "project created successfully"){
         alert("Project created successfully");
         window.location.href = "./dashboard.html";
     }

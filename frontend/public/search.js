@@ -142,6 +142,8 @@ function buttonClicked(details) {
     document.getElementById("modal-project-owner").innerHTML = "Project Owner : " + matchingProject.professor_name;
     document.getElementById("modal-description").innerHTML = matchingProject.description;
     document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
+    document.getElementById("modal-start").innerHTML = "Start Date : " + matchingProject.start_date.split("T")[0];
+    document.getElementById("modal-duration").innerHTML = "Duration : " + matchingProject.duration;
 
 }
 
