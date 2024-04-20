@@ -118,14 +118,13 @@
 
 #dashboard-nav-link:hover, #peers-nav-link:hover, #applications-nav-link:hover, #search-nav-link:hover {
     background-color: rgba(253, 77, 4, 0.1);
-    color:#ca3d03;
-    border-radius: 10px;
+    color: rgb(251, 171, 126);    border-radius: 10px;
 }
 
 .btn-primary{
-    background-color: rgb(253, 77, 4) !important;
+    background-color:rgb(255, 127, 3, 0.7) !important;
 }
 
 .btn{
-    border-color: #ca3d03 !important;
+    border-color: rgb(251, 171, 126) !important;
 }

@@ -67,13 +67,13 @@
                             <h5>Project Duration :</h5>
                             <div style="display:flex;flex-direction:row;align-items: center; justify-content: space-around;">
                                 <div>
-                                    <input type="radio" name="&lt; 3months" id="lt3m"><label for="lt3m">&lt; 3months</label>
+                                    <input type="radio" name="duration" id="lt3m"><label for="lt3m">&lt; 3months</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="3-6 months" id="bw36m"><label for="bw36m">3-6 months</label>
+                                    <input type="radio" name="duration" id="bw36m"><label for="bw36m">3-6 months</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="&gt; 3months" id="gt6m"><label for="gt6m">&gt; 6months</label>
+                                    <input type="radio" name="duration" id="gt6m"><label for="gt6m">&gt; 6months</label>
                                 </div>
                             </div>
                         </div>
@@ -85,8 +85,8 @@
                     <div class=""
                         style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: flex-end; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
                         <div>
-                            <button type="button" class="btn btn-primary" style="height:  37.6px" onclick="createProj()">Create</button>
-                            <button type="button" class="btn btn-default" style="height:  37.6px"
+                            <button type="button" class="btn " style="height: 37.6px; background-color: rgb(255, 127, 3, 0.7);" onclick="createProj()">Create</button>
+                            <button type="button" class="btn btn-default" style="height:  37.6px; background-color: rgb(251, 171, 126);"
                                 data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -100,7 +100,6 @@
             <h2 id="welcome">DASHBOARD</h2>
         </div>
         <div id="content">
-
             <div id="profile" class="bg-body-tertiary border">
                 <h3 style="padding-top: 10px;">My Profile</h3>
                 <img src="../assets/MentorMatch.png" id="profile-image" />
