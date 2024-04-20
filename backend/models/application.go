@@ -7,6 +7,7 @@ import (
 type Application struct {
 	ApplicationID int    `json:"application_id"`
 	StudentID     int    `json:"student_id"`
+	StudentName   string `json:"student_name"`
 	ProjectID     int    `json:"project_id"`
 	Message       string `json:"message"`
 	Status        string `json:"status"`
@@ -39,7 +40,7 @@ func GetStudentApplications(id int) ([]Application, error) {
 }
 
 func GetProfessorApplications(id int) ([]Application, error) {
-	rows, err := database.Db.Query("SELECT applications.project_id, applications.id, message, applications.status, applications.student_id FROM applications JOIN projects ON applications.project_id = projects.id WHERE projects.professor_id = $1", id)
+	rows, err := database.Db.Query("SELECT applications.project_id, applications.id, message, applications.status, applications.student_id, username FROM applications JOIN projects ON applications.project_id = projects.id JOIN users ON applications.student_id = users.id WHERE projects.professor_id = $1", id)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +49,7 @@ func GetProfessorApplications(id int) ([]Application, error) {
 	applications := []Application{}
 	for rows.Next() {
 		var application Application
-		err := rows.Scan(&application.ProjectID, &application.ApplicationID, &application.Message, &application.Status, &application.StudentID)
+		err := rows.Scan(&application.ProjectID, &application.ApplicationID, &application.Message, &application.Status, &application.StudentID, &application.StudentName)
 		if err != nil {
 			return nil, err
 		}
