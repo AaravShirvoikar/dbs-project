@@ -59,6 +59,7 @@ CREATE TABLE experience (
   end_date DATE NOT NULL
 );
 
+-- Create members table
 CREATE TABLE project_members (
   project_id INT REFERENCES projects(id),
   user_id INT REFERENCES users(id),
