@@ -131,37 +131,22 @@
                 </div>
             </div>
 
-            <div class="search flex-col w-75 px-3">
-                <div class="searchbox w-50 mb-3 d-flex">
-                    <input type="text" id="searchbar" placeholder="Search by name , tag or professor"
-                        class="w-100 border rounded-3" style="padding-left: 10px; margin-left: 45%; min-width: 95%; font-size: 16px;">
+            <div class="search w-75 px-3 d-flex flex-column align-items-center">
+                <div class="searchbox w-50 mb-3 d-flex justify-content-center" style="position: relative;">
+                    <div class="w-100 d-flex flex-column">
+                        <input type="text" id="searchbar" placeholder="Search by name , tag or professor"
+                            class="border w-100 rounded-3" style="padding-left: 10px; height: 40px; font-size: 16px;">
+
+                        <div id="autocomplete" class="autocomplete w-100 mb-3 d-flex position-absolute mt-3 hide">
+                            <div class="dropdown w-100 border rounded-3">
+                                <ul id="dropdown-results">
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <button class="btn btn-primary btn-lg mx-2" style="background-color: rgb(251, 171, 126); font-size: 16px; border:none;" onclick="search()">Search</button>
                 </div>
-                <div class="autocomplete w-50 mb-3 d-flex position-absolute">
-                    <div class="dropdown w-100 border rounded-3 hide">
-                        <ul id="dropdown-results">
-                            <li class="d-res">Artificial Intelligence</li>
-                            <li class="d-res">Machine Learning</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                        </ul>
-                    </div>
-                </div>
-                
+                   
                 <!-- <h2>Search Results</h2> -->
                 <div class="flex-col justify-content-center align-items-center">
                     <div id="scroll-watcher"></div>
@@ -170,6 +155,7 @@
                     <div>
                     </div>
                 </div>
+            </div>
     </section>
 
     <section id="footer">

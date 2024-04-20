@@ -141,14 +141,16 @@ async function createProject() {
        
        let data = await response.text();
        console.log(data);  
+       return data;
 }
 async function createProj(){
     let response = await createProject();
-    let message = JSON.parse(response).message;
     console.log(response);
+    let message = JSON.parse(response).message;
+    console.log(message);
     if(message == "project created successfully"){
+        window.location.reload();
         alert("Project created successfully");
-        window.location.href = "./dashboard.html";
     }
     else if(response.error == "invalid token format" || response.error == "invalid token"){
         alert("Session Expired. Please login again.");
