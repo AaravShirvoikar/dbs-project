@@ -52,12 +52,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 id="modal-id">Project ID</h4>
-                        <h5>Project Owner :</h5>
-                        <h5>Duration : <span>X Months </span></h5>
-                        <h5>Start Date: <span>DD-MM-YYYY</span></h5>
-                        <h5>End Date: <span>DD-MM-YYYY</span></h5>
-                        <h5>Minimum Requirements : </h5>
+                        <h5 id="modal-id">Project ID</h4>
+                        <h5 id="modal-project-owner">Project Owner :</h5>
+                        <h5 id="modal-duration">Duration : <span>X Months </span></h5>
+                        <h5 id="modal-start">Start Date: <span>DD-MM-YYYY</span></h5>
+                        <h5 id="modal-requirments">Minimum Requirements : </h5>
                         <h5>Project Description :</h5>
                         <p id="modal-description">Description</p>
                         <label>Why do you think you are suitable for this project?<br /><label>
@@ -132,12 +131,37 @@
                 </div>
             </div>
 
-            <div class="search flex-col w-75 px-3 ">
+            <div class="search flex-col w-75 px-3">
                 <div class="searchbox w-50 mb-3 d-flex">
                     <input type="text" id="searchbar" placeholder="Search by name , tag or professor"
                         class="w-100 border rounded-3" style="padding-left: 10px; margin-left: 45%; min-width: 95%; font-size: 16px;">
                     <button class="btn btn-primary btn-lg mx-2" style="background-color: rgb(251, 171, 126); font-size: 16px; border:none;" onclick="search()">Search</button>
                 </div>
+                <div class="autocomplete w-50 mb-3 d-flex position-absolute">
+                    <div class="dropdown w-100 border rounded-3 hide">
+                        <ul id="dropdown-results">
+                            <li class="d-res">Artificial Intelligence</li>
+                            <li class="d-res">Machine Learning</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                            <li class="d-res">Blockchain Technology</li>
+                        </ul>
+                    </div>
+                </div>
+                
                 <!-- <h2>Search Results</h2> -->
                 <div class="flex-col justify-content-center align-items-center">
                     <div id="scroll-watcher"></div>

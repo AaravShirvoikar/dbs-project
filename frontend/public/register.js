@@ -4,21 +4,18 @@ let stage3 = document.getElementById("stage3")
 var email, password, username, fname, lname, acctype;
 
 function next() {
-    console.log("works 0");
     if (!stage1.classList.contains("hidden")) {
         stage1.classList.add("hidden");
         stage2.classList.remove("hidden");
         stage3.classList.add("hidden");
         document.getElementById("back").classList.remove("hidden");
         document.getElementById("submiting").classList.add("hidden");
-        console.log("works 1");
     } else if (!stage2.classList.contains("hidden")) { // Add logic for back function
         stage1.classList.add("hidden");
         stage2.classList.add("hidden");
         stage3.classList.remove("hidden");
         document.getElementById("next").classList.add("hidden");
         document.getElementById("submiting").classList.remove("hidden");
-        console.log("works 2");
     }
 }
 
@@ -29,14 +26,12 @@ function back() {
         stage3.classList.add("hidden");
         document.getElementById("back").classList.add("hidden");
         document.getElementById("submiting").classList.add("hidden");
-        console.log("works 3");
     } else if (!stage3.classList.contains("hidden")) {
         stage1.classList.add("hidden");
         stage2.classList.remove("hidden");
         stage3.classList.add("hidden");
         document.getElementById("next").classList.remove("hidden");
         document.getElementById("submiting").classList.add("hidden");
-        console.log("works 4");
     }
 }
 

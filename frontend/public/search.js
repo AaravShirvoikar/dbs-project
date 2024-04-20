@@ -138,7 +138,8 @@ function buttonClicked(details) {
     modalInformation = JSON.stringify(matchingProject);
     console.log(modalInformation);
     document.getElementById("modal-title").innerHTML = matchingProject.title;
-    document.getElementById("modal-id").innerHTML = matchingProject.project_id;
+    document.getElementById("modal-id").innerHTML = "Project ID : " + matchingProject.project_id;
+    document.getElementById("modal-project-owner").innerHTML = "Project Owner : " + matchingProject.professor_name;
     document.getElementById("modal-description").innerHTML = matchingProject.description;
     document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
 
@@ -217,5 +218,50 @@ async function apply() {
     } else if (response.error == "invalid token format" || response.error == "invalid token") {
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
+    }
+}
+
+const titles = [];
+
+function getTitles() {
+    for (let i in globalResponse) {
+        if(globalResponse[i].title != null && globalResponse[i].title in titles == false)
+        titles.push(globalResponse[i].title);
+    }
+    return titles;
+}
+getTitles();
+
+function autocomplete(input, list) {
+    //Add an event listener to compare the input value with all countries
+    input.addEventListener('input', function () {
+        //Close the existing list if it is open
+        closeList();
+
+        //If the input is empty, exit the function
+        if (!this.value)
+            return;
+
+        //Create a suggestions <div> and add it to the element containing the input field
+        suggestions = document.createElement('div');
+        suggestions.setAttribute('id', 'suggestions');
+        this.parentNode.appendChild(suggestions);
+
+        //Iterate through all entries in the list and find matches
+        for (let i=0; i<list.length; i++) {
+            if (list[i].toUpperCase().includes(this.value.toUpperCase())) {
+                //If a match is foundm create a suggestion <div> and add it to the suggestions <div>
+                suggestion = document.createElement('div');
+                suggestion.innerHTML = list[i];
+                suggestions.appendChild(suggestion);
+            }
+        }
+
+    });
+
+    function closeList() {
+        let suggestions = document.getElementById('suggestions');
+        if (suggestions)
+            suggestions.parentNode.removeChild(suggestions);
     }
 }
