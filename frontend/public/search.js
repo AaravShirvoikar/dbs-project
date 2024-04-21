@@ -142,6 +142,12 @@ document.getElementById("searchbar").addEventListener("input", function() {
     let dropdownres = document.getElementById("dropdown-results");
     dropdownres.innerHTML = "";
     for (let i = 0; i < titles.length; i++) {
+        if(input == "") {
+            setTimeout(function() {
+                let autocompleteElement = document.getElementById("autocomplete");
+                autocompleteElement.classList.add("hide");
+            }, 750);
+        }
         if (input!="" && titles[i].toLowerCase().includes(input)) {
             let suggestion = document.createElement("li");
             suggestion.classList.add("d-res");
@@ -155,6 +161,17 @@ document.getElementById("searchbar").addEventListener("input", function() {
             }
         }
     }
+    if(titles.length == 0 || dropdownres.innerHTML == "") {
+        let suggestion = document.createElement("li");
+        suggestion.classList.add("d-res");
+        suggestion.innerHTML = "No results found";
+        dropdownres.appendChild(suggestion);
+        setTimeout(function() {
+            let autocompleteElement = document.getElementById("autocomplete");
+            autocompleteElement.classList.add("hide");
+        }, 1250);
+    }
+
 });
 
 document.addEventListener("click", function(event) {
