@@ -171,7 +171,6 @@ document.getElementById("searchbar").addEventListener("input", function() {
             autocompleteElement.classList.add("hide");
         }, 1250);
     }
-
 });
 
 document.addEventListener("click", function(event) {
@@ -183,7 +182,7 @@ document.addEventListener("click", function(event) {
 });
 
 var modalInformation;
-function buttonClicked(details) {
+async function buttonClicked(details) {
     var matchingProject;
     for (let i in globalResponse) {
         if (globalResponse[i].project_id == details) {
@@ -201,6 +200,27 @@ function buttonClicked(details) {
     document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
     document.getElementById("modal-start").innerHTML = "Start Date : " + matchingProject.start_date.split("T")[0];
     document.getElementById("modal-duration").innerHTML = "Duration : " + matchingProject.duration;
+
+    if(await checkUserType() == "student"){
+        console.log("helo")
+        let applyButton = document.getElementById("apply-button");
+        if (!applyButton) {
+            applyButton = document.createElement("button");
+            applyButton.setAttribute("type", "button");
+            applyButton.setAttribute("id", "apply-button");
+            applyButton.classList.add("btn", "btn-primary");
+            applyButton.style.border = "none";
+            applyButton.style.backgroundColor = "rgb(251, 171, 126)";
+            applyButton.style.height = "37.6px";
+            applyButton.addEventListener("click", apply);
+            applyButton.innerHTML = "Apply";
+
+            document.getElementById("modal-footer-buttons").appendChild(applyButton);
+            console.log("hello")
+        }
+    }
+
+
 
 }
 

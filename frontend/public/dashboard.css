@@ -30,7 +30,10 @@
     background: #e0e0e0;
     box-shadow: 20px 20px 60px rgb(190, 190, 190, 0.5);
 }
-
+#detail-modal{
+    justify-self: flex-end;
+    align-self: flex-end;
+}
 #profile:hover{
     /* border: 5px solid black; */
     height: 90%;
@@ -43,6 +46,10 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
     background: #e0e0e0;
     box-shadow: 20px 20px 60px rgb(190, 190, 190);
+}
+#profile:hover #detail-modal{
+    /* display: block; */
+    visibility: visible !important;
 }
 
 #profile-image{

@@ -159,3 +159,8 @@ async function createProj(){
     
 }
 
+document.addEventListener("DOMContentLoaded" , () => {
+    const width = document.getElementById("detail-modal").offsetWidth;
+    document.getElementById("detail-modal-div").style.width = width+"px";
+    document.getElementById("detail-modal").style.visibility = "hidden";
+})
