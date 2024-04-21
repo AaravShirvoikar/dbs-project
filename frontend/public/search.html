@@ -7,10 +7,12 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
         body {
             font-size: 14px;
             line-height: 1.6;
         }
+
         body * {
             list-style: none;
         }
@@ -53,15 +55,15 @@
                     </div>
                     <div class="modal-body">
                         <h5 id="modal-id">Project ID</h4>
-                        <h5 id="modal-project-owner">Project Owner :</h5>
-                        <h5 id="modal-duration">Duration : <span>X Months </span></h5>
-                        <h5 id="modal-start">Start Date: <span>DD-MM-YYYY</span></h5>
-                        <h5 id="modal-requirments">Minimum Requirements : </h5>
-                        <h5>Project Description :</h5>
-                        <p id="modal-description">Description</p>
-                        <label>Why do you think you are suitable for this project?<br /><label>
-                                <textarea class="form-control" rows="5" cols="110" id="message"
-                                    style="margin: 10px auto;" required></textarea>
+                            <h5 id="modal-project-owner">Project Owner :</h5>
+                            <h5 id="modal-duration">Duration : <span>X Months </span></h5>
+                            <h5 id="modal-start">Start Date: <span>DD-MM-YYYY</span></h5>
+                            <h5 id="modal-requirments">Minimum Requirements : </h5>
+                            <h5>Project Description :</h5>
+                            <p id="modal-description">Description</p>
+                            <label>Why do you think you are suitable for this project?<br /><label>
+                                    <textarea class="form-control" rows="5" cols="110" id="message"
+                                        style="margin: 10px auto;" required></textarea>
                     </div>
                     <div class=""
                         style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
@@ -76,9 +78,11 @@
                                 </svg>
                             </button> -->
 
-                            <button type="button" id="apply-button" class="btn btn-primary" style="border:none;background-color: rgb(251, 171, 126); height:  37.6px"
+                            <button type="button" id="apply-button" class="btn btn-primary"
+                                style="border:none;background-color: rgb(251, 171, 126); height:  37.6px"
                                 onclick="apply()">Apply</button>
-                            <button type="button" id="close-btn" class="btn btn-default" style="background-color: rgb(251, 171, 126); height: 37.6px"
+                            <button type="button" id="close-btn" class="btn btn-default"
+                                style="background-color: rgb(251, 171, 126); height: 37.6px"
                                 data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -96,7 +100,7 @@
                     <div class="d-flex justify-content-md-between">
                         <h5>Filters</h5>
                         <button class="btn btn-primary mx-2"
-                            style="max-height: 27px; text-align: center; display: flex; align-items: center; justify-content: center; background-color: rgb(251, 171, 126); border: none;">Clear</button>
+                            style="max-height: 27px; text-align: center; display: flex; align-items: center; justify-content: center; background-color: rgb(251, 171, 126); border: none;">Apply</button>
                     </div>
                     <h6>Type</h6>
                     <ul>
@@ -116,52 +120,41 @@
                         <li><input type="checkbox"> 3rd</li>
                         <li><input type="checkbox"> 4th</li>
                     </ul>
-                    <h6>Domain</h6>
-                    <ul>
-                        <li><input type="checkbox"> Artificial Intelligence</li>
-                        <li><input type="checkbox"> Machine Learning</li>
-                        <li><input type="checkbox"> Blockchain Technology</li>
-                    </ul>
                     <h6>Duration</h6>
                     <ul>
                         <li><input type="checkbox"> &lt; 3 months</li>
                         <li><input type="checkbox"> 3 - 6 months</li>
                         <li><input type="checkbox"> &gt; 6 months</li>
                     </ul>
+                    <h6>Domain</h6>
+                    <ul>
+                        <li><input type="checkbox"> Artificial Intelligence</li>
+                        <li><input type="checkbox"> Machine Learning</li>
+                        <li><input type="checkbox"> Blockchain Technology</li>
+                    </ul>
                 </div>
+                <button class="btn btn-primary mx-2"
+                            style="max-height: 27px; text-align: center; display: flex; align-items: center; justify-content: center; background-color: rgb(251, 171, 126); border: none; margin-bottom: 10px; margin: 10px auto;">Clear</button>
             </div>
 
-            <div class="search flex-col w-75 px-3">
-                <div class="searchbox w-50 mb-3 d-flex">
-                    <input type="text" id="searchbar" placeholder="Search by name , tag or professor"
-                        class="w-100 border rounded-3" style="padding-left: 10px; margin-left: 45%; min-width: 95%; font-size: 16px;">
-                    <button class="btn btn-primary btn-lg mx-2" style="background-color: rgb(251, 171, 126); font-size: 16px; border:none;" onclick="search()">Search</button>
-                </div>
-                <div class="autocomplete w-50 mb-3 d-flex position-absolute">
-                    <div class="dropdown w-100 border rounded-3 hide">
-                        <ul id="dropdown-results">
-                            <li class="d-res">Artificial Intelligence</li>
-                            <li class="d-res">Machine Learning</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                            <li class="d-res">Blockchain Technology</li>
-                        </ul>
+            <div class="search w-75 px-3 d-flex flex-column align-items-center">
+                <div class="searchbox w-50 mb-3 d-flex justify-content-center" style="position: relative;">
+                    <div class="w-100 d-flex flex-column">
+                        <input type="text" id="searchbar" placeholder="Search by name , tag or professor"
+                            class="border w-100 rounded-3" style="padding-left: 10px; height: 40px; font-size: 16px;">
+
+                        <div id="autocomplete" class="autocomplete w-100 mb-3 d-flex position-absolute mt-3 hide">
+                            <div class="dropdown w-100 border rounded-3">
+                                <ul id="dropdown-results">
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <button class="btn btn-primary btn-lg mx-2"
+                        style="background-color: rgb(251, 171, 126); font-size: 16px; border:none;"
+                        onclick="search()">Search</button>
                 </div>
-                
+
                 <!-- <h2>Search Results</h2> -->
                 <div class="flex-col justify-content-center align-items-center">
                     <div id="scroll-watcher"></div>
@@ -170,6 +163,7 @@
                     <div>
                     </div>
                 </div>
+            </div>
     </section>
 
     <section id="footer">

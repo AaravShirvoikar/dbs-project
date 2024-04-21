@@ -24,8 +24,14 @@ async function fetchProjects() {
     return data;
 }
 var globalResponse;
+const titles = [];
+
 async function fetchData() {
     globalResponse = await fetchProjects();
+    for (let i in globalResponse) {
+        if(globalResponse[i].title != null && globalResponse[i].title in titles == false)
+        titles.push(globalResponse[i].title);
+    }
 }
 
 fetchData();
@@ -125,6 +131,57 @@ function search() {
     }
 }
 
+document.getElementById("searchbar").addEventListener("input", function() {
+    let autocompleteElement = document.getElementById("autocomplete");
+    autocompleteElement.classList.remove("hide");
+    setTimeout(function() {
+        let autocompleteElement = document.getElementById("autocomplete");
+        autocompleteElement.classList.add("hide");
+    }, 20000);
+    let input = document.getElementById("searchbar").value.toLowerCase().trim();
+    let dropdownres = document.getElementById("dropdown-results");
+    dropdownres.innerHTML = "";
+    for (let i = 0; i < titles.length; i++) {
+        if(input == "") {
+            setTimeout(function() {
+                let autocompleteElement = document.getElementById("autocomplete");
+                autocompleteElement.classList.add("hide");
+            }, 750);
+        }
+        if (input!="" && titles[i].toLowerCase().includes(input)) {
+            let suggestion = document.createElement("li");
+            suggestion.classList.add("d-res");
+            suggestion.innerHTML = titles[i];
+            suggestion.addEventListener("click", function() {
+                document.getElementById("searchbar").value = this.innerHTML;
+                search();
+            });
+            if (!dropdownres.innerHTML.includes(suggestion.innerHTML)) {
+                dropdownres.appendChild(suggestion);
+            }
+        }
+    }
+    if(titles.length == 0 || dropdownres.innerHTML == "") {
+        let suggestion = document.createElement("li");
+        suggestion.classList.add("d-res");
+        suggestion.innerHTML = "No results found";
+        dropdownres.appendChild(suggestion);
+        setTimeout(function() {
+            let autocompleteElement = document.getElementById("autocomplete");
+            autocompleteElement.classList.add("hide");
+        }, 1250);
+    }
+
+});
+
+document.addEventListener("click", function(event) {
+    let targetElement = event.target;
+    if (targetElement.id !== "searchbar" && targetElement.id !== "autocomplete") {
+        let autocompleteElement = document.getElementById("autocomplete");
+        autocompleteElement.classList.add("hide");
+    }
+});
+
 var modalInformation;
 function buttonClicked(details) {
     var matchingProject;
@@ -142,6 +199,8 @@ function buttonClicked(details) {
     document.getElementById("modal-project-owner").innerHTML = "Project Owner : " + matchingProject.professor_name;
     document.getElementById("modal-description").innerHTML = matchingProject.description;
     document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
+    document.getElementById("modal-start").innerHTML = "Start Date : " + matchingProject.start_date.split("T")[0];
+    document.getElementById("modal-duration").innerHTML = "Duration : " + matchingProject.duration;
 
 }
 
@@ -220,17 +279,6 @@ async function apply() {
         window.location.href = "./login.html";
     }
 }
-
-const titles = [];
-
-function getTitles() {
-    for (let i in globalResponse) {
-        if(globalResponse[i].title != null && globalResponse[i].title in titles == false)
-        titles.push(globalResponse[i].title);
-    }
-    return titles;
-}
-getTitles();
 
 function autocomplete(input, list) {
     //Add an event listener to compare the input value with all countries

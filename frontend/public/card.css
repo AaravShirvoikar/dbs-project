@@ -3,7 +3,7 @@ body{
 }
 
 .hide{
-    display: none;
+    display: none !important;
 }
 
 #peer-results, #search-results, #application-results{
@@ -40,7 +40,12 @@ body{
     background: none;
     border: none;
     min-width: 700px;
+    max-height: 300px;
 } 
+.project-card{
+    max-height: 280px;
+    overflow-y: hidden;
+}
 
 .peer-card, .project-button, .application-card{
     margin: 20px auto;
@@ -94,11 +99,15 @@ body{
 }
 
 .autocomplete{
-    background-color: rgb(253, 77, 4, 0.15);
+    /* background-color: rgb(253, 77, 4, 0.15); */
     border-radius: 8px;
-    margin-left: 22.5%;
+    top: 100%;
     min-width: fit-content;
     font-size: 16px;
+    background-color: rgb(255, 255, 255, 0.25);
+    z-index: 100;
+    backdrop-filter: blur(10px); /* Add background blur */
+
 }
 
 #dropdown-results{
@@ -108,12 +117,15 @@ body{
     z-index: 100;
     padding-left: 20px;
 }
-
+.d-res{
+    /* margin-bottom: 10px; */
+    padding: 10px;
+}
 .d-res:hover{
     background-color: rgb(251, 171, 126, 0.5);
     border-radius: 20px;
     padding-left: 5px;
-    width: 90%;
+    width: 100%;
 }
 /* .header-div{
     background-color: rgb(251, 171, 126, 0.5);

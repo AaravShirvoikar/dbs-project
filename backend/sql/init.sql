@@ -7,8 +7,7 @@ CREATE TYPE project_status AS ENUM ('open', 'closed', 'in_progress');
 -- Define application statuses
 CREATE TYPE application_status AS ENUM ('pending', 'accepted', 'rejected');
 
--- Define project durations
-CREATE TYPE project_duration AS ENUM ("3 months", "3-6 months", ">6 months");
+CREATE TYPE project_duration AS ENUM ('3 months', '3-6 months', '>6 months');
 
 -- Create users table
 CREATE TABLE users (

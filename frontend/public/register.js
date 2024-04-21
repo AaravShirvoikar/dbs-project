@@ -1,7 +1,7 @@
 let stage1 = document.getElementById("stage1")
 let stage2 = document.getElementById("stage2")
 let stage3 = document.getElementById("stage3")
-var email, password, username, fname, lname, acctype;
+var email, password, username, fname, lname, acctype, skills = [];
 
 function next() {
     if (!stage1.classList.contains("hidden")) {
@@ -67,6 +67,12 @@ async function submit(){
     console.log(acctype);
     email = localStorage.getItem("email");
     password = localStorage.getItem("password");
+    let children = document.getElementById("allskills").childNodes;
+    children.forEach(element => {
+        if(element.className == "skill-btn" && !skills.includes(element.innerHTML))
+        skills.push(element.innerHTML);
+    });
+    console.log(skills);
     let response = await register();
     let message = JSON.parse(response).message;
     if(message == "registration successful"){
@@ -123,9 +129,9 @@ function add() {
         btn.innerHTML = skill
         btn.className = "skill-btn"
         btn.setAttribute('onclick', "removing(this)")
-        document.getElementById("skills-bar").insertBefore(btn, document.getElementById("skills"));
+        document.getElementById("allskills").insertBefore(btn, document.getElementById("skills-bar"));
     }
-    let children = document.getElementById("skills-bar").childNodes;
+    let children = document.getElementById("allskills").childNodes;
         children.forEach(element => {
             console.log(element);
         });
@@ -138,7 +144,7 @@ function removing(element) {
 
 document.getElementById('skills').addEventListener('keydown', function (event) {
     if ((event.key === 'Backspace') && document.getElementById("skills").value.trim() == '') {
-        let children = Array.from(document.getElementById("skills-bar").childNodes);
+        let children = Array.from(document.getElementById("allskills").childNodes);
         // Filter out non-button elements (like the input field itself)
         let skillButtons = children.filter(child => child.className === "skill-btn");
         if (skillButtons.length > 0) {
