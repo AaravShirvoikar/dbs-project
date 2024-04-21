@@ -1,3 +1,19 @@
+-- First, create the trigger function
+CREATE OR REPLACE FUNCTION insert_default_skills()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Insert an empty array of skills for the new user
+    INSERT INTO user_skills (user_id, skills) VALUES (NEW.id, '{}');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Next, create the trigger that fires after insert on the users table
+CREATE TRIGGER insert_default_skills_trigger
+AFTER INSERT ON users
+FOR EACH ROW
+EXECUTE FUNCTION insert_default_skills();
+
 -- Define user types
 CREATE TYPE user_type AS ENUM ('student', 'professor');
 
