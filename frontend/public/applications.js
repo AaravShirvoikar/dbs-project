@@ -23,7 +23,7 @@ async function fetchProjects() {
 }
 // Global variable to store fetched projects
 var globalResponse;
-async function getProjects(){
+async function getProjects() {
     globalResponse = await fetchProjects();
 }
 getProjects();
@@ -66,7 +66,7 @@ async function displayData() {
 
 var matchingApplication;
 // Function to handle button click and populate modal with application details
-function buttonClicked(details) {
+async function buttonClicked(details) {
     // Find the matching application based on the project_id passed as 'details'
     matchingApplication = globalResponse.find(app => app.application_id.toString() === details);
 
@@ -79,15 +79,62 @@ function buttonClicked(details) {
     // Populate modal with application details
     // Ensure that the element IDs used here match those in your HTML
     document.getElementById("modal-title").innerHTML = matchingApplication.title || 'No Title Provided';
-    document.getElementById("modal-appId").innerHTML = "Application ID : "+ (matchingApplication.application_id || 'No ID Provided');
+    document.getElementById("modal-appId").innerHTML = "Application ID : " + (matchingApplication.application_id || 'No ID Provided');
     document.getElementById("modal-id").innerHTML = "Student ID : " + (matchingApplication.student_id || 'No ID Provided');
     document.getElementById("modal-message").innerHTML = matchingApplication.message || 'No Message Provided';
+
+    if (await checkUserType() == "professor") {
+        // Dynamically insert application options buttons
+        const applicationOptions = document.createElement("div");
+        applicationOptions.className = "application-options";
+        applicationOptions.style.display = "flex";
+        applicationOptions.style.justifyContent = "end";
+        applicationOptions.style.gap = "5px";
+
+        const acceptButton = document.createElement("button");
+        acceptButton.type = "button";
+        acceptButton.className = "btn btn-primary";
+        acceptButton.style.backgroundColor = "rgb(251, 171, 126)";
+        acceptButton.style.border = "none";
+        acceptButton.innerHTML = "Accept";
+        acceptButton.onclick = accept;
+
+        const rejectButton = document.createElement("button");
+        rejectButton.type = "button";
+        rejectButton.className = "btn btn-secondary";
+        rejectButton.style.backgroundColor = "rgb(251, 171, 126)";
+        rejectButton.style.border = "none";
+        rejectButton.innerHTML = "Reject";
+        rejectButton.onclick = reject;
+
+        // Check if the application options element already exists
+        const modalOptions = document.getElementById("modal-options");
+        var temp = modalOptions.childNodes;
+        const modalNodes = [];
+        console.log("temp", temp)
+        temp.forEach(element => {
+            console.log(element)
+            modalNodes.push(element.innerHTML);
+        });
+        console.log("nodes", modalNodes)
+        console.log(modalOptions.childNodes)
+        if (!modalNodes.includes(acceptButton.innerHTML)) {
+            // Create the application options element
+            // Append the accept and reject buttons to the application options element
+            modalOptions.appendChild(acceptButton);
+        }
+        if (!modalNodes.includes(rejectButton.innerHTML)) {
+            modalOptions.appendChild(rejectButton);
+        }
+        // Append the application options element to the desired element
+        document.getElementById("application-results").appendChild(applicationOptions);
+    }
 }
 // Event listener for document ready to display applications and handle button clicks
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     displayData(); // Display applications when the document is ready
 
-    document.body.addEventListener('click', function(event) {
+    document.body.addEventListener('click', function (event) {
         let targetElement = event.target;
         do {
             if (targetElement.classList.contains('application-button')) {
@@ -100,35 +147,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-async function putApplications(status){
+async function putApplications(status) {
     console.log(matchingApplication);
     let headersList = {
         "Accept": "*/*",
         "Content-Type": "application/json",
-        "Authorization": "Bearer "+localStorage.getItem("token")
-       }
-       console.log(matchingApplication.application_id)
-       let bodyContent = JSON.stringify({
-         "application_id": matchingApplication.application_id,
-         "status": status
-       });
-       
-       let response = await fetch("http://localhost:8080/application/act", { 
-         method: "POST",
-         body: bodyContent,
-         headers: headersList
-       });
-       
-       let data = await response.text();
-       console.log(data);
+        "Authorization": "Bearer " + localStorage.getItem("token")
+    }
+    console.log(matchingApplication.application_id)
+    let bodyContent = JSON.stringify({
+        "application_id": matchingApplication.application_id,
+        "status": status
+    });
+
+    let response = await fetch("http://localhost:8080/application/act", {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList
+    });
+
+    let data = await response.text();
+    console.log(data);
 }
 
-async function accept(){
+async function accept() {
     var response = await putApplications("accepted");
     console.log(response);
 }
 
-async function reject(){
+async function reject() {
     var response = await putApplications("rejected");
     console.log(response);
 }
+
+
+
+

@@ -74,8 +74,9 @@ async function submit(){
     });
     console.log(skills);
     let response = await register();
-    let message = JSON.parse(response).message;
-    if(message == "registration successful"){
+    let message1 = JSON.parse(response).message;
+    let message2 = JSON.parse(response).message;
+    if(message1 == "registration successful"){
         localStorage.clear();
         location.replace("./login.html");
         alert("registration successful");
@@ -85,7 +86,9 @@ async function submit(){
         alert("Registration failed");
     }
 }
-
+async function addskills(){
+    
+}
 async function register(){
     let headersList = {
         "Accept": "*/*",
@@ -153,3 +156,5 @@ document.getElementById('skills').addEventListener('keydown', function (event) {
         }
     }
 });
+
+
