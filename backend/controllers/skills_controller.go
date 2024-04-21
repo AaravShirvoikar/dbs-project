@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/AaravShirvoikar/dbs-project/backend/models"
 )
@@ -20,6 +21,28 @@ func GetUserSkills(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+}
+
+func GetUserSkillsById(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	userID, err := strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "Invalid user id", http.StatusBadRequest)
+		return
+	}
+
+	skills, err := models.GetSkills(userID)
+	if err != nil {
+		http.Error(w, "Internal server error 1", http.StatusInternalServerError)
+		return
+	}
+
+	err = json.NewEncoder(w).Encode(skills)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error 2", http.StatusInternalServerError)
 		return
 	}
 }
