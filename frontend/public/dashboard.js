@@ -104,6 +104,13 @@ async function getData() {
 };
 getData();
 
+async function getSkills(){
+
+}
+
+async function getExperiences(){
+    
+}
 async function createProject() {
     var duration;
     if (document.getElementById("lt3m").checked) {
@@ -164,3 +171,96 @@ document.addEventListener("DOMContentLoaded" , () => {
     document.getElementById("detail-modal-div").style.width = width+"px";
     document.getElementById("detail-modal").style.visibility = "hidden";
 })
+
+
+document.getElementById('skills').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        console.log("working")
+        add();
+        document.getElementById('skills').value = null
+    }
+});
+
+function add() {
+    var skill = document.getElementById("skills").value;
+    console.log(skill)
+    // skill+= " &#11198;";
+    skill.trim();
+    if (skill != null && skill != "" && skill != " ") {
+        var btn = document.createElement("button");
+        btn.innerHTML = skill
+        btn.className = "skill-btn"
+        btn.setAttribute('onclick', "removing(this)")
+        document.getElementById("allskills").insertBefore(btn, document.getElementById("skills-bar"));
+    }
+    let children = document.getElementById("allskills").childNodes;
+        children.forEach(element => {
+            console.log(element);
+        });
+}
+
+function removing(element) {
+    element.remove();
+    console.log("removed");
+}
+
+document.getElementById('skills').addEventListener('keydown', function (event) {
+    if ((event.key === 'Backspace') && document.getElementById("skills").value.trim() == '') {
+        let children = Array.from(document.getElementById("allskills").childNodes);
+        // Filter out non-button elements (like the input field itself)
+        let skillButtons = children.filter(child => child.className === "skill-btn");
+        if (skillButtons.length > 0) {
+            // Only remove the last skill button, if any exist
+            skillButtons[skillButtons.length - 1].remove();
+        }
+    }
+});
+
+
+
+
+
+
+
+document.getElementById('exp').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        console.log("working")
+        add();
+        document.getElementById('exp').value = null
+    }
+});
+
+function add() {
+    var exp = document.getElementById("exp").value;
+    console.log(exp)
+    // skill+= " &#11198;";
+    exp.trim();
+    if (exp != null && exp != "" && exp != " ") {
+        var btn = document.createElement("button");
+        btn.innerHTML = exp
+        btn.className = "exp-btn"
+        btn.setAttribute('onclick', "removing(this)")
+        document.getElementById("allexp").insertBefore(btn, document.getElementById("exp-bar"));
+    }
+    let children = document.getElementById("allexp").childNodes;
+        children.forEach(element => {
+            console.log(element);
+        });
+}
+
+function removing(element) {
+    element.remove();
+    console.log("removed");
+}
+
+document.getElementById('exp').addEventListener('keydown', function (event) {
+    if ((event.key === 'Backspace') && document.getElementById("exp").value.trim() == '') {
+        let children = Array.from(document.getElementById("allexp").childNodes);
+        // Filter out non-button elements (like the input field itself)
+        let expButtons = children.filter(child => child.className === "exp-btn");
+        if (expButtons.length > 0) {
+            // Only remove the last skill button, if any exist
+            expButtons[expButtons.length - 1].remove();
+        }
+    }
+});

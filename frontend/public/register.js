@@ -86,9 +86,7 @@ async function submit(){
         alert("Registration failed");
     }
 }
-async function addskills(){
-    
-}
+
 async function register(){
     let headersList = {
         "Accept": "*/*",
