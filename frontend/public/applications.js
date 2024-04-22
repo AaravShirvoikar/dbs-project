@@ -63,7 +63,27 @@ async function displayData() {
     });
     console.log("Display Complete");
 }
-
+async function getUserDetails(user_id){
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let bodyContent = JSON.stringify({
+         user_id : user_id,
+       });
+       
+       let response = await fetch("http://localhost:8080/user/", { 
+         method: "GET",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+       
+}
 var matchingApplication;
 // Function to handle button click and populate modal with application details
 async function buttonClicked(details) {

@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", async function() {
-    let response = await fetchData2();   
-    if(response.type=="professor"){
+document.addEventListener("DOMContentLoaded", async function () {
+    let response = await fetchData2();
+    if (response.type == "professor") {
         let createProject = document.createElement("button");
         createProject.innerHTML = "Create Project";
         createProject.id = "create-project";
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         createProject.setAttribute("type", "button")
         document.getElementById("content").appendChild(createProject);
     }
-    else{
+    else {
         console.log("Student");
     }
 })
@@ -25,7 +25,7 @@ async function fetchData1() {
     }
     let response;
     try {
-        response = await fetch("http://localhost:8080/projects/", { 
+        response = await fetch("http://localhost:8080/projects/", {
             method: "GET",
             headers: headersList
         });
@@ -35,8 +35,8 @@ async function fetchData1() {
     }
 
     let data = JSON.parse(await response.text());
-    console.log(data);   
-    if(data.error == "invalid token format" || data.error == "invalid token"){
+    console.log(data);
+    if (data.error == "invalid token format" || data.error == "invalid token") {
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
@@ -51,7 +51,7 @@ async function fetchData2() {
     }
     let response;
     try {
-        response = await fetch("http://localhost:8080/user/", { 
+        response = await fetch("http://localhost:8080/user/", {
             method: "GET",
             headers: headersList
         });
@@ -61,8 +61,8 @@ async function fetchData2() {
     }
 
     let data = JSON.parse(await response.text());
-    console.log(data);   
-    if(data.error == "invalid token format" || data.error == "invalid token"){
+    console.log(data);
+    if (data.error == "invalid token format" || data.error == "invalid token") {
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
@@ -74,16 +74,16 @@ async function getData() {
     console.log(response);
     let response2 = await fetchData2();
     console.log(response2);
-    
-    document.getElementById("welcome").innerHTML = "Welcome "+localStorage.getItem("username");
+
+    document.getElementById("welcome").innerHTML = "Welcome " + localStorage.getItem("username");
     let profileDetails = document.createElement("div");
     profileDetails.classList.add("profile-details");
     let userName = document.createElement("h4");
-    userName.innerHTML = "Username: "+response2.username;
+    userName.innerHTML = "Username: " + response2.username;
     let emailId = document.createElement("h4");
-    emailId.innerHTML = "Email: "+response2.email;
+    emailId.innerHTML = "Email: " + response2.email;
     let skills = document.createElement("h4");
-    skills.innerHTML = "Skills: "+ (response2.skills!=null?response2.skills:"");
+    skills.innerHTML = "Skills: " + (response2.skills != null ? response2.skills : "");
     profileDetails.appendChild(userName);
     profileDetails.appendChild(emailId);
     profileDetails.appendChild(skills);
@@ -94,7 +94,7 @@ async function getData() {
         // console.log(project);
         let projectCard = document.createElement("div");
         projectCard.className = "project-entry";
-        let projectName = document.createElement("li");     
+        let projectName = document.createElement("li");
         // console.log(project.title);
         projectName.innerHTML = project.title;
         projectCard.appendChild(projectName);
@@ -104,10 +104,17 @@ async function getData() {
 };
 getData();
 
+async function getSkills() {
+
+}
+
+async function getExperiences() {
+
+}
 async function createProject() {
     var duration;
     if (document.getElementById("lt3m").checked) {
-        duration = "3 months";  
+        duration = "3 months";
     } else if (document.getElementById("bw36m").checked) {
         duration = "3-6 months";
     }
@@ -119,49 +126,135 @@ async function createProject() {
         "Accept": "*/*",
         "Content-Type": "application/json",
         "Authorization": "Bearer " + localStorage.getItem("token"),
-       }
-       
-       let bodyContent = JSON.stringify({
-         "title": document.getElementById("project-title").value,
-         "description": document.getElementById("project-description").value,
-         "status": "open",
-         "duration": duration,
-         "start_date": document.getElementById("project-start").value,
+    }
+
+    let bodyContent = JSON.stringify({
+        "title": document.getElementById("project-title").value,
+        "description": document.getElementById("project-description").value,
+        "status": "open",
+        "duration": duration,
+        "start_date": document.getElementById("project-start").value,
         //  "tags": document.getElementById("project-tags").value,
         //  "min-reqs": document.getElementById("project-requirements").value,
-        }
-       );
-       console.log(bodyContent);
-       
-       let response = await fetch("http://localhost:8080/projects/create", { 
-         method: "POST",
-         body: bodyContent,
-         headers: headersList
-       });
-       
-       let data = await response.text();
-       console.log(data);  
-       return data;
+    }
+    );
+    console.log(bodyContent);
+
+    let response = await fetch("http://localhost:8080/projects/create", {
+        method: "POST",
+        body: bodyContent,
+        headers: headersList
+    });
+
+    let data = await response.text();
+    console.log(data);
+    return data;
 }
-async function createProj(){
+async function createProj() {
     let response = await createProject();
     console.log(response);
     let message = JSON.parse(response).message;
     console.log(message);
-    if(message == "project created successfully"){
+    if (message == "project created successfully") {
         window.location.reload();
         alert("Project created successfully");
     }
-    else if(response.error == "invalid token format" || response.error == "invalid token"){
+    else if (response.error == "invalid token format" || response.error == "invalid token") {
         alert("Session Expired. Please login again.");
         window.location.href = "./login.html";
     }
-    
+
 }
 
-document.addEventListener("DOMContentLoaded" , () => {
+document.addEventListener("DOMContentLoaded", () => {
     const width = document.getElementById("detail-modal").offsetWidth;
-    document.getElementById("detail-modal-div").style.width = width+"px";
+    document.getElementById("detail-modal-div").style.width = width + "px";
     document.getElementById("detail-modal").style.visibility = "hidden";
-    var nothing; console.log(nothing);
 })
+
+
+document.getElementById('skills').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        console.log("working")
+        add();
+        document.getElementById('skills').value = null
+    }
+});
+
+function add() {
+    var skill = document.getElementById("skills").value;
+    console.log(skill)
+    // skill+= " &#11198;";
+    skill.trim();
+    if (skill != null && skill != "" && skill != " ") {
+        var btn = document.createElement("button");
+        btn.innerHTML = skill
+        btn.className = "skill-btn"
+        btn.setAttribute('onclick', "removing(this)")
+        document.getElementById("allskills").insertBefore(btn, document.getElementById("skills-bar"));
+    }
+    let children = document.getElementById("allskills").childNodes;
+    children.forEach(element => {
+        console.log(element);
+    });
+}
+
+function removing(element) {
+    element.remove();
+    console.log("removed");
+}
+
+document.getElementById('skills').addEventListener('keydown', function (event) {
+    if ((event.key === 'Backspace') && document.getElementById("skills").value.trim() == '') {
+        let children = Array.from(document.getElementById("allskills").childNodes);
+        // Filter out non-button elements (like the input field itself)
+        let skillButtons = children.filter(child => child.className === "skill-btn");
+        if (skillButtons.length > 0) {
+            // Only remove the last skill button, if any exist
+            skillButtons[skillButtons.length - 1].remove();
+        }
+    }
+});
+
+document.getElementById('exp').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        console.log("working")
+        add();
+        document.getElementById('exp').value = null
+    }
+});
+
+function add() {
+    var exp = document.getElementById("exp").value;
+    console.log(exp)
+    // skill+= " &#11198;";
+    exp.trim();
+    if (exp != null && exp != "" && exp != " ") {
+        var btn = document.createElement("button");
+        btn.innerHTML = exp
+        btn.className = "exp-btn"
+        btn.setAttribute('onclick', "removing(this)")
+        document.getElementById("allexp").insertBefore(btn, document.getElementById("exp-bar"));
+    }
+    let children = document.getElementById("allexp").childNodes;
+    children.forEach(element => {
+        console.log(element);
+    });
+}
+
+function removing(element) {
+    element.remove();
+    console.log("removed");
+}
+
+document.getElementById('exp').addEventListener('keydown', function (event) {
+    if ((event.key === 'Backspace') && document.getElementById("exp").value.trim() == '') {
+        let children = Array.from(document.getElementById("allexp").childNodes);
+        // Filter out non-button elements (like the input field itself)
+        let expButtons = children.filter(child => child.className === "exp-btn");
+        if (expButtons.length > 0) {
+            // Only remove the last skill button, if any exist
+            expButtons[expButtons.length - 1].remove();
+        }
+    }
+});
