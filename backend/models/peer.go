@@ -3,6 +3,7 @@ package models
 import "github.com/AaravShirvoikar/dbs-project/backend/database"
 
 type Peer struct {
+	UserID    int    `json:"id"`
 	UserName  string `json:"username"`
 	Email     string `json:"email"`
 	FirstName string `json:"first_name"`
@@ -15,7 +16,7 @@ func GetPeers(id int) ([]Peer, error) {
 		return nil, err
 	}
 
-	rows, err := database.Db.Query("SELECT username, email, first_name, last_name FROM users where type = $1 and id != $2", userType, id)
+	rows, err := database.Db.Query("SELECT id, username, email, first_name, last_name FROM users where type = $1 and id != $2", userType, id)
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +25,7 @@ func GetPeers(id int) ([]Peer, error) {
 	peers := []Peer{}
 	for rows.Next() {
 		var peer Peer
-		err := rows.Scan(&peer.UserName, &peer.Email, &peer.FirstName, &peer.LastName)
+		err := rows.Scan(&peer.UserID, &peer.UserName, &peer.Email, &peer.FirstName, &peer.LastName)
 		if err != nil {
 			return nil, err
 		}
