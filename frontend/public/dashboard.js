@@ -216,12 +216,6 @@ document.getElementById('skills').addEventListener('keydown', function (event) {
     }
 });
 
-
-
-
-
-
-
 document.getElementById('exp').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         console.log("working")
