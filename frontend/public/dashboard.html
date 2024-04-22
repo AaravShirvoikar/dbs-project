@@ -45,18 +45,45 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Information</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <div class="form-floating my-2">
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            <label for="floatingInput">Update Email</label>
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="email" class="form-control" id="fname" placeholder="fname" required>
+                            <label for="floatingInput">Update First Name</label>
+                        </div>
+                        <div class="form-floating my-2">
+                            <input type="email" class="form-control" id="lname" placeholder="lname" required>
+                            <label for="floatingInput">Update Last Name</label>
+                        </div>
+                        <div id="allskills">
+                            <div id="skills-bar" class="skills-bar form-floating">
+                                <input id="skills" type="string" class="form-control floatingInput"
+                                    placeholder="Enter skills ">
+                                <label for="floatingInput">Enter/Update Skills</label>
+                            </div>
+                        </div>
+                        <div id="allexp">
+                            <div id="exp-bar" class="exp-bar form-floating">
+                                <input id="exp" type="string" class="form-control floatingInput"
+                                    placeholder="Enter skills ">
+                                <label for="floatingInput">Enter/Update Experiences</label>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Update</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -150,7 +177,7 @@
                         </svg>
                     </button>
                 </div>
-                
+
                 <img src="../assets/MentorMatch.png" id="profile-image" />
             </div>
 
