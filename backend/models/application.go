@@ -20,7 +20,7 @@ func (a *Application) Create() error {
 }
 
 func GetStudentApplications(id int) ([]Application, error) {
-	query := "SELECT project_id, id, message, status FROM applications WHERE student_id = $1"
+	query := "SELECT project_id, title, applications.id, message, applications.status FROM applications JOIN projects ON applications.project_id = projects.id WHERE student_id = $1"
 	rows, err := database.Db.Query(query, id)
 	if err != nil {
 		return nil, err
@@ -30,7 +30,7 @@ func GetStudentApplications(id int) ([]Application, error) {
 	applications := []Application{}
 	for rows.Next() {
 		var application Application
-		err := rows.Scan(&application.ProjectID, &application.ApplicationID, &application.Message, &application.Status)
+		err := rows.Scan(&application.ProjectID, &application.ProjectName, &application.ApplicationID, &application.Message, &application.Status)
 		if err != nil {
 			return nil, err
 		}
