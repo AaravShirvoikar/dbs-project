@@ -25,6 +25,8 @@ CREATE TYPE application_status AS ENUM ('pending', 'accepted', 'rejected');
 
 CREATE TYPE project_duration AS ENUM ('3 months', '3-6 months', '>6 months');
 
+Create TYPE project_type AS ENUM ('research', 'mini')
+
 -- Create users table
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -46,7 +48,8 @@ CREATE TABLE projects (
   start_date DATE NOT NULL,
   duration project_duration NOT NULL,
   status project_status,
-  tags VARCHAR[]
+  tags VARCHAR[],
+  type project_type
 );
 
 -- Create applications table

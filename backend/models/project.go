@@ -18,10 +18,11 @@ type Project struct {
 	MinReqs       []string `json:"min_reqs"`
 	Status        string   `json:"status"`
 	Tags          []string `json:"tags"`
+	Type          string   `json:"type"`
 }
 
 func GetProjects() ([]Project, error) {
-	rows, err := database.Db.Query("SELECT projects.id, title, description, username, start_date, duration, min_reqs, status, tags FROM projects join users on projects.professor_id = users.id;")
+	rows, err := database.Db.Query("SELECT projects.id, title, description, username, start_date, duration, min_reqs, status, tags, projects.type FROM projects join users on projects.professor_id = users.id;")
 	if err != nil {
 		return nil, err
 	}
@@ -32,7 +33,7 @@ func GetProjects() ([]Project, error) {
 		var project Project
 		var tagsArray sql.NullString
 		var reqsArray sql.NullString
-		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorName, &project.StartDate, &project.Duration, &reqsArray, &project.Status, &tagsArray)
+		err := rows.Scan(&project.ProjectId, &project.Title, &project.Description, &project.ProfessorName, &project.StartDate, &project.Duration, &reqsArray, &project.Status, &tagsArray, &project.Type)
 		if err != nil {
 			return nil, err
 		}
@@ -94,7 +95,7 @@ func GetProfessorProjects(id int) ([]Project, error) {
 func (p *Project) Create() error {
 	tagsArray := utils.CreatePostgresArray(p.Tags)
 	reqsArray := utils.CreatePostgresArray(p.MinReqs)
-	_, err := database.Db.Exec("INSERT INTO projects (title, description, professor_id, status, tags, start_date, duration, min_reqs) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)", p.Title, p.Description, p.ProfessorID, p.Status, tagsArray, p.StartDate, p.Duration, reqsArray)
+	_, err := database.Db.Exec("INSERT INTO projects (title, description, professor_id, status, tags, start_date, duration, min_reqs, type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", p.Title, p.Description, p.ProfessorID, p.Status, tagsArray, p.StartDate, p.Duration, reqsArray, p.Type)
 	return err
 }
 
