@@ -100,7 +100,6 @@ async function getUserDetails(user_id){
        
        let data = await response.text();
        console.log(data);
-       
 }
 var matchingApplication;
 // Function to handle button click and populate modal with application details
