@@ -98,9 +98,10 @@ async function buttonClicked(details) {
 
     // Populate modal with application details
     // Ensure that the element IDs used here match those in your HTML
-    document.getElementById("modal-title").innerHTML = matchingApplication.title || 'No Title Provided';
-    document.getElementById("modal-appId").innerHTML = "Application ID : " + (matchingApplication.application_id || 'No ID Provided');
+    document.getElementById("modal-title").innerHTML = matchingApplication.project_name || 'No Title Provided';
+    
     document.getElementById("modal-id").innerHTML = "Student ID : " + (matchingApplication.student_id || 'No ID Provided');
+    document.getElementById("modal-student-name").innerHTML = "Student Name : " + (matchingApplication.student_name || 'No Name Found');
     document.getElementById("modal-message").innerHTML = matchingApplication.message || 'No Message Provided';
 
     if (await checkUserType() == "professor") {

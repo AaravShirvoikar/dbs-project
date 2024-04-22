@@ -103,7 +103,21 @@
                             <input type="text" class="form-control" id="project-title"
                                 style="margin: 10px 10px; width: 400px; ">
                         </div>
-
+                        <div id="type">
+                            <h5>Select Project Type : </h5>
+                            <fieldset>
+                                <div style="display: flex; justify-content: space-around;">
+                                    <div>
+                                        <input type="radio" id="researchradio" name="projtype" required checked>
+                                        <label for="researchradio">Research Paper</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="projectradio" name="projtype" required>
+                                        <label for="proectradio">Mini Project</label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
                         <div class="project-parameters">
                             <h5>Minimum Requirements : </h5>
                             <input type="text" class="form-control" id="project-requirements"

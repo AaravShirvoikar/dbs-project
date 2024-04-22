@@ -121,7 +121,12 @@ async function createProject() {
     else if (document.getElementById("gt6m").checked) {
         duration = ">6 months";
     }
-
+    var project_type;
+    if (document.getElementById("researchradio").checked) {
+        project_type = "research";
+    } else if (document.getElementById("projectradio").checked) {
+        project_type = "mini";
+    }
     let headersList = {
         "Accept": "*/*",
         "Content-Type": "application/json",
@@ -133,6 +138,7 @@ async function createProject() {
         "description": document.getElementById("project-description").value,
         "status": "open",
         "duration": duration,
+        "type" : project_type,
         "start_date": document.getElementById("project-start").value,
         //  "tags": document.getElementById("project-tags").value,
         //  "min-reqs": document.getElementById("project-requirements").value,
@@ -176,12 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById('skills').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         console.log("working")
-        add();
+        addskills();
         document.getElementById('skills').value = null
     }
 });
 
-function add() {
+function addskills() {
     var skill = document.getElementById("skills").value;
     console.log(skill)
     // skill+= " &#11198;";
@@ -219,12 +225,12 @@ document.getElementById('skills').addEventListener('keydown', function (event) {
 document.getElementById('exp').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         console.log("working")
-        add();
+        addexp();
         document.getElementById('exp').value = null
     }
 });
 
-function add() {
+function addexp() {
     var exp = document.getElementById("exp").value;
     console.log(exp)
     // skill+= " &#11198;";
@@ -242,10 +248,6 @@ function add() {
     });
 }
 
-function removing(element) {
-    element.remove();
-    console.log("removed");
-}
 
 document.getElementById('exp').addEventListener('keydown', function (event) {
     if ((event.key === 'Backspace') && document.getElementById("exp").value.trim() == '') {

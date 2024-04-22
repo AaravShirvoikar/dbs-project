@@ -17,102 +17,109 @@
         @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
     </style>
 </head>
+
 <body>
 
-    
-<div class="d-flex align-items-center pt-2 px-4 vsc-initialized" style="min-height: 100vh;">
-    <main class="form-signin m-auto" style="width: 30%; margin-top: 30rem;">
-        <div id="register">
-            <div class="d-flex align-items-center">
-                <a href="../index.html"><img class="mb-4" src="../assets/MentorMatch.png" alt="" width="72" height="auto"></a>
-                <h1 class="h3 mb-3 fw-normal">Register</h1>
-            </div>
-            <div id="stage1" class="">
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="username" placeholder="Username" required>
-                    <label for="floatingInput">Username</label>
-                </div>
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="fname" placeholder="First Name" required >
-                    <label for="floatingInput">First Name</label>
-                </div>
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
-                    <label for="floatingInput">Last Name</label>
-                </div>
-            </div>
 
-            <div id="stage2" class="hidden">
-                <div id="type">
-                    <label for="floatingInput">Select Account Type</label><br>
-                    <fieldset>
+    <div class="d-flex align-items-center pt-2 px-4 vsc-initialized" style="min-height: 100vh;">
+        <main class="form-signin m-auto" style="width: 30%; margin-top: 30rem;">
+            <div id="register">
+                <div class="d-flex align-items-center">
+                    <a href="../index.html"><img class="mb-4" src="../assets/MentorMatch.png" alt="" width="72"
+                            height="auto"></a>
+                    <h1 class="h3 mb-3 fw-normal">Register</h1>
+                </div>
+                <div id="stage1" class="">
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="username" placeholder="Username" required>
+                        <label for="floatingInput">Username</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="fname" placeholder="First Name" required>
+                        <label for="floatingInput">First Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                        <label for="floatingInput">Last Name</label>
+                    </div>
+                </div>
+
+                <div id="stage2" class="hidden">
+                    <div id="type">
+                        <label for="floatingInput">Select Account Type</label><br>
+                        <fieldset>
                             <div style="display: flex; justify-content: space-around;">
-                        <div>
-                            <input type="radio" id="studentradio" name="acctype" required checked>
-                            <label for="studentradio" >Student</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="profradio" name="acctype" required>
-                            <label for="profradio" >Professor</label>
+                                <div>
+                                    <input type="radio" id="studentradio" name="acctype" required checked>
+                                    <label for="studentradio">Student</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="profradio" name="acctype" required>
+                                    <label for="profradio">Professor</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="allskills">
+                        <div id="skills-bar" class="skills-bar form-floating">
+                            <input id="skills" type="string" class="form-control floatingInput"
+                                placeholder="Enter skills ">
+                            <label for="floatingInput">Enter Skills</label>
                         </div>
                     </div>
-                </fieldset>
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                        <label for="floatingInput">hello3</label>
+                    </div>
                 </div>
-                <div id="allskills">
-                <div id="skills-bar" class="skills-bar form-floating">
-                    <input id="skills" type="string" class="form-control floatingInput" placeholder="Enter skills ">
-                    <label for="floatingInput">Enter Skills</label>
+                <div id="stage3" class="hidden">
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="username" placeholder="Username" required>
+                        <label for="floatingInput">bye1</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="fname" placeholder="First Name" required>
+                        <label for="floatingInput">bye2</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
+                        <label for="floatingInput">bye3</label>
+                    </div>
                 </div>
-                </div>
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
-                    <label for="floatingInput">hello3</label>
-                </div>
+                <button id="back" class="back btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);"
+                    onclick="back()">Back</button>
+                <button id="next" class="next btn  mt-3" style="background-color: rgb(251, 171, 126);"
+                    onclick="next()">Next</button>
+                <button id="submiting" class="submit btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);"
+                    onclick="submit()">Submit</button>
             </div>
-            <div id="stage3" class="hidden">
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="username" placeholder="Username" required>
-                    <label for="floatingInput">bye1</label>
-                </div>
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="fname" placeholder="First Name" required >
-                    <label for="floatingInput">bye2</label>
-                </div>
-                <div class="form-floating">
-                    <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
-                    <label for="floatingInput">bye3</label>
-                </div>
-            </div>
-            <button id="back" class="back btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);" onclick="back()">Back</button>
-            <button id="next" class="next btn  mt-3" style="background-color: rgb(251, 171, 126);" onclick="next()">Next</button>
-            <button id="submiting" class="submit btn  mt-3 hidden"  style="background-color: rgb(251, 171, 126);" onclick="submit()">Submit</button>
-        </div>
-    </main>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</div>
-
-<section id="footer">
-    <div class="container footer">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
-            <p class="col-md-4 mb-0 text-body-secondary">© 2024 Mentor Match, Inc</p>
-
-            <a href="/"
-                class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img src="../assets/MentorMatch.png" alt="Mentor Match Logo" width="60" height="auto">
-            </a>
-
-            <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="#header" class="nav-link px-2 text-body-secondary">Home</a></li>
-                <li class="nav-item"><a href="#features" class="nav-link px-2 text-body-secondary">Features</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                <li class="nav-item"><a href="./public/about.html" class="nav-link px-2 text-body-secondary">About</a></li>
-            </ul>
-        </footer>
+        </main>
+        <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
     </div>
-</section>
-</body>
-</html>
 
+    <section id="footer">
+        <div class="container footer">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+                <p class="col-md-4 mb-0 text-body-secondary">© 2024 Mentor Match, Inc</p>
+
+                <a href="/"
+                    class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <img src="../assets/MentorMatch.png" alt="Mentor Match Logo" width="60" height="auto">
+                </a>
+
+                <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a href="#header" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="#features" class="nav-link px-2 text-body-secondary">Features</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item"><a href="./public/about.html"
+                            class="nav-link px-2 text-body-secondary">About</a></li>
+                </ul>
+            </footer>
+        </div>
+    </section>
+</body>
+
+</html>
