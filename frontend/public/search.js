@@ -196,6 +196,7 @@ async function buttonClicked(details) {
     document.getElementById("modal-title").innerHTML = matchingProject.title;
     document.getElementById("modal-id").innerHTML = "Project ID : " + matchingProject.project_id;
     document.getElementById("modal-project-owner").innerHTML = "Project Owner : " + matchingProject.professor_name;
+    document.getElementById("modal-project-type").innerHTML = "Project Type : " + (matchingProject.type=="mini"?"Mini Project":"Research Paper");
     document.getElementById("modal-description").innerHTML = matchingProject.description;
     document.getElementById("project-Status").innerHTML = "Status : " + matchingProject.status;
     document.getElementById("modal-start").innerHTML = "Start Date : " + matchingProject.start_date.split("T")[0];
