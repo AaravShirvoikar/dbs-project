@@ -50,8 +50,9 @@ async function displayData() {
         applicationProjectName.innerHTML = application.project_name;
         let statusDiv = document.createElement("div");
         statusDiv.classList.add("statusdiv");
-        let applicationStatus = document.createElement("p");
-        applicationStatus.innerHTML = application.status;
+        statusDiv.innerHTML = application.status;
+        // let applicationStatus = document.createElement("p");
+        // applicationStatus.innerHTML = application.status;
         let line = document.createElement("hr");
         let applicationMessage = document.createElement("p");
         applicationMessage.innerHTML = application.message;
@@ -59,7 +60,7 @@ async function displayData() {
         // Assemble the application card and append it to the button
         applicationButton.appendChild(applicationCard);
         headerdiv.appendChild(applicationProjectName);
-        statusDiv.appendChild(applicationStatus);
+        // statusDiv.appendChild(applicationStatus);
         headerdiv.appendChild(statusDiv);
         applicationCard.appendChild(headerdiv);
         applicationCard.appendChild(line);

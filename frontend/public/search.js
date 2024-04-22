@@ -213,11 +213,30 @@ async function buttonClicked(details) {
             applyButton.style.border = "none";
             applyButton.style.backgroundColor = "rgb(251, 171, 126)";
             applyButton.style.height = "37.6px";
+            applyButton.style.margin = "0px 5px";
+            applyButton.setAttribute("onclick", "apply()");
             applyButton.addEventListener("click", apply);
             applyButton.innerHTML = "Apply";
-
-            document.getElementById("modal-footer-buttons").appendChild(applyButton);
+            document.getElementById("modal-footer-buttons").insertBefore(applyButton, document.getElementById("close-btn"));
             console.log("hello")
+        }
+        let message = document.getElementById("message");
+        let messageLabel = document.getElementById("message-label");
+        if(!messageLabel){
+            messageLabel = document.createElement("label");
+            messageLabel.setAttribute("id", "message-label");
+            messageLabel.innerHTML = "Why do you think you are suitable for this project?<br />";
+            document.getElementById("modal-body").appendChild(messageLabel);
+        }
+        if(!message) {
+            message = document.createElement("textarea");
+            message.setAttribute("id", "message");
+            message.classList.add("form-control");
+            // message.setAttribute("placeholder", "Enter your message here");
+            message.style.margin = "10px auto";
+            message.setAttribute("rows", "5")
+            message.setAttribute("cols", "110")
+            document.getElementById("modal-body").appendChild(message);
         }
     }
 
@@ -334,3 +353,4 @@ function autocomplete(input, list) {
             suggestions.parentNode.removeChild(suggestions);
     }
 }
+

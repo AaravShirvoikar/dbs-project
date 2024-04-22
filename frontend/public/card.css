@@ -134,7 +134,7 @@ body{
     align-items: center;
 }
 .statusdiv{
-    padding: 0px 8px;
+    padding: 5px 8px;
     display: flex;
     flex-direction: column;
     margin-top: 3px;

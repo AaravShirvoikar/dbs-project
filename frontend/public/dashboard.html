@@ -35,11 +35,89 @@
             <button type="button" class="header-link login" onclick="logout()">Logout</button>
         </div>
     </section>
-    <section id="details-modal">
-        <!-- Button trigger modal -->
 
+    <section id="skill-modal">
+        <div class="modal fade" id="skills-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Your Skills</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="allskills">
+                            <div id="skill-div"></div>
+                            <div id="skills-bar" class="skills-bar form-floating">
+                                <input id="skills" type="string" class="form-control floatingInput"
+                                    placeholder="Enter skills ">
+                                <label for="floatingInput">Enter Skills</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="updateSkills()">Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
 
-        <!-- Modal -->
+    <section id="exp-modal">
+        <div class="modal fade" id="experiences-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Your Experiences</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex gap-2">
+                        <div id="exp-inputs" class="w-75">
+                            <div class="skills-bar form-floating my-3">
+                                <input id="exp-title" type="string" class="form-control floatingInput"
+                                    placeholder="Enter Title/Position "  required>
+                                <label for="floatingInput">Enter Title/Position</label>
+                            </div>
+                            <div class="skills-bar form-floating my-3">
+                                <input id="exp-company" type="string" class="form-control floatingInput"
+                                    placeholder="Enter Company Name "  required>
+                                <label for="floatingInput">Enter Company Name</label>
+                            </div>
+                            <div class="skills-bar form-floating my-3" >
+                                <input id="exp-start" type="date" class="form-control floatingInput"
+                                    placeholder="Enter Start Date " required>
+                                <label for="floatingInput">Enter Start Date</label>
+                            </div>
+                            <div class="skills-bar form-floating my-3" >
+                                <input id="exp-end" type="date" class="form-control floatingInput"
+                                    placeholder="Enter End Date " required>
+                                <label for="floatingInput">Enter End Date</label>
+                            </div>
+                            <div class="skills-bar form-floating my-3" >
+                                <textarea id="exp-desc" type="string" class="form-control"
+                                    placeholder="Enter Description" rows="15" required></textarea>    
+                                <label for="floatingInput">Enter Description</label>
+                            </div>
+                        </div>
+                        <div id="exp-list" class="d-flex flex-column w-100">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="updateExperiences()">Update</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="edit-modal">
+
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -61,20 +139,7 @@
                             <input type="email" class="form-control" id="lname" placeholder="lname" required>
                             <label for="floatingInput">Update Last Name</label>
                         </div>
-                        <div id="allskills">
-                            <div id="skills-bar" class="skills-bar form-floating">
-                                <input id="skills" type="string" class="form-control floatingInput"
-                                    placeholder="Enter skills ">
-                                <label for="floatingInput">Enter/Update Skills</label>
-                            </div>
-                        </div>
-                        <div id="allexp">
-                            <div id="exp-bar" class="exp-bar form-floating">
-                                <input id="exp" type="string" class="form-control floatingInput"
-                                    placeholder="Enter skills ">
-                                <label for="floatingInput">Enter/Update Experiences</label>
-                            </div>
-                        </div>
+
 
                     </div>
                     <div class="modal-footer">
@@ -224,6 +289,7 @@
             </footer>
         </div>
     </section>
+
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

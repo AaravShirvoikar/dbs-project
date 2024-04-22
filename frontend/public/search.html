@@ -53,7 +53,7 @@
                         <h4 id="modal-title" class="modal-title">Project Title</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="modal-body">
                             <h5 id="modal-id">Project ID</h4>
                             <h5 id="modal-project-owner">Project Owner :</h5>
                             <h5 id="modal-project-type">Project Title :</h5>
@@ -62,17 +62,17 @@
                             <h5 id="modal-requirments">Minimum Requirements : </h5>
                             <h5>Project Description :</h5>
                             <p id="modal-description">Description</p>
-                            <label>Why do you think you are suitable for this project?<br /><label>
+                            <!-- <label id="message-label">Why do you think you are suitable for this project?<br /><label>
                                     <textarea class="form-control" rows="5" cols="110" id="message"
-                                        style="margin: 10px auto;" required></textarea>
+                                        style="margin: 10px auto;" required></textarea> -->
                     </div>
                     <div class="modal-footer"
                         style="padding: 0.75rem 1.2rem;display:flex; flex-direction: row; justify-content: space-between; align-items: center; border-top: 1px solid #dee2e6; margin-top: 3px;">
                         <h5 id="project-Status">Project Status : </h5>
                         <div id="modal-footer-buttons">
-                            <button type="button" id="apply-button" class="btn btn-primary"
+                            <!-- <button type="button" id="apply-button" class="btn btn-primary"
                                 style="border:none;background-color: rgb(251, 171, 126); height:  37.6px"
-                                onclick="apply()">Apply</button>
+                                onclick="apply()">Apply</button> -->
                             <button type="button" id="close-btn" class="btn btn-default"
                                 style="background-color: rgb(251, 171, 126); height: 37.6px"
                                 data-bs-dismiss="modal">Close</button>
@@ -96,33 +96,33 @@
                     </div>
                     <h6>Type</h6>
                     <ul>
-                        <li><input type="checkbox"> Research Paper</li>
-                        <li><input type="checkbox"> Mini Project</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Research Paper</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Mini Project</li>
                     </ul>
                     <h6>Skill Level</h6>
                     <ul>
-                        <li><input type="checkbox"> Beginner</li>
-                        <li><input type="checkbox"> Intermediate</li>
-                        <li><input type="checkbox"> Advanced</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Beginner</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Intermediate</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Advanced</li>
                     </ul>
                     <h6>Year of Study</h6>
                     <ul>
-                        <li><input type="checkbox"> 1st</li>
-                        <li><input type="checkbox"> 2nd</li>
-                        <li><input type="checkbox"> 3rd</li>
-                        <li><input type="checkbox"> 4th</li>
+                        <li><input name="filter" class="filter" type="checkbox"> 1st</li>
+                        <li><input name="filter" class="filter" type="checkbox"> 2nd</li>
+                        <li><input name="filter" class="filter" type="checkbox"> 3rd</li>
+                        <li><input name="filter" class="filter" type="checkbox"> 4th</li>
                     </ul>
                     <h6>Duration</h6>
                     <ul>
-                        <li><input type="checkbox"> &lt; 3 months</li>
-                        <li><input type="checkbox"> 3 - 6 months</li>
-                        <li><input type="checkbox"> &gt; 6 months</li>
+                        <li><input name="filter" class="filter" type="checkbox"> &lt; 3 months</li>
+                        <li><input name="filter" class="filter" type="checkbox"> 3 - 6 months</li>
+                        <li><input name="filter" class="filter" type="checkbox"> &gt; 6 months</li>
                     </ul>
                     <h6>Domain</h6>
                     <ul>
-                        <li><input type="checkbox"> Artificial Intelligence</li>
-                        <li><input type="checkbox"> Machine Learning</li>
-                        <li><input type="checkbox"> Blockchain Technology</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Artificial Intelligence</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Machine Learning</li>
+                        <li><input name="filter" class="filter" type="checkbox"> Blockchain Technology</li>
                     </ul>
                 </div>
                 <button class="btn btn-primary mx-2"

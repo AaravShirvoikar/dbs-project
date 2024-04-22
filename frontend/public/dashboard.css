@@ -64,7 +64,7 @@
 .profile-details{
     align-self: self-start;
     padding-left: 20px;
-    margin-top: 40px; 
+    /* margin-top: 40px;  */
 }
 
 #my-projects{
@@ -137,7 +137,7 @@
 }
 
 
-#skills-bar , #exp-bar{
+#skills-bar{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -149,7 +149,7 @@
     /* padding: 10px; */
 }
 
-#skills , #exp{
+#skills{
     height: 100%;
     outline: none;
     padding-left: 5px;
@@ -157,19 +157,64 @@
 }
 
 
-.skill-btn , .exp-btn{
+.skill-btn{
     border-style: none;
     background-color: rgb(251, 171, 126);
     padding: 8px;
     border-radius: 20px;
     margin: 5px;
+    width: fit-content;
+    max-width: 100%;
 }
 
-.skill-btn:hover::after , .exp-btn:hover::after{
+.skill-btn *{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}   
+
+.skill-btn:hover::after{
     content: ' \274C';
     /* transition: all 0.5s; */
     
 }
-.skill-btn:hover , .exp-btn:hover{
+.skill-btn:hover{
     font-weight: 900;
+}
+
+
+.buttonsdiv{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+
+
+#exp-list{
+    overflow-y: scroll !important;
+}
+
+.exp-entry{
+    border-style: none;
+    background-color: rgb(251, 171, 126, 0.5);
+    padding: 8px;
+    border-radius: 20px;
+    margin: 5px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.delete-button{
+    background-color: rgb(251, 171, 126);
+    border-style: none;
+    padding: 8px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    visibility: hidden;
+}
+
+.exp-entry:hover .delete-button{
+    visibility: visible;
 }

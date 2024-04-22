@@ -68,6 +68,12 @@ async function fetchData2() {
     }
     return data;
 }
+var globalresponse;
+async function globalData(){
+    globalresponse = await fetchData2();
+    return globalresponse;
+}
+globalresponse = globalData();
 
 async function getData() {
     let response = await fetchData1();
@@ -82,11 +88,35 @@ async function getData() {
     userName.innerHTML = "Username: " + response2.username;
     let emailId = document.createElement("h4");
     emailId.innerHTML = "Email: " + response2.email;
-    let skills = document.createElement("h4");
-    skills.innerHTML = "Skills: " + (response2.skills != null ? response2.skills : "");
+    let buttonsdiv = document.createElement("div");
+    buttonsdiv.classList.add("buttonsdiv");
+    let skillsbtn = document.createElement("button");
+    
+    skillsbtn.innerHTML = "Skills";
+    skillsbtn.setAttribute("id", "skillsBtn");
+    skillsbtn.classList.add("skillsBtn");
+    skillsbtn.classList.add("btn", "btn-primary");
+    skillsbtn.setAttribute("data-bs-toggle", "modal");
+    skillsbtn.setAttribute("data-bs-target", "#skills-modal");
+    skillsbtn.setAttribute("type", "button")
+    skillsbtn.setAttribute("onclick", "showSkillsinModal()");
+
+    let expbtn = document.createElement("button");
+    expbtn.setAttribute("id", "expBtn");
+    expbtn.innerHTML = "Experiences";
+    expbtn.classList.add("expBtn");
+    expbtn.classList.add("btn", "btn-primary");
+    expbtn.setAttribute("data-bs-toggle", "modal");
+    expbtn.setAttribute("data-bs-target", "#experiences-modal");
+    expbtn.setAttribute("type", "button");
+    expbtn.setAttribute("onclick", "showExperiencesinModal()");
+
+    buttonsdiv.appendChild(skillsbtn);
+    buttonsdiv.appendChild(expbtn);
+
     profileDetails.appendChild(userName);
     profileDetails.appendChild(emailId);
-    profileDetails.appendChild(skills);
+    profileDetails.appendChild(buttonsdiv);
     document.getElementById("profile").appendChild(profileDetails);
 
     for (let i in response) {
@@ -104,13 +134,39 @@ async function getData() {
 };
 getData();
 
-async function getSkills() {
-
+async function getSkills(userid) {
+    let headersList = {
+        "Accept": "*/*",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let response = await fetch("http://localhost:8080/user/skills/"+userid, { 
+         method: "GET",
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+    return data;   
 }
 
-async function getExperiences() {
-
+async function getExperiences(userid) {
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let response = await fetch("http://localhost:8080/user/experience/"+userid, { 
+         method: "GET",
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+       return data;
 }
+
 async function createProject() {
     var duration;
     if (document.getElementById("lt3m").checked) {
@@ -178,33 +234,54 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("detail-modal").style.visibility = "hidden";
 })
 
+async function showSkillsinModal() {
+    console.log("Skills");
+    let response = await getSkills(globalresponse.user_id);
+    response = JSON.parse(response);
+    skillsArray = response.skills;
+    let allSkillsContainer = document.getElementById("skill-div");
+    allSkillsContainer.innerHTML = ""; // Clear the existing skills
 
-document.getElementById('skills').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        console.log("working")
-        addskills();
-        document.getElementById('skills').value = null
-    }
-});
+    skillsArray.forEach(element => {
+        if (!allSkillsContainer.querySelector(`[data-skill="${element}"]`)) {
+            addskills(element, "userskills");
+        }
+    })
+}
 
-function addskills() {
-    var skill = document.getElementById("skills").value;
-    console.log(skill)
-    // skill+= " &#11198;";
-    skill.trim();
+async function showExperiencesinModal() {
+    console.log("Experiences");
+    let response = await getExperiences(globalresponse.user_id);
+    response = JSON.parse(response);
+    let allExpContainer = document.getElementById("exp-list");
+    allExpContainer.innerHTML = ""; // Clear the existing skills
+    response.forEach(element => {
+        addexp(element);
+    });
+}
+
+function addskills(skill, tag) {
     if (skill != null && skill != "" && skill != " ") {
         var btn = document.createElement("button");
         btn.innerHTML = skill
         btn.className = "skill-btn"
+        if(tag=="userskills")
+        btn.classList.add("userskills");
         btn.setAttribute('onclick', "removing(this)")
-        document.getElementById("allskills").insertBefore(btn, document.getElementById("skills-bar"));
+        document.getElementById("skill-div").appendChild(btn);
     }
-    let children = document.getElementById("allskills").childNodes;
-    children.forEach(element => {
-        console.log(element);
-    });
 }
 
+document.getElementById('skills').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        console.log("working")
+        var skill = document.getElementById("skills").value;
+        console.log(skill)
+        skill.trim();
+        addskills(skill);
+        document.getElementById('skills').value = null
+    }
+});
 function removing(element) {
     element.remove();
     console.log("removed");
@@ -212,7 +289,7 @@ function removing(element) {
 
 document.getElementById('skills').addEventListener('keydown', function (event) {
     if ((event.key === 'Backspace') && document.getElementById("skills").value.trim() == '') {
-        let children = Array.from(document.getElementById("allskills").childNodes);
+        let children = Array.from(document.getElementById("skills-div").childNodes);
         // Filter out non-button elements (like the input field itself)
         let skillButtons = children.filter(child => child.className === "skill-btn");
         if (skillButtons.length > 0) {
@@ -222,41 +299,106 @@ document.getElementById('skills').addEventListener('keydown', function (event) {
     }
 });
 
-document.getElementById('exp').addEventListener('keydown', function (event) {
-    if (event.key === 'Enter') {
-        console.log("working")
-        addexp();
-        document.getElementById('exp').value = null
-    }
-});
-
-function addexp() {
-    var exp = document.getElementById("exp").value;
-    console.log(exp)
-    // skill+= " &#11198;";
-    exp.trim();
-    if (exp != null && exp != "" && exp != " ") {
-        var btn = document.createElement("button");
-        btn.innerHTML = exp
-        btn.className = "exp-btn"
-        btn.setAttribute('onclick', "removing(this)")
-        document.getElementById("allexp").insertBefore(btn, document.getElementById("exp-bar"));
-    }
-    let children = document.getElementById("allexp").childNodes;
-    children.forEach(element => {
-        console.log(element);
-    });
+function addexp(element) {
+    console.log(element);
+    let div = document.createElement("div");
+    div.classList.add("exp-entry");
+    let title = document.createElement("h4");
+    title.innerHTML = element.title + " at " + element.company;
+    let date = document.createElement("p");
+    date.innerHTML = " from " +  element.start_date.split("T")[0] + " to " + element.end_date.split("T")[0];
+    let desc = document.createElement("p");
+    desc.innerHTML = element.description;
+    div.appendChild(title);
+    div.appendChild(date);
+    div.appendChild(desc);
+    let deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "<img src='../assets/del.svg' alt='delete' width='20px' height='20px'>";
+    deleteButton.classList.add("delete-button");
+    deleteButton.setAttribute("onclick", "deleteExp(this)");
+    div.appendChild(deleteButton);
+    document.getElementById("exp-list").appendChild(div);
 }
 
 
-document.getElementById('exp').addEventListener('keydown', function (event) {
-    if ((event.key === 'Backspace') && document.getElementById("exp").value.trim() == '') {
-        let children = Array.from(document.getElementById("allexp").childNodes);
-        // Filter out non-button elements (like the input field itself)
-        let expButtons = children.filter(child => child.className === "exp-btn");
-        if (expButtons.length > 0) {
-            // Only remove the last skill button, if any exist
-            expButtons[expButtons.length - 1].remove();
-        }
+async function postUpdateSkills(skillsArray) {
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let bodyContent = JSON.stringify({
+         "user_id" : globalresponse.user_id,
+         "skills" : skillsArray
+       });
+       
+       let response = await fetch("http://localhost:8080/user/skills/add", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+       return data;
+}
+  
+async function updateSkills(){
+    let skillsArray = [];
+    let skills = document.getElementsByClassName("skill-btn");
+    for(let i=0; i<skills.length; i++){
+        skillsArray.push(skills[i].innerHTML);
     }
-});
+    console.log(skillsArray);
+    let response = await postUpdateSkills(skillsArray);
+    console.log(response);
+    if(JSON.parse(response).message == "skills added successfully"){
+        alert("Skills added successfully");
+        window.location.reload();
+    }
+}
+
+async function updateExperiences(){
+    if(document.getElementById("exp-title").value == "" || document.getElementById("exp-company").value == "" || document.getElementById("exp-start").value == "" || document.getElementById("exp-end").value == "" || document.getElementById("exp-desc").value == ""){
+        alert("Please fill all the fields");
+        return;
+    }
+    let response = await postUpdateExperience();
+    console.log(response);
+    if(JSON.parse(response).message == "experience added successfully"){
+        alert("Experience added successfully");
+        window.location.reload();
+    }
+}
+async function postUpdateExperience(experience) {
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let bodyContent = JSON.stringify({
+         "title": document.getElementById("exp-title").value,
+         "company": document.getElementById("exp-company").value,
+         "start_date": document.getElementById("exp-start").value,
+         "end_date": document.getElementById("exp-end").value,
+         "description": document.getElementById("exp-desc").value,
+       });
+       
+       let response = await fetch("http://localhost:8080/user/experience/add", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+       return data;
+}
+
+
+function deleteExp(element){
+
+    element.parentElement.remove();
+}
