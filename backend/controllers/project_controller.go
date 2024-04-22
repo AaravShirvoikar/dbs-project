@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/AaravShirvoikar/dbs-project/backend/models"
 )
@@ -43,6 +44,46 @@ func GetMyProjects(w http.ResponseWriter, r *http.Request) {
 		}
 	} else {
 		projects, err = models.GetProfessorProjects(id)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+	}
+
+	err = json.NewEncoder(w).Encode(projects)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+}
+
+func GetProjectById(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	userID, err := strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "Bad request", http.StatusBadRequest)
+		return
+	}
+
+	var projects []models.Project
+	userType, err := models.CheckType(userID)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	if userType == "student" {
+		projects, err = models.GetStudentProjects(userID)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+	} else {
+		projects, err = models.GetProfessorProjects(userID)
 		if err != nil {
 			log.Println(err)
 			http.Error(w, "Internal server error", http.StatusInternalServerError)

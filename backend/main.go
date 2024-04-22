@@ -36,6 +36,7 @@ func main() {
 	subrouter.HandleFunc("POST /user/experience/add", controllers.AddExperience)
 
 	subrouter.HandleFunc("GET /projects/", controllers.GetMyProjects)
+	subrouter.HandleFunc("GET /projects/{id}", controllers.GetProjectById)
 	subrouter.HandleFunc("GET /projects/all", controllers.GetAllProjects)
 	subrouter.HandleFunc("POST /projects/create", controllers.CreateProject)
 	subrouter.HandleFunc("POST /projects/update", controllers.UpdateProject)
