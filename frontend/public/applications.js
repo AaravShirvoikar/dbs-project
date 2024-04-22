@@ -43,20 +43,37 @@ async function displayData() {
 
         let applicationCard = document.createElement("div");
         applicationCard.className = "application-card";
-        let applicationUserID = document.createElement("h3");
-        applicationUserID.innerHTML = application.student_id;
-        let applicationProjectID = document.createElement("h3");
-        applicationProjectID.innerHTML = application.project_id;
+
+        let headerdiv = document.createElement("div");
+        headerdiv.classList.add("headerdiv");
+        let applicationProjectName = document.createElement("h3");
+        applicationProjectName.innerHTML = application.project_name;
+        let statusDiv = document.createElement("div");
+        statusDiv.classList.add("statusdiv");
+        let applicationStatus = document.createElement("p");
+        applicationStatus.innerHTML = application.status;
         let line = document.createElement("hr");
         let applicationMessage = document.createElement("p");
         applicationMessage.innerHTML = application.message;
 
         // Assemble the application card and append it to the button
         applicationButton.appendChild(applicationCard);
-        applicationCard.appendChild(applicationProjectID);
-        applicationCard.appendChild(applicationUserID);
+        headerdiv.appendChild(applicationProjectName);
+        statusDiv.appendChild(applicationStatus);
+        headerdiv.appendChild(statusDiv);
+        applicationCard.appendChild(headerdiv);
         applicationCard.appendChild(line);
         applicationCard.appendChild(applicationMessage);
+
+        if(application.status == "accepted"){
+            statusDiv.style.backgroundColor = "rgb(0, 200, 0, 0.75)";
+        }
+        else if(application.status == "rejected"){
+            statusDiv.style.backgroundColor = "rgb(200, 0, 0, 0.75)";
+        }
+        else{
+            statusDiv.style.backgroundColor = "rgb(200, 200, 0, 0.75)";
+        }
 
         // Append the button to the application results container
         document.getElementById("application-results").appendChild(applicationButton);

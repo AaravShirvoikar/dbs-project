@@ -127,6 +127,22 @@ body{
     padding-left: 5px;
     width: 100%;
 }
+
+.headerdiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.statusdiv{
+    padding: 0px 8px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: azure;
+}
 /* .header-div{
     background-color: rgb(251, 171, 126, 0.5);
     padding: 10px 20px;
