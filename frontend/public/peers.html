@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Mentor Match | Peers</title>
+    <title>Mentor Match | Applications</title>
     <link rel="stylesheet" href="./card.css" />
     <script src="verify.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles.css">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
     </style>
-
 </head>
 
 <body id="body">
@@ -25,42 +28,63 @@
                 <a class="header-link" href="./peers.html">Peers</a>
                 <a class="header-link" href="./search.html">Search</a>
             </div>
-            <!-- <img src="./assets/MentorMatch.png" alt="Mentor Match Logo" class="logo website-logo"> -->
             <button type="button" class="header-link login" onclick="logout()">Logout</button>
         </div>
     </section>
 
-    <div class="d-flex justify-content-center align-items-center">
-        <h1>Peers</h1>
-    </div>
-    <div id="peer-results">
+    <section id="modal-section">
+        <div class="modal fade " aria-hidden="true" tabindex="-1" id="myModal" role="dialog" data-bs-backdrop="static"
+            data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 id="modal-title" class="modal-title">Project Title</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div id="modal-body" class="modal-body">
+                        <h4 id="modal-id">User ID</h4>
+                        <h5 id="modal-peer-name">User Name :</h5>
+                        <h5 id="modal-peer-email">User Name :</h5>
+                        <h5 id="modal-peer-skills">User Skills : </h5>
+                        <h5 id="modal-peer-experiences">User Experience :</h5>
+                        <h5 id="modal-peer-projects">User Projects :</h5>
+                        <div id="modal-options" class="application-options" style="display: flex; justify-content: end; gap: 5px;">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1>Peers</h1>
+        <div class="w-50 mb-3 d-flex justify-content-center">
+        <input type="text" id="searchbar" placeholder="Search Peer by username" class="border w-100 rounded-3" style="padding-left: 10px; height: 40px; font-size: 16px;">
+        <button class="btn btn-primary btn-lg mx-2" style="background-color: rgb(251, 171, 126); font-size: 16px; border:none;" onclick="search()">Search</button>
     </div>
+    </div>
+    <div id="peer-results"></div>
 
     <section id="footer">
         <div class="container footer">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-body-secondary">© 2024 Mentor Match, Inc</p>
-
                 <a href="/"
                     class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <img src="../assets/MentorMatch.png" alt="Mentor Match Logo" width="60" height="auto">
                 </a>
-
                 <ul class="nav col-md-4 justify-content-end">
                     <li class="nav-item"><a href="#header" class="nav-link px-2 text-body-secondary">Home</a></li>
                     <li class="nav-item"><a href="#features" class="nav-link px-2 text-body-secondary">Features</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="./public/about.html"
-                            class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li class="nav-item"><a href="./public/about.html" class="nav-link px-2 text-body-secondary">About</a></li>
                 </ul>
             </footer>
         </div>
     </section>
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-    <script src="peers.js"></script>
+    <script defer src="peers.js"></script>
 </body>
+
 </html>

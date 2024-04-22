@@ -240,8 +240,6 @@ async function buttonClicked(details) {
         }
     }
 
-
-
 }
 
 document.addEventListener('DOMContentLoaded',function() {
