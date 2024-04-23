@@ -67,3 +67,24 @@ func AddExperience(w http.ResponseWriter, r *http.Request) {
 		"message": "experience added successfully",
 	})
 }
+
+func RemoveExperience(w http.ResponseWriter, r *http.Request) {
+	userID := r.Context().Value("id").(int)
+	var experience models.Experience
+	err := json.NewDecoder(r.Body).Decode(&experience)
+	if err != nil {
+		http.Error(w, "Invalid request", http.StatusBadRequest)
+		return
+	}
+
+	err = models.RemoveExperience(userID, experience.ID)
+	if err != nil {
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"message": "experience deleted successfully",
+	})
+}

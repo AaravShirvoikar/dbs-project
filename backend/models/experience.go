@@ -39,3 +39,12 @@ func AddExperience(userID int, experience Experience) error {
 
 	return nil
 }
+
+func RemoveExperience(userID int, experienceID int) error {
+	_, err := database.Db.Exec("DELETE FROM experience WHERE user_id = $1 AND id = $2", userID, experienceID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
