@@ -7,13 +7,7 @@ function next() {
     if (!stage1.classList.contains("hidden")) {
         stage1.classList.add("hidden");
         stage2.classList.remove("hidden");
-        stage3.classList.add("hidden");
         document.getElementById("back").classList.remove("hidden");
-        document.getElementById("submiting").classList.add("hidden");
-    } else if (!stage2.classList.contains("hidden")) { // Add logic for back function
-        stage1.classList.add("hidden");
-        stage2.classList.add("hidden");
-        stage3.classList.remove("hidden");
         document.getElementById("next").classList.add("hidden");
         document.getElementById("submiting").classList.remove("hidden");
     }
@@ -23,17 +17,11 @@ function back() {
     if (!stage2.classList.contains("hidden")) {
         stage1.classList.remove("hidden");
         stage2.classList.add("hidden");
-        stage3.classList.add("hidden");
         document.getElementById("back").classList.add("hidden");
-        document.getElementById("submiting").classList.add("hidden");
-    } else if (!stage3.classList.contains("hidden")) {
-        stage1.classList.add("hidden");
-        stage2.classList.remove("hidden");
-        stage3.classList.add("hidden");
         document.getElementById("next").classList.remove("hidden");
         document.getElementById("submiting").classList.add("hidden");
     }
-}
+    }
 
 function register1() {
     mail = document.getElementById("mail").value;
