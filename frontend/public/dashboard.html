@@ -132,18 +132,16 @@
                             <label for="floatingInput">Update Email</label>
                         </div>
                         <div class="form-floating my-2">
-                            <input type="email" class="form-control" id="fname" placeholder="fname" required>
+                            <input type="string" class="form-control" id="fname" placeholder="fname" required>
                             <label for="floatingInput">Update First Name</label>
                         </div>
                         <div class="form-floating my-2">
-                            <input type="email" class="form-control" id="lname" placeholder="lname" required>
+                            <input type="string" class="form-control" id="lname" placeholder="lname" required>
                             <label for="floatingInput">Update Last Name</label>
                         </div>
-
-
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Update</button>
+                        <button type="button" class="btn btn-primary" onclick="updateDetails()">Update</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -236,7 +234,7 @@
     </section>
 
     <section id="content-section">
-        <div id="welcome-text">
+        <div id="welcome-text" style="margin-top: 80px;">
             <h2 id="welcome">DASHBOARD</h2>
         </div>
         <div id="content">

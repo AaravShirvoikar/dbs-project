@@ -29,16 +29,17 @@
                             height="auto"></a>
                     <h1 class="h3 mb-3 fw-normal">Register</h1>
                 </div>
+                <div class="border rounded-3 bg-body-tertiary p-4 p-md-5">
                 <div id="stage1" class="">
-                    <div class="form-floating">
+                    <div class="form-floating my-3">
                         <input type="string" class="form-control" id="username" placeholder="Username" required>
                         <label for="floatingInput">Username</label>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating my-3">
                         <input type="string" class="form-control" id="fname" placeholder="First Name" required>
                         <label for="floatingInput">First Name</label>
                     </div>
-                    <div class="form-floating">
+                    <div class="form-floating my-3">
                         <input type="string" class="form-control" id="lname" placeholder="Last Name" required>
                         <label for="floatingInput">Last Name</label>
                     </div>
@@ -48,7 +49,7 @@
                     <div id="type">
                         <label for="floatingInput">Select Account Type</label><br>
                         <fieldset>
-                            <div style="display: flex; justify-content: space-around;">
+                            <div style="display: flex; justify-content: space-around;" class="my-3 ">
                                 <div>
                                     <input type="radio" id="studentradio" name="acctype" required checked>
                                     <label for="studentradio">Student</label>
@@ -86,13 +87,15 @@
                         <label for="floatingInput">bye3</label>
                     </div>
                 </div> -->
-                <button id="back" class="back btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);"
+                
+            </div>
+            <button id="back" class="back btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);"
                     onclick="back()">Back</button>
                 <button id="next" class="next btn  mt-3" style="background-color: rgb(251, 171, 126);"
                     onclick="next()">Next</button>
                 <button id="submiting" class="submit btn  mt-3 hidden" style="background-color: rgb(251, 171, 126);"
                     onclick="submit()">Submit</button>
-            </div>
+        </div>
         </main>
         <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -27,7 +27,7 @@ body {
 /* Navbar */
 .header {
   margin: 0 auto;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -36,15 +36,18 @@ body {
   height: 4rem;
   backdrop-filter: blur(10px);
   padding: 0 20px;
-  width: 95%;
-  border-radius: 20px;
+  /* width: 95%; */
+  width: 100%;
+  /* border-radius: 20px; */
   transition: top 10s ease;
   border: 2px solid rgba(0, 0, 0, 0.168);
   box-shadow: 0px -10px 10px -10px rgba(0, 0, 0, 0.1);
   background-color: rgb(251, 171, 126, 0.2);
   z-index: 1000;
+  /* margin-bottom: 10px; */
+  position: fixed;
+  top: 0;
   margin-bottom: 10px;
-
 }
 
 .header:hover {
@@ -90,7 +93,7 @@ box-shadow: 0px 0px 10px rgba(251, 171, 126, 0.6),
 .login:hover {
   background-color: rgb(251, 171, 126, 1);
 }
-.sticky {
+/* .sticky {
   position: fixed;
   top: 0;
   margin: 0 auto;
@@ -101,19 +104,19 @@ box-shadow: 0px 0px 10px rgba(251, 171, 126, 0.6),
   left: 50%;
   transform: translateX(-50%);
   background-color: rgb(251, 171, 126, 0.2);
-  transition: top 10s ease; /* Add transition for smooth animation */
-}
-.sticky + .content {
+  transition: top 10s ease; 
+} */
+/* .sticky + .content {
   padding-top: 102px;
-}
+} */
 .feature-icon-small {
   width: 3rem;
   height: 3rem;
 }
-.bi {
+/* .bi {
   vertical-align: -0.125em;
   fill: currentColor;
-}
+} */
 #login-button {
   color: black;
   text-decoration: none;

@@ -215,7 +215,6 @@ async function buttonClicked(details) {
             applyButton.style.height = "37.6px";
             applyButton.style.margin = "0px 5px";
             applyButton.setAttribute("onclick", "apply()");
-            applyButton.addEventListener("click", apply);
             applyButton.innerHTML = "Apply";
             document.getElementById("modal-footer-buttons").insertBefore(applyButton, document.getElementById("close-btn"));
             console.log("hello")

@@ -55,12 +55,7 @@ async function submit(){
     console.log(acctype);
     email = localStorage.getItem("email");
     password = localStorage.getItem("password");
-    let children = document.getElementById("allskills").childNodes;
-    children.forEach(element => {
-        if(element.className == "skill-btn" && !skills.includes(element.innerHTML))
-        skills.push(element.innerHTML);
-    });
-    console.log(skills);
+   
     let response = await register();
     let message1 = JSON.parse(response).message;
     let message2 = JSON.parse(response).message;
