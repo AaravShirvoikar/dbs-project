@@ -402,3 +402,85 @@ function deleteExp(element){
 
     element.parentElement.remove();
 }
+
+
+async function deleteExp(element){
+    let id = element.parentElement.getAttribute("experience-id");
+    console.log(typeof id,id);
+    let response = await deleteExperience(parseInt(id));
+    console.log(response);
+    element.parentElement.remove();
+}
+
+
+async function deleteExperience(id) {
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let bodyContent = JSON.stringify({
+         "id": id
+       });
+
+       console.log(bodyContent)
+       let response = await fetch("http://localhost:8080/user/experience/remove", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+       return data;
+}       
+
+async function updateDetails(){
+    var email = document.getElementById("email").value;
+    var fname = document.getElementById("fname").value;
+    var lname = document.getElementById("lname").value;
+    if(email.trim() == ""){
+        email = globalresponse.email;
+    }
+    if(fname.trim() == ""){
+        fname = globalresponse.first_name;
+    }
+    if(lname.trim() == ""){
+        lname = globalresponse.last_name;
+    }
+    console.log(email,fname,lname);
+    let response = await postUpdateDetails(email,fname,lname);
+    console.log(response);
+    if(JSON.parse(response).message == "user details updated successfully"){
+        alert("Details updated successfully");
+        window.location.reload();
+    }else{
+        alert("Error updating details");
+        window.location.reload();
+    }
+}
+
+async function postUpdateDetails(email,fname,lname){
+    let headersList = {
+        "Accept": "*/*",
+        "Content-Type": "application/json",
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+       }
+       
+       let bodyContent = JSON.stringify({
+         "email": email,
+         "first_name" : fname,
+         "last_name" : lname
+       });
+       
+       let response = await fetch("http://localhost:8080/user/update", { 
+         method: "POST",
+         body: bodyContent,
+         headers: headersList
+       });
+       
+       let data = await response.text();
+       console.log(data);
+        return data;
+}
