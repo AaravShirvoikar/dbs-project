@@ -303,6 +303,7 @@ function addexp(element) {
     console.log(element);
     let div = document.createElement("div");
     div.classList.add("exp-entry");
+    div.setAttribute("experience-id", element.id);
     let title = document.createElement("h4");
     title.innerHTML = element.title + " at " + element.company;
     let date = document.createElement("p");
@@ -395,12 +396,6 @@ async function postUpdateExperience(experience) {
        let data = await response.text();
        console.log(data);
        return data;
-}
-
-
-function deleteExp(element){
-
-    element.parentElement.remove();
 }
 
 
